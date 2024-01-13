@@ -35,7 +35,6 @@
                   <h5>Please login to your account</h5>
                     <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
                         <DataAnnotationsValidator />
-                        <ValidationSummary />
                         <br>
                         <div class="form-group">
                             <InputText Id="email" Placeholder="Email Address" Class="form-control" @bind-Value="loginModel.Email" />
@@ -54,7 +53,7 @@
                     <br>
                   <div class="d-flex align-items-center justify-content-center pb-4">
                     <p class="mb-0 me-2">Don't have an account?</p>
-                    <button type="button" class="btn btn-outline-danger">Create new</button>
+                    <button type="button" class="btn btn-outline-danger" @onclick="ToRegister">Create new</button>
                   </div>
 
               </div>

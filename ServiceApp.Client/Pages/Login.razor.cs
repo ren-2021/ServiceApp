@@ -28,5 +28,9 @@ namespace ServiceApp.Client.Pages
             }
         }
 
+        private async Task ToRegister()
+        {
+            NavigationManager.NavigateTo("/register");
+        }
     }
 }
