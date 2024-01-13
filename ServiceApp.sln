@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceApp.Server", "Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceApp.Shared", "ServiceApp.Shared\ServiceApp.Shared.csproj", "{D231D9E3-65BF-4852-BBDC-B36B5860F9FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceApp.BusinessLayer", "ServiceApp.BusinessLayer\ServiceApp.BusinessLayer.csproj", "{E3983A38-6D8E-4D4A-93E3-25620A3690DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceApp.BusinessLayer", "ServiceApp.BusinessLayer\ServiceApp.BusinessLayer.csproj", "{E3983A38-6D8E-4D4A-93E3-25620A3690DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceApp.DataAccessLayer", "ServiceApp.DataAccessLayer\ServiceApp.DataAccessLayer.csproj", "{BC4F70CD-F631-435D-B075-AB2AED636DCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceApp.DataAccessLayer", "ServiceApp.DataAccessLayer\ServiceApp.DataAccessLayer.csproj", "{BC4F70CD-F631-435D-B075-AB2AED636DCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceApp.ServiceLayer", "ServiceApp.ServiceLayer\ServiceApp.ServiceLayer.csproj", "{52BF98BB-4AD8-4C8F-AF23-CE1378D7DC31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceApp.ServiceLayer", "ServiceApp.ServiceLayer\ServiceApp.ServiceLayer.csproj", "{52BF98BB-4AD8-4C8F-AF23-CE1378D7DC31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
