@@ -2,9 +2,6 @@
 @using ServiceApp.Shared.Model
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
-
-<h1>Register</h1>
-
 @if (ShowErrors)
 {
     <div class="alert alert-danger" role="alert">
@@ -15,6 +12,52 @@
     </div>
 }
 
+<section class="h-100 gradient-form">
+    <div class="container py-5 h-100 .px-01">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-5">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-12">
+                            <div class="card-body p-md-5 mx-md-4">
+
+                                <div class="text-center">
+                                    <img src="logo-Shepherd.png"
+                                         style="width: 350px;" alt="logo">
+                                </div>
+                                <br>
+                                <h5>Please enter your details</h5><br>
+                                <EditForm Model="RegisterModel" OnValidSubmit="HandleRegistration">
+                                    <DataAnnotationsValidator />
+                                    <ValidationSummary />
+
+                                    <div class="form-group">
+                                        <InputText Id="email" class="form-control" placeholder="Email address" @bind-Value="RegisterModel.Email" />
+                                        <ValidationMessage For="@(() => RegisterModel.Email)" />
+                                        <label class="pt-2" for="email">Email address</label>
+                                    </div><br>
+                                    <div class="form-group">
+                                        <InputText Id="password" type="password" placeholder="Password" class="form-control" @bind-Value="RegisterModel.Password" />
+                                        <ValidationMessage For="@(() => RegisterModel.Password)" />
+                                        <label class="pt-2" for="password">Password</label>
+                                    </div><br>
+                                    <div class="form-group">
+                                        <InputText Id="password" type="password" placeholder="Confirm Password" class="form-control" @bind-Value="RegisterModel.ConfirmPassword" />
+                                        <ValidationMessage For="@(() => RegisterModel.ConfirmPassword)" />
+                                        <label class="pt-2" for="password">Confirm Password</label>
+                                    </div><br>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </EditForm>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@* 
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Please enter your details</h5>
@@ -41,4 +84,4 @@
         </EditForm>
     </div>
 </div>
-
+ *@
