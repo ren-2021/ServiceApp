@@ -1,0 +1,36 @@
+﻿@using System.Net.Http.Json
+@inject HttpClient httpClient
+
+<style>
+    /* .mud-dialog-width-sm {
+        max-width: 900px;
+    } */
+</style>
+
+<MudDialog>
+    <DialogContent>
+        <MudDataGrid Items="@employees" Filterable="false" SortMode="@SortMode.None" Groupable="false">
+            <Columns>
+                <TemplateColumn Title="Name">
+                    <CellTemplate>
+                        <MudText @onclick="@(()=>RowCellClicked(context.Item.Name))">@context.Item.Name</MudText>
+                    </CellTemplate>
+                </TemplateColumn>
+                    <PropertyColumn Property="x => x.Salary" Format="C" />
+                    <TemplateColumn Title="Tin Number">
+                        <CellTemplate>
+                            <MudText @onclick="@(()=>RowCellClicked(context.Item.Position))">@context.Item.Position</MudText>
+                        </CellTemplate>
+                    </TemplateColumn>
+                    <TemplateColumn Title="Additional Information">
+                        <CellTemplate>
+                            <MudText @onclick="@(()=>RowCellClicked(context.Item.Position))">@context.Item.Position</MudText>
+                        </CellTemplate>
+                    </TemplateColumn>
+            </Columns>
+        </MudDataGrid>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+    </DialogActions>
+</MudDialog>
