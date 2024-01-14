@@ -1,11 +1,19 @@
 ﻿@page "/transact"
 @inject IDialogService DialogService
 
-<MudGrid Class="d-flex justify-center">
-        <MudItem xs="12" sm="12">
-            <MudPaper Class="pa-16 ma-2">
-            <MudText Typo="Typo.h4" Class="px-4">Client Info</MudText>
-            <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus mauris id lorem finibus, non condimentum risus ultricies.</MudText>
+<style>
+    .pa-10 {
+        padding: 20px !important;
+    }
+</style>
+
+    <MudGrid Class="d-flex justify-center">
+        <MudItem xs="12" sm="10">
+            <MudPaper Class="pa-10 ma-2">
+                <div class="container  mt-4">
+                    <MudText Typo="Typo.h5">Client Info</MudText>
+                    <MudText Typo="Typo.body2" Class="mud-text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus mauris id lorem finibus, non condimentum risus ultricies.</MudText>
+                </div>
             <MudDivider DividerType="DividerType.Middle" Class="my-6" Style="height: 2px" />
                 <div class="container  mt-4">
                     <MudButton @onclick="OpenDialog" Variant="Variant.Filled" Color="Color.Primary">Choose existing client</MudButton>
@@ -15,18 +23,18 @@
                         <div class="row mb-4">
                             <div class="col">
                                 <div data-mdb-input-init class="form-outline">
-                                    <MudTextField @bind-Value="TextValue" Label="First Name" Variant="Variant.Text"></MudTextField><br>
+                                    <MudTextField @bind-Value="FirstName" Label="First Name" Variant="Variant.Text"></MudTextField><br>
                                 </div>
                                 <div data-mdb-input-init class="form-outline">
-                                    <MudTextField @bind-Value="TextValue" Label="Last Name" Variant="Variant.Text"></MudTextField><br>
+                                    <MudTextField @bind-Value="LastName" Label="Last Name" Variant="Variant.Text"></MudTextField><br>
                                 </div>
                             <div data-mdb-input-init class="form-outline mb-4">
-                                <MudTextField @bind-Value="TextValue" Label="Tin Number" Variant="Variant.Text"></MudTextField><br>
+                                <MudTextField @bind-Value="TinNumber" Label="Tin Number" Variant="Variant.Text"></MudTextField><br>
                             </div>
                     </div>
                     <div class="col">
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <MudTextField @bind-Value="TextValue" Label="Address" Variant="Variant.Text"></MudTextField><br>
+                                <MudTextField @bind-Value="Address" Label="Address" Variant="Variant.Text"></MudTextField><br>
                         </div>
                         <div data-mdb-input-init class="form-outline mb-4">
                             <MudTextField @ref="multilineReference" T="string" Label="Additional Information" Lines="3" Variant="Variant.Outlined" Text="" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Api" OnAdornmentClick="@(() => multilineReference.SelectAsync())" />
@@ -37,11 +45,28 @@
                 </form>
             </MudPaper>
         </MudItem>
-    <MudItem xs="12" sm="12">
-        <MudPaper Class="pa-16 ma-2">
-            <MudText Typo="Typo.h4">Services</MudText>
-            <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary"></MudText>
-            <MudDivider DividerType="DividerType.Middle" Class="my-6" Style="height: 2px" />
+    <MudItem xs="12" sm="10">
+        <MudPaper Class="pa-10 ma-2">
+            <div class="container  mt-4">
+                <MudText Typo="Typo.h5">Services</MudText>
+                <MudText Typo="Typo.body2" Class="mud-text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus mauris id lorem finibus, non condimentum risus ultricies.</MudText>
+            </div>
+            <MudDivider DividerType="DividerType.Middle" Class="my-6" Style="height: 2px" /><br>
+                <div class="container">
+                    <MudPaper MaxHeight="500px" Class="overflow-y-auto" Elevation="0">
+                        <MudTreeView Items="@TreeItems">
+                            <ItemTemplate>
+                                <MudTreeViewItem @bind-Expanded="@context.IsExpanded" Items="@context.TreeItems">
+                                    <Content>
+                                        <MudTreeViewItemToggleButton @bind-Expanded="@context.IsExpanded" Visible="@context.HasChild" />
+                                        <MudCheckBox T="bool?" Checked="@(context.HasPartialChildSelection() ? null : context.IsChecked)" CheckedChanged="@((e) => CheckedChanged(context))"></MudCheckBox>
+                                        <MudText>@context.Text</MudText>
+                                        </Content>
+                                    </MudTreeViewItem>
+                                </ItemTemplate>
+                            </MudTreeView>
+                        </MudPaper>
+                </div>
         </MudPaper>
     </MudItem>
     </MudGrid>

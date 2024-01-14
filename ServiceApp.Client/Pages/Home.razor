@@ -2,31 +2,32 @@
 
 <AuthorizeView>
     <Authorized>
-        <MudGrid>
-        <MudItem xs="6">
-                <MudPaper Class="pa-4">
-                    <MudChart ChartType="ChartType.Pie" InputData="@data" @bind-SelectedIndex="Index" InputLabels="@labels" Width="550px" Height="550px" />
-                </MudPaper>
-            @*     <MudPaper Class="pa-4 mt-2 d-flex justify-center">
-                    <MudButton OnClick="AddDataSize" Variant="Variant.Filled" Color="Color.Success">Add</MudButton>
-                    <MudButton @onclick="RandomizeData" Variant="Variant.Filled" Class="mx-4">Randomize</MudButton>
-                    <MudButton OnClick="RemoveDataSize" Variant="Variant.Filled" Color="Color.Secondary">Remove</MudButton>
-                </MudPaper> *@
-        </MudItem>
-        <MudItem xs="6">
-                <MudPaper Class="d-flex align-center mud-width-full py-15">
-                    <MudCardContent>
-                        <MudText>Summary</MudText>
-                        <br>
-                        <MudText Typo="Typo.body2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</MudText>
-                        <br>
-                        <MudText Typo="Typo.body2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</MudText>
-                        <br>
-                        <MudText Typo="Typo.body2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</MudText>
-                        <br>
-                    </MudCardContent>
-                </MudPaper>
-        </MudItem>
+        <MudGrid Class="d-flex justify-center">
+        <MudItem xs="12" sm="10">
+              <div class="container">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <MudPaper>
+                                <MudChart ChartType="ChartType.Pie" InputData="@data" @bind-SelectedIndex="Index" InputLabels="@labels" Width="550px" Height="550px" />
+                            </MudPaper>
+                        </div>
+                        <div class="col">
+                            <MudPaper Class="d-flex align-center mud-width-full">
+                                <MudCardContent>
+                                    <MudText>Summary</MudText>
+                                    <br>
+                                    <MudText Typo="Typo.body2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</MudText>
+                                    <br>
+                                    <MudText Typo="Typo.body2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</MudText>
+                                    <br>
+                                    <MudText Typo="Typo.body2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</MudText>
+                                    <br>
+                                </MudCardContent>
+                            </MudPaper>
+                         </div>
+                    </div>
+               </div>
+            </MudItem>
         </MudGrid>
     </Authorized>
     <NotAuthorized>
