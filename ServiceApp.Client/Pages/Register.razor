@@ -2,6 +2,13 @@
 @using ServiceApp.Shared.Model
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
+
+<style>
+    main {
+        background-color: #ffffff !important;
+    }
+</style>
+
 @if (ShowErrors)
 {
     <div class="alert alert-danger" role="alert">

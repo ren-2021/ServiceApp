@@ -1,0 +1,57 @@
+﻿@page "/summary"
+
+<style>
+    .pa-10 {
+        padding: 20px !important;
+    }
+</style>
+<div class="container">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link" id="nav-first-tab" data-toggle="tab" href="transact" role="tab" aria-controls="nav-first" aria-selected="true">Transaction</a>
+            <a class="nav-item nav-link active" id="nav-second-tab" data-toggle="tab" href="summary" role="tab" aria-controls="nav-second" aria-selected="false">Summary</a>
+        </div>
+    </nav>
+</div>
+ <MudGrid Class="d-flex justify-center">
+    <MudItem xs="12" sm="10">
+        <MudPaper Class="pa-10 ma-2">
+            <div class="container  mt-4">
+                <MudText Typo="Typo.h5">Services</MudText>
+                <MudText Typo="Typo.body2" Class="mud-text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus mauris id lorem finibus, non condimentum risus ultricies.</MudText>
+            </div>
+            <MudDataGrid Items="@employees" Filterable="false" SortMode="@SortMode.None" Groupable="false">
+                <Columns>
+                    <PropertyColumn Property="x => x.Name" />
+                    <PropertyColumn Property="x => x.Position" />
+                    <PropertyColumn Property="x => x.YearsEmployed" Title="Years Employed" />
+                    <PropertyColumn Property="x => x.Salary" Format="C" />
+                    <PropertyColumn Property="x => x.Salary * x.YearsEmployed" Title="Total Earned" Format="C" />
+                </Columns>
+            </MudDataGrid>
+            <MudDataGrid Items="@employees" Filterable="false" SortMode="@SortMode.None" Groupable="false">
+                <Columns>
+                    <PropertyColumn Property="x => x.Name" />
+                    <PropertyColumn Property="x => x.Position" />
+                    <PropertyColumn Property="x => x.YearsEmployed" Title="Years Employed" />
+                    <PropertyColumn Property="x => x.Salary" Format="C" />
+                    <PropertyColumn Property="x => x.Salary * x.YearsEmployed" Title="Total Earned" Format="C" />
+                </Columns>
+            </MudDataGrid>
+            <MudDataGrid Items="@employees" Filterable="false" SortMode="@SortMode.None" Groupable="false">
+                <Columns>
+                    <PropertyColumn Property="x => x.Name" />
+                    <PropertyColumn Property="x => x.Position" />
+                    <PropertyColumn Property="x => x.YearsEmployed" Title="Years Employed" />
+                    <PropertyColumn Property="x => x.Salary" Format="C" />
+                    <PropertyColumn Property="x => x.Salary * x.YearsEmployed" Title="Total Earned" Format="C" />
+                </Columns>
+            </MudDataGrid>
+            <div class="container  mt-4 text-end">
+                <button type="button" class="btn btn-primary">Submit</button>
+            </div><br>
+        </MudPaper>
+    </MudItem>
+ </MudGrid>
+ 
+
