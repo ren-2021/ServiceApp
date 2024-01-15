@@ -19,8 +19,4 @@
     <ProjectReference Include="..\ServiceApp.Shared\ServiceApp.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Print\" />
-  </ItemGroup>
-
 </Project>

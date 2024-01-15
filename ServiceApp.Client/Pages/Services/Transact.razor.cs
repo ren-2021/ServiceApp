@@ -1,4 +1,10 @@
+using Microsoft.AspNetCore.Components;
 using MudBlazor;
+using ServiceApp.Shared.Model.Services.Accounting;
+using ServiceApp.Shared;
+using ServiceApp.Shared.Model.Services.Accounting.SubServices;
+using ServiceApp.Client.Enum.StaticClass;
+using ServiceApp.Client.Utility;
 
 namespace ServiceApp.Client.Pages.Services
 {
@@ -9,104 +15,93 @@ namespace ServiceApp.Client.Pages.Services
         public string TinNumber { get; set; }
         public string Address { get; set; }
         private MudTextField<string> multilineReference;
-        private HashSet<TreeItemData> TreeItems { get; set; } = new HashSet<TreeItemData>();
+        private HashSet<ServiceItemData> TreeItems { get; set; } = new HashSet<ServiceItemData>();
+        private Accounting? Accounting { get; set; }
         private void OpenDialog()
         {
             var options = new DialogOptions { CloseOnEscapeKey = true };
             DialogService.Show<ClientDialog>("Clients", options);
         }
 
-        protected void CheckedChanged(TreeItemData item)
+        protected void CheckedChanged(ServiceItemData item)
         {
+            this.Accounting = new Accounting();
             item.IsChecked = !item.IsChecked;
-            // checked status on any child items should mirrror this parent item
             if (item.HasChild)
             {
-                foreach (TreeItemData child in item.TreeItems)
+                foreach (ServiceItemData child in item.TreeItems)
                 {
                     child.IsChecked = item.IsChecked;
                 }
             }
-            // if there's a parent and all children are checked/unchecked, parent should match
             if (item.Parent != null)
             {
                 item.Parent.IsChecked = !item.Parent.TreeItems.Any(i => !i.IsChecked);
             }
+
+            if (item.HasChild)
+            {
+                foreach (ServiceItemData child in item.TreeItems)
+                {
+                    if (child.IsChecked)
+                    {
+                        if(child.Text == SubServices.Filingoftaxes) {this.Accounting.FilingOfTaxes = new FilingOfTaxes(){};}
+                        if (child.Text == SubServices.BIRRegistration) {}
+                        if (child.Text == SubServices.ITRPreparation) {}
+                        if (child.Text == SubServices.DTIRegistration) {}
+                        if (child.Text == SubServices.SECRegistration) {}
+                    }
+                }
+            }
+            else
+            {
+
+            }
+
+            var i = TreeItems;
         }
 
         protected override void OnInitialized()
         {
-            List<TreeItemData> treeItems = new List<TreeItemData>()
+            List<ServiceItemData> treeItems = new List<ServiceItemData>()
             {
-                new TreeItemData("Accounting Services"),
-                new TreeItemData("Other Services"),
-                new TreeItemData("PSA Assistance"),
-                new TreeItemData("DFA Assistance"),
-                new TreeItemData("NOTARY"),
-                new TreeItemData("LTO Services"),
-                new TreeItemData("Airline Services"),
-                new TreeItemData("VISA Processing Assistance"),
-                new TreeItemData("Financial Services"),
-                new TreeItemData("ATM Portable Services")
+                new ServiceItemData(MainServices.Accounting),
+                new ServiceItemData(MainServices.OtherServices),
+                new ServiceItemData(MainServices.PSA),
+                new ServiceItemData(MainServices.DFA),
+                new ServiceItemData(MainServices.NOTARY),
+                new ServiceItemData(MainServices.LTO),
+                new ServiceItemData(MainServices.Airline),
+                new ServiceItemData(MainServices.VISA),
+                new ServiceItemData(MainServices.Financial),
+                new ServiceItemData(MainServices.ATMPortable)
              };
 
-            treeItems[0].AddChild("Filing of taxes (Monthly, Quarterly, Annually)");
-            treeItems[0].AddChild("BIR Registration");
-            treeItems[0].AddChild("ITR Preparation");
-            treeItems[0].AddChild("DTI Registration");
-            treeItems[0].AddChild("SEC Registration");
-
-            treeItems[1].AddChild("Transfer of Title");
-            treeItems[1].AddChild("PCAB Assistance");
-            treeItems[1].AddChild("NBI Assistance");
-            treeItems[1].AddChild("Wedding management (License|Officiant|Filing)");
-
-            treeItems[2].AddChild("Cenomar");
-            treeItems[2].AddChild("Birth Certificate");
-            treeItems[2].AddChild("Marriage Certificate");
-            treeItems[2].AddChild("Death Certificate");
-
-            treeItems[3].AddChild("Passport Assistance");
-            treeItems[3].AddChild("Lost Passport");
+            treeItems[0].AddChild(SubServices.Filingoftaxes);
+            treeItems[0].AddChild(SubServices.BIRRegistration);
+            treeItems[0].AddChild(SubServices.ITRPreparation);
+            treeItems[0].AddChild(SubServices.DTIRegistration);
+            treeItems[0].AddChild(SubServices.SECRegistration);
+            treeItems[1].AddChild(SubServices.TransferofTitle);
+            treeItems[1].AddChild(SubServices.PCABAssistance);
+            treeItems[1].AddChild(SubServices.NBIAssistance);
+            treeItems[1].AddChild(SubServices.Weddingmanagement);
+            treeItems[2].AddChild(SubServices.Cenomar);
+            treeItems[2].AddChild(SubServices.BirthCertificate);
+            treeItems[2].AddChild(SubServices.MarriageCertificate);
+            treeItems[2].AddChild(SubServices.DeathCertificate);
+            treeItems[3].AddChild(SubServices.PassportAssistance);
+            treeItems[3].AddChild(SubServices.LostPassport);
 
             foreach(var item in treeItems)
             {
                 TreeItems.Add(item);
             }
         }
-    }
 
-    public class TreeItemData
-    {
-        public TreeItemData Parent { get; set; } = null;
-
-        public string Text { get; set; }
-
-        public bool IsExpanded { get; set; } = false;
-
-        public bool IsChecked { get; set; } = false;
-
-        public bool HasChild => TreeItems != null && TreeItems.Count > 0;
-
-        public HashSet<TreeItemData> TreeItems { get; set; } = new HashSet<TreeItemData>();
-
-        public TreeItemData(string text)
+        private void Proceed()
         {
-            Text = text;
+            NavigationManager.NavigateTo("/summary");
         }
-
-        public void AddChild(string itemName)
-        {
-            TreeItemData item = new TreeItemData(itemName);
-            item.Parent = this;
-            this.TreeItems.Add(item);
-        }
-
-        public bool HasPartialChildSelection()
-        {
-            int iChildrenCheckedCount = (from c in TreeItems where c.IsChecked select c).Count();
-            return HasChild && iChildrenCheckedCount > 0 && iChildrenCheckedCount < TreeItems.Count();
-        }
-
     }
 }

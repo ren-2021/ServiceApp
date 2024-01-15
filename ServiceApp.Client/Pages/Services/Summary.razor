@@ -5,21 +5,32 @@
         padding: 20px !important;
     }
 </style>
-<div class="container">
-    <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link" id="nav-first-tab" data-toggle="tab" href="transact" role="tab" aria-controls="nav-first" aria-selected="true">Transaction</a>
-            <a class="nav-item nav-link active" id="nav-second-tab" data-toggle="tab" href="summary" role="tab" aria-controls="nav-second" aria-selected="false">Summary</a>
-        </div>
-    </nav>
-</div>
  <MudGrid Class="d-flex justify-center">
-    <MudItem xs="12" sm="10">
-        <MudPaper Class="pa-10 ma-2">
-            <div class="container  mt-4">
-                <MudText Typo="Typo.h5">Services</MudText>
-                <MudText Typo="Typo.body2" Class="mud-text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus mauris id lorem finibus, non condimentum risus ultricies.</MudText>
-            </div>
+    <MudItem xs="12">
+        <MudPaper Class="pa-10">
+            <MudGrid>
+                <MudItem xs="12" sm="6" md="4">
+                    <MudField Label="First Name" Variant="Variant.Filled">Rendel</MudField>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="4">
+                    <MudField Label="Last Name" Variant="Variant.Filled">Sevilla</MudField>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="4">
+                    <MudField Label="Tin Number" Variant="Variant.Filled">WE3454678493027500X</MudField>
+                </MudItem>
+            </MudGrid>
+            <MudGrid>
+                <MudItem xs="12" sm="6" md="4">
+                    <MudField Label="Address" Variant="Variant.Filled">#234 EAddd Street, ABC Brgy., Sample City</MudField>
+                </MudItem>
+                <MudTextField Disabled T="string" Label="Additional Information" Lines="3" Variant="Variant.Filled" Text="Sample 5" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Api">Sample</MudTextField>
+            </MudGrid>
+            <br>
+             <div class="container  mt-4">
+                 <MudText Typo="Typo.h5">Services</MudText>
+                 <MudText Typo="Typo.body2" Class="mud-text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus mauris id lorem finibus, non condimentum risus ultricies.</MudText>
+             </div>
+             <br>
             <MudDataGrid Items="@employees" Filterable="false" SortMode="@SortMode.None" Groupable="false">
                 <Columns>
                     <PropertyColumn Property="x => x.Name" />
@@ -29,6 +40,7 @@
                     <PropertyColumn Property="x => x.Salary * x.YearsEmployed" Title="Total Earned" Format="C" />
                 </Columns>
             </MudDataGrid>
+            <br>
             <MudDataGrid Items="@employees" Filterable="false" SortMode="@SortMode.None" Groupable="false">
                 <Columns>
                     <PropertyColumn Property="x => x.Name" />
@@ -38,6 +50,7 @@
                     <PropertyColumn Property="x => x.Salary * x.YearsEmployed" Title="Total Earned" Format="C" />
                 </Columns>
             </MudDataGrid>
+             <br>
             <MudDataGrid Items="@employees" Filterable="false" SortMode="@SortMode.None" Groupable="false">
                 <Columns>
                     <PropertyColumn Property="x => x.Name" />

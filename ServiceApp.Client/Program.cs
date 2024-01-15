@@ -6,6 +6,7 @@ using ServiceApp.Client;
 using ServiceApp.Client.Services;
 using ServiceApp.Client.Utility;
 using MudBlazor.Services;
+using ServiceApp.Shared.Model;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -15,5 +16,6 @@ builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, UserAuthenticationStateprovider>();
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddSingleton<ClientInfo>();
 builder.Services.AddMudServices();
 await builder.Build().RunAsync();
