@@ -1,4 +1,5 @@
 ﻿@page "/transact"
+@using ServiceApp.Client.Enum.StaticClass
 @inject IDialogService DialogService
 @inject NavigationManager NavigationManager
 
@@ -6,9 +7,13 @@
     .pa-10 {
         padding: 20px !important;
     }
+
+    .mud-button-label{
+        justify-content: start;
+    }
 </style>
 
-<MudTabs Elevation="4" Rounded="true" Centered="false" Color="@Color.Primary" Class="container sm-10">
+<MudTabs Elevation="4" Rounded="true" Centered="false" Color="@Color.Primary" Class="container sm-10" @bind-ActivePanelIndex="@ActivePanel">
     <MudTabPanel Text="Services">
         <MudGrid Class="d-flex justify-center">
             <MudItem xs="12">
@@ -55,23 +60,22 @@
                         <MudText Typo="Typo.body2" Class="mud-text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus mauris id lorem finibus, non condimentum risus ultricies.</MudText>
                     </div>
                     <MudDivider DividerType="DividerType.Middle" Class="my-6" Style="height: 2px" /><br>
-                    <div class="container">
-                        <MudPaper MaxHeight="500px" Class="overflow-y-auto" Elevation="0">
-                            <MudTreeView Items="@TreeItems">
-                                <ItemTemplate>
-                                    <MudTreeViewItem @bind-Expanded="@context.IsExpanded" Items="@context.TreeItems">
-                                        <Content>
-                                            <MudTreeViewItemToggleButton @bind-Expanded="@context.IsExpanded" Visible="@context.HasChild" />
-                                            <MudCheckBox T="bool?" Checked="@(context.HasPartialChildSelection() ? null : context.IsChecked)" CheckedChanged="@((e) => CheckedChanged(context))"></MudCheckBox>
-                                            <MudText>@context.Text</MudText>
-                                            </Content>
-                                        </MudTreeViewItem>
-                                    </ItemTemplate>
-                                </MudTreeView>
-                            </MudPaper>
-                        </div>
+                        @foreach (string service in this.Services)
+                        {
+                            bool expanded = expandedStates.ContainsKey(service) ? expandedStates[service] : false;
+                            <div class="container text-start">
+                                <MudStack Spacing="2">
+                                    <MudButton OnClick="() => OnExpandCollapseClick(service)">@(expanded ? $"Available services for {service}" : service)</MudButton>
+                                    <MudDivider />
+                                    <MudCollapse Expanded="expanded">
+                                        This content is collapsible
+                                    </MudCollapse>
+                                </MudStack>
+                              </div>
+                            <br>
+                        }
                         <div class="container  mt-4 text-end">
-                            <button type="button" class="btn btn-primary" @onclick=Proceed>Proceed</button>
+                        <MudButton OnClick="@(()=>GoToTab(1))" Variant="Variant.Filled" Color="Color.Primary">Proceed</MudButton>
                         </div><br>
                     </MudPaper>
                 </MudItem>

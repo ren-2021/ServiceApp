@@ -32,12 +32,15 @@
              </div>
              <br>
             <MudDataGrid Items="@employees" Filterable="false" SortMode="@SortMode.None" Groupable="false">
+                <Header>
+                    <HeaderCell>
+                        Accounting
+                    </HeaderCell>
+                </Header>
                 <Columns>
                     <PropertyColumn Property="x => x.Name" />
                     <PropertyColumn Property="x => x.Position" />
                     <PropertyColumn Property="x => x.YearsEmployed" Title="Years Employed" />
-                    <PropertyColumn Property="x => x.Salary" Format="C" />
-                    <PropertyColumn Property="x => x.Salary * x.YearsEmployed" Title="Total Earned" Format="C" />
                 </Columns>
             </MudDataGrid>
             <br>
@@ -46,8 +49,6 @@
                     <PropertyColumn Property="x => x.Name" />
                     <PropertyColumn Property="x => x.Position" />
                     <PropertyColumn Property="x => x.YearsEmployed" Title="Years Employed" />
-                    <PropertyColumn Property="x => x.Salary" Format="C" />
-                    <PropertyColumn Property="x => x.Salary * x.YearsEmployed" Title="Total Earned" Format="C" />
                 </Columns>
             </MudDataGrid>
              <br>
@@ -56,8 +57,6 @@
                     <PropertyColumn Property="x => x.Name" />
                     <PropertyColumn Property="x => x.Position" />
                     <PropertyColumn Property="x => x.YearsEmployed" Title="Years Employed" />
-                    <PropertyColumn Property="x => x.Salary" Format="C" />
-                    <PropertyColumn Property="x => x.Salary * x.YearsEmployed" Title="Total Earned" Format="C" />
                 </Columns>
             </MudDataGrid>
             <div class="container  mt-4 text-end">
