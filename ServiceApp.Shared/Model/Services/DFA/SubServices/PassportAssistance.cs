@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace ServiceApp.Shared.Model.Services.DFA.SubServices
 {
-    public class PassportAssistance : IPricing
+    public class PassportAssistance : IPassportAssistance
     {
+        public bool IsIncluded { get; set; }
         public ProcessType ProcessType { get; set; }
-        public decimal Fee { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public decimal Fee { get; set; }
     }
 }

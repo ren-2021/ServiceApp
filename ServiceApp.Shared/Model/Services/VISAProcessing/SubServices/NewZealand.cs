@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ServiceApp.Shared.Model.Services.VISAProcessing.SubServices
 {
-    public class NewZealand : IPricing
+    public class NewZealand : INewZealand
     {
-        public decimal Fee { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsIncluded { get; set; }
+        public decimal Fee { get; set; }
     }
 }

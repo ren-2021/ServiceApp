@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace ServiceApp.Shared.Model.Services.Notary
 {
-    public class Notary : IPricing
+    public class Notary : INotary
     {
-        public decimal Fee { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsIncluded { get; set; }
+        public decimal Fee { get; set; }
+        public Notary(bool isIncluded, decimal fee)
+        {
+            IsIncluded = isIncluded;
+            Fee = fee;
+        }
     }
 }

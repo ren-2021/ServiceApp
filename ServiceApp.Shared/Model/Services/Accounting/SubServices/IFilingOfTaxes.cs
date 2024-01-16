@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ServiceApp.Shared.Model.Services.Accounting.SubServices
 {
-    public interface IFilingOfTaxes : IPricing, IOwnership
+    public interface IFilingOfTaxes
     {
         public bool IsIncluded { get; set; }
-        public new OwnerType OwnerType { get; set; }
-        public new decimal Fee { get; set; }
+        public OwnerType OwnerType { get; set; }
+        public decimal Fee { get; set; }
     }
 }

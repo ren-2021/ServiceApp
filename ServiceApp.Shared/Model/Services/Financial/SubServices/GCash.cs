@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ServiceApp.Shared.Model.Services.Financial.SubServices
 {
-    public class GCash : IPricing
+    public class GCash : IGCash
     {
-        public decimal Fee { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public TransactType TrasactType { get; set; }
+        public bool IsIncluded { get; set; }
+        public decimal Fee { get; set; }
     }
 }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ServiceApp.Shared.Model.Services.Airline.SubServices
 {
-    internal class Domestic : IPricing
+    public class Domestic : IDomestic
     {
-        public decimal Fee { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public decimal Fee { get; set; }
+        public bool IsIncluded { get; set; }
     }
 }

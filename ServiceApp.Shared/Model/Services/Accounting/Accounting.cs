@@ -29,6 +29,7 @@ namespace ServiceApp.Shared.Model.Services.Accounting
         public IPhilhealthRegistration PhilhealthRegistration => philhealthRegistration;
         public IBookkeeping Bookkeeping => bookkeeping;
         public IFilingOfTaxes FilingOfTaxes => filingOfTaxes;
+        public bool IsIncluded { get; set; }
 
         public Accounting(IFilingOfTaxes _filingOfTaxes, IBIRRegistration _birRegistration, IITRPreparation _itrPreparation, IDTIRegistration _dtiRegistration, ISECRegistration _secRegistration, IBusinessPermit _businessPermit, IPagIbigRegistration _pagIbigRegistration, ISSSRegistration _sssRegistration, IPhilhealthRegistration _philhealthRegistration, IBookkeeping _bookkeeping)
         {

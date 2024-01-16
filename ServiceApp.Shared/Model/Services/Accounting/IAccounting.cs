@@ -9,7 +9,7 @@ namespace ServiceApp.Shared.Model.Services.Accounting
 {
     public interface IAccounting
     {
-        public IFilingOfTaxes FilingOfTaxes { get; }
+        public IFilingOfTaxes FilingOfTaxes { get;}
         public IBIRRegistration BIRRegistration { get; }
         public IITRPreparation ITRPreparation { get; }
         public IDTIRegistration DTIRegistration { get; }
@@ -19,5 +19,6 @@ namespace ServiceApp.Shared.Model.Services.Accounting
         public ISSSRegistration SSSRegistration { get; }
         public IPhilhealthRegistration PhilhealthRegistration { get; }
         public IBookkeeping Bookkeeping { get; }
+        public bool IsIncluded { get; set; }
     }
 }

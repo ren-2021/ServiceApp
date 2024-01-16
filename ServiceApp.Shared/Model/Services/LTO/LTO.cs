@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace ServiceApp.Shared.Model.Services.LTO
 {
-    public class LTO
+    public class LTO : ILTO
     {
-        public Registration? Registration { get; set; }
+        private readonly IRegistration registration;
+        public bool IsIncluded { get; set; }
+        IRegistration ILTO.Registration => registration;
+
+        public LTO(IRegistration registration)
+        {
+            this.registration = registration;
+        }
     }
 }
