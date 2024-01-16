@@ -1,7 +1,13 @@
 ﻿@page "/transact"
 @using ServiceApp.Client.Enum.StaticClass
+@using ServiceApp.Shared.Enum
+@using ServiceApp.Shared.Model
+@using ServiceApp.Shared.Model.Services.Accounting
+@using ServiceApp.Shared.Model.Services.Accounting.SubServices
 @inject IDialogService DialogService
 @inject NavigationManager NavigationManager
+@inject ClientInfo ClientInfo
+@inject IAccounting Accounting
 
 <style>
     .pa-10 {
@@ -31,21 +37,21 @@
                             <div class="row mb-4">
                                 <div class="col">
                                     <div data-mdb-input-init class="form-outline">
-                                        <MudTextField @bind-Value="FirstName" Label="First Name" Variant="Variant.Text"></MudTextField><br>
+                                        <MudTextField @bind-Value="ClientInfo.FirstName" Label="First Name" Variant="Variant.Text"></MudTextField><br>
                                     </div>
                                     <div data-mdb-input-init class="form-outline">
-                                        <MudTextField @bind-Value="LastName" Label="Last Name" Variant="Variant.Text"></MudTextField><br>
+                                        <MudTextField @bind-Value="ClientInfo.LastName" Label="Last Name" Variant="Variant.Text"></MudTextField><br>
                                     </div>
                                     <div data-mdb-input-init class="form-outline mb-4">
-                                        <MudTextField @bind-Value="TinNumber" Label="Tin Number" Variant="Variant.Text"></MudTextField><br>
+                                        <MudTextField @bind-Value="ClientInfo.TinNo" Label="Tin Number" Variant="Variant.Text"></MudTextField><br>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div data-mdb-input-init class="form-outline mb-4">
-                                        <MudTextField @bind-Value="Address" Label="Address" Variant="Variant.Text"></MudTextField><br>
+                                        <MudTextField @bind-Value="ClientInfo.Address" Label="Address" Variant="Variant.Text"></MudTextField><br>
                                     </div>
                                     <div data-mdb-input-init class="form-outline mb-4">
-                                        <MudTextField @ref="multilineReference" T="string" Label="Additional Information" Lines="3" Variant="Variant.Outlined" Text="" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Api" OnAdornmentClick="@(() => multilineReference.SelectAsync())" />
+                                        <MudTextField @ref="multilineReference" T="string" Label="Additional Information" Lines="3" TextChanged="OnValueChangeHandler" Variant="Variant.Outlined" Text="" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Api" OnAdornmentClick="@(() => multilineReference.SelectAsync())" />
                                     </div>
                                 </div>
                             </div>
@@ -68,8 +74,113 @@
                                     <MudButton OnClick="() => OnExpandCollapseClick(service)">@(expanded ? $"Available services for {service}" : service)</MudButton>
                                     <MudDivider />
                                     <MudCollapse Expanded="expanded">
-                                        This content is collapsible
-                                    </MudCollapse>
+                                    @if (service == MainServices.Accounting)
+                                    {
+                                        <MudForm>
+                                            <MudCheckBox T="bool" ValueChanged="(isCheck) => HandleCheck(isCheck, SubServices.Filingoftaxes)">@SubServices.Filingoftaxes</MudCheckBox>
+                                                <MudForm Style="margin-left:35px;">
+                                                    <MudText>Ownership Type:</MudText>
+                                                <MudRadioGroup T="string" ValueChanged="(option) => OnSelectedOptionChanged(option, SubServices.Filingoftaxes)">
+                                                    <MudRadio Value="@(OwnerType.SoleProprietorship.ToString())">@OwnerType.SoleProprietorship</MudRadio>
+                                                        <MudRadio Value="@(OwnerType.Corporate.ToString())">@OwnerType.Corporate</MudRadio>
+                                                    </MudRadioGroup>
+                                                   <MudStack Row>
+                                                     <MudText Class="align-self-center">Service Fee:</MudText>
+                                                 <MudTextField @bind-Value="@Accounting.FilingOfTaxes.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                                                    </MudStack>
+                                                 </MudForm>
+                                                 <br>
+                                         @* <MudCheckBox T="bool" Value="@Accounting.FilingOfTaxes.IsIncluded" ValueChanged="HandleCheck"></MudCheckBox>
+                                         <MudForm Style="margin-left:35px;">
+                                             <MudText>Ownership Type:</MudText>
+                                             <MudRadioGroup T="string" ValueChanged="(option) => OnSelectedOptionChanged(option, SubServices.Filingoftaxes)">
+                                                 <MudRadio Value="@(OwnerType.SoleProprietorship.ToString())">@OwnerType.SoleProprietorship</MudRadio>
+                                                        <MudRadio Value="@(OwnerType.Corporate.ToString())">@OwnerType.Corporate</MudRadio>
+                                                    </MudRadioGroup>
+                                                    <MudStack Row>
+                                                 <MudText Class="align-self-center">Service Fee:</MudText>
+                                                 <MudTextField @bind-Value="@Accounting.FilingOfTaxes.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                                             </MudStack>
+                                         </MudForm>
+                                         <br>
+                                         <MudCheckBox T="bool" Value="@Accounting.FilingOfTaxes.IsIncluded" ValueChanged="HandleCheck"></MudCheckBox>
+                                         <MudForm Style="margin-left:35px;">
+                                             <MudText>Ownership Type:</MudText>
+                                             <MudRadioGroup T="string" ValueChanged="(option) => OnSelectedOptionChanged(option, SubServices.Filingoftaxes)">
+                                                 <MudRadio Value="@(OwnerType.SoleProprietorship.ToString())">@OwnerType.SoleProprietorship</MudRadio>
+                                                        <MudRadio Value="@(OwnerType.Corporate.ToString())">@OwnerType.Corporate</MudRadio>
+                                                    </MudRadioGroup>
+                                                    <MudStack Row>
+                                                 <MudText Class="align-self-center">Service Fee:</MudText>
+                                                 <MudTextField @bind-Value="@Accounting.FilingOfTaxes.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                                             </MudStack>
+                                         </MudForm>
+                                         <br>
+                                         <MudCheckBox T="bool" Value="@Accounting.FilingOfTaxes.IsIncluded" ValueChanged="HandleCheck"></MudCheckBox>
+                                         <MudForm Style="margin-left:35px;">
+                                             <MudText>Ownership Type:</MudText>
+                                             <MudRadioGroup T="string" ValueChanged="(option) => OnSelectedOptionChanged(option, SubServices.Filingoftaxes)">
+                                                 <MudRadio Value="@(OwnerType.SoleProprietorship.ToString())">@OwnerType.SoleProprietorship</MudRadio>
+                                                        <MudRadio Value="@(OwnerType.Corporate.ToString())">@OwnerType.Corporate</MudRadio>
+                                                    </MudRadioGroup>
+                                                    <MudStack Row>
+                                                 <MudText Class="align-self-center">Service Fee:</MudText>
+                                                 <MudTextField @bind-Value="@Accounting.FilingOfTaxes.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                                             </MudStack>
+                                         </MudForm>
+                                         <br>
+                                         <MudCheckBox T="bool" Value="@Accounting.FilingOfTaxes.IsIncluded" ValueChanged="HandleCheck"></MudCheckBox>
+                                         <MudForm Style="margin-left:35px;">
+                                             <MudText>Ownership Type:</MudText>
+                                             <MudRadioGroup T="string" ValueChanged="(option) => OnSelectedOptionChanged(option, SubServices.Filingoftaxes)">
+                                                 <MudRadio Value="@(OwnerType.SoleProprietorship.ToString())">@OwnerType.SoleProprietorship</MudRadio>
+                                                        <MudRadio Value="@(OwnerType.Corporate.ToString())">@OwnerType.Corporate</MudRadio>
+                                                    </MudRadioGroup>
+                                                    <MudStack Row>
+                                                 <MudText Class="align-self-center">Service Fee:</MudText>
+                                                 <MudTextField @bind-Value="@Accounting.FilingOfTaxes.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                                             </MudStack>
+                                         </MudForm>
+                                         <br> *@
+                                     </MudForm>
+                                    }
+                                    else if (service == MainServices.OtherServices)
+                                    {
+                                        
+                                    }
+                                    else if (service == MainServices.PSA)
+                                    {
+                                        
+                                    }
+                                    else if (service == MainServices.DFA)
+                                    {
+
+                                    }
+                                    else if (service == MainServices.NOTARY)
+                                    {
+
+                                    }
+                                    else if (service == MainServices.LTO)
+                                    {
+
+                                    }
+                                    else if (service == MainServices.Airline)
+                                    {
+
+                                    }
+                                    else if (service == MainServices.VISA)
+                                    {
+
+                                    }
+                                    else if (service == MainServices.Financial)
+                                    {
+
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                </MudCollapse>
                                 </MudStack>
                               </div>
                             <br>

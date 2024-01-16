@@ -18,22 +18,23 @@ namespace ServiceApp.Client.Pages.Services
         public string? Address { get; set; }
         public int ActivePanel { get; set; }
         public decimal Amount { get; set; }
-        private MudTextField<string>? multilineReference;
+        private MudTextField<string> multilineReference;
         private HashSet<ServiceItemData> TreeItems { get; set; } = new HashSet<ServiceItemData>();
-        private Accounting? Accounting { get; set; }
-        List<string> Services { get; set; }
+        private List<string> Services { get; set; }
+        public decimal Fee { get; set; }
+        private bool IsIncluded {  get; set; }
 
         private Dictionary<string, bool> expandedStates = new Dictionary<string, bool>();
 
-        private void OnExpandCollapseClick(string service)
+        private void OnExpandCollapseClick(string _service)
         {
-            if (expandedStates.ContainsKey(service))
+            if (expandedStates.ContainsKey(_service))
             {
-                expandedStates[service] = !expandedStates[service];
+                expandedStates[_service] = !expandedStates[_service];
             }
             else
             {
-                expandedStates.Add(service, true);
+                expandedStates.Add(_service, true);
             }
         }
         private void OpenDialog()
@@ -42,9 +43,9 @@ namespace ServiceApp.Client.Pages.Services
             DialogService.Show<ClientDialog>("Clients", options);
         }
 
-        protected void GoToTab(int tabIndex)
+        protected void GoToTab(int _tabIndex)
         {
-            this.ActivePanel = tabIndex;
+            this.ActivePanel = _tabIndex;
         }
 
         protected override void OnInitialized()
@@ -62,6 +63,28 @@ namespace ServiceApp.Client.Pages.Services
                 MainServices.Financial,
                 MainServices.ATMPortable
             };
+        }
+
+        protected void OnValueChangeHandler()
+        {
+            ClientInfo.AdditionalInfo = this.multilineReference.Text;
+        }
+        protected void OnSelectedOptionChanged(string _selectedOption, string _subServices)
+        {
+            if(_subServices == SubServices.Filingoftaxes)
+            {
+                Accounting.FilingOfTaxes.OwnerType = System.Enum.Parse<OwnerType>(_selectedOption);
+            }
+            
+        }
+
+        protected void HandleCheck(bool _isCheck, string _subServices)
+        {
+            if (_subServices == SubServices.Filingoftaxes)
+            {
+                Accounting.FilingOfTaxes.IsIncluded = _isCheck;
+            }
+                
         }
     }
 }

@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace ServiceApp.Shared.Model.Services.Accounting.SubServices
 {
-    public class BusinessPermit : IOwnership, IPricing
+    public class BusinessPermit : IBusinessPermit
     {
-        public OwnerType OwnerType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public decimal Fee
-        {
-            get => throw new NotImplementedException(); set => throw new NotImplementedException();
-        }
+        public bool IsIncluded { get; set; }
+        public OwnerType OwnerType { get; set; }
+        public decimal Fee { get; set; }
     }
 }

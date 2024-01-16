@@ -7,6 +7,8 @@ using ServiceApp.Client.Services;
 using ServiceApp.Client.Utility;
 using MudBlazor.Services;
 using ServiceApp.Shared.Model;
+using ServiceApp.Shared.Model.Services.Accounting;
+using ServiceApp.Shared.Model.Services.Accounting.SubServices;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -17,5 +19,17 @@ builder.Services.AddScoped<AuthenticationStateProvider, UserAuthenticationStatep
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddSingleton<ClientInfo>();
+builder.Services.AddSingleton<IAccounting, Accounting>();
+builder.Services.AddSingleton<IFilingOfTaxes, FilingOfTaxes>();
+builder.Services.AddSingleton<IBIRRegistration, BIRRegistration>();
+builder.Services.AddSingleton<IITRPreparation, ITRPreparation>();
+builder.Services.AddSingleton<IDTIRegistration, DTIRegistration>();
+builder.Services.AddSingleton<ISECRegistration, SECRegistration>();
+builder.Services.AddSingleton<IBusinessPermit, BusinessPermit>();
+builder.Services.AddSingleton<IPagIbigRegistration, PagIbigRegistration>();
+builder.Services.AddSingleton<ISSSRegistration, SSSRegistration>();
+builder.Services.AddSingleton<IPhilhealthRegistration, PhilhealthRegistration>();
+builder.Services.AddSingleton<IBookkeeping, Bookkeeping>();
+
 builder.Services.AddMudServices();
 await builder.Build().RunAsync();
