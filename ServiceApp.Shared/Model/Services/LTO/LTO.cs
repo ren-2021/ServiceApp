@@ -1,4 +1,5 @@
-﻿using ServiceApp.Shared.Model.Services.LTO.SubService;
+﻿using ServiceApp.Shared.Model.Services.Financial.SubServices;
+using ServiceApp.Shared.Model.Services.LTO.SubService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ServiceApp.Shared.Model.Services.LTO
     {
         private readonly IRegistration registration;
         public bool IsIncluded { get; set; }
-        IRegistration ILTO.Registration => registration;
+        IRegistration ILTO.Registration { get => registration; set { } }
 
         public LTO(IRegistration registration)
         {

@@ -6,6 +6,7 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text;
 using ServiceApp.Client.Utility;
+using ServiceApp.Shared.Model.Services.Accounting;
 
 namespace ServiceApp.Client.Services
 {
@@ -56,5 +57,12 @@ namespace ServiceApp.Client.Services
             ((UserAuthenticationStateprovider)_authenticationStateProvider).MarkUserAsLoggedOut();
             _httpClient.DefaultRequestHeaders.Authorization = null;
         }
+
+        public async Task<HttpResponseMessage> Process(string accouting)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/Transaction/Process", accouting);
+            return response;
+        }
+
     }
 }

@@ -7,5 +7,7 @@ namespace ServiceApp.Client.Services
         Task<RegisterResult> Register(RegisterModel registerModel);
         Task<LoginResult> Login(LoginModel loginModel);
         Task Logout();
+
+        Task<HttpResponseMessage> Process(string loginModel);
     }
 }

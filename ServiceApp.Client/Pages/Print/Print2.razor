@@ -1,17 +1,3 @@
 ﻿@page "/print2"
 @using ServiceApp.Shared.Model
 
-<div class='row'>
-    <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link" id="nav-first-tab" data-toggle="tab" href="print" role="tab" aria-controls="nav-first" aria-selected="true">First</a>
-            <a class="nav-item nav-link active" id="nav-second-tab" data-toggle="tab" href="print2" role="tab" aria-controls="nav-second" aria-selected="false">Second</a>
-        </div>
-    </nav>
-</div>
-
-<MudText Typo="Typo.h5">@ClientInfo.FirstName</MudText>
-
-@code {
-    [Inject] private ClientInfo? ClientInfo { get; set; }
-}

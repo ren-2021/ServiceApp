@@ -9,9 +9,10 @@ namespace ServiceApp.Shared.Model.Services.PSA
 {
     public interface IPSA
     {
-        public ICenomar Cenomar { get; }
-        public IBirthCertificate BirthCertificate { get; }
-        public IMarriageCertificate MarriageCertificate { get; }
-        public IDeathCertificate DeathCertificate { get; }
+        public ICenomar Cenomar { get; set; }
+        public IBirthCertificate BirthCertificate { get; set; }
+        public IMarriageCertificate MarriageCertificate { get; set; }
+        public IDeathCertificate DeathCertificate { get; set; }
+        public bool IsIncluded { get; set; }
     }
 }

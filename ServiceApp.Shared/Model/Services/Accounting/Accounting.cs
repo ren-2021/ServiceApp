@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServiceApp.Shared.Model.Services.Accounting
 {
-    public class Accounting: IAccounting
+    public class Accounting : IAccounting
     {
         private readonly IFilingOfTaxes filingOfTaxes;
         private readonly IBIRRegistration birRegistration;
@@ -19,16 +19,16 @@ namespace ServiceApp.Shared.Model.Services.Accounting
         private readonly ISSSRegistration sssRegistration;
         private readonly IPhilhealthRegistration philhealthRegistration;
         private readonly IBookkeeping bookkeeping;
-        public IBIRRegistration BIRRegistration => birRegistration;
-        public IITRPreparation ITRPreparation => itrPreparation;
-        public IDTIRegistration DTIRegistration => dtiRegistration;
-        public ISECRegistration SECRegistration => secRegistration;
-        public IBusinessPermit BusinessPermit => businessPermit;
-        public IPagIbigRegistration PagIbigRegistration => pagIbigRegistration;
-        public ISSSRegistration SSSRegistration => sssRegistration;
-        public IPhilhealthRegistration PhilhealthRegistration => philhealthRegistration;
-        public IBookkeeping Bookkeeping => bookkeeping;
-        public IFilingOfTaxes FilingOfTaxes => filingOfTaxes;
+        public IBIRRegistration BIRRegistration { get => birRegistration; set { } }
+        public IITRPreparation ITRPreparation { get => itrPreparation; set { } }
+        public IDTIRegistration DTIRegistration { get => dtiRegistration; set { } }
+        public ISECRegistration SECRegistration { get => secRegistration; set { } }
+        public IBusinessPermit BusinessPermit { get => businessPermit; set { } }
+        public IPagIbigRegistration PagIbigRegistration { get => pagIbigRegistration; set { } }
+        public ISSSRegistration SSSRegistration { get => sssRegistration; set { } }
+        public IPhilhealthRegistration PhilhealthRegistration { get => philhealthRegistration; set { } }
+        public IBookkeeping Bookkeeping { get => bookkeeping; set { } }
+        public IFilingOfTaxes FilingOfTaxes { get => filingOfTaxes; set { } }
         public bool IsIncluded { get; set; }
 
         public Accounting(IFilingOfTaxes _filingOfTaxes, IBIRRegistration _birRegistration, IITRPreparation _itrPreparation, IDTIRegistration _dtiRegistration, ISECRegistration _secRegistration, IBusinessPermit _businessPermit, IPagIbigRegistration _pagIbigRegistration, ISSSRegistration _sssRegistration, IPhilhealthRegistration _philhealthRegistration, IBookkeeping _bookkeeping)

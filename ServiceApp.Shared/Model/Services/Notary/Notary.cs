@@ -10,10 +10,5 @@ namespace ServiceApp.Shared.Model.Services.Notary
     {
         public bool IsIncluded { get; set; }
         public decimal Fee { get; set; }
-        public Notary(bool isIncluded, decimal fee)
-        {
-            IsIncluded = isIncluded;
-            Fee = fee;
-        }
     }
 }

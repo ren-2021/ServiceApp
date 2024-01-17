@@ -9,7 +9,7 @@ namespace ServiceApp.Shared.Model.Services.Financial
 {
     public interface IFinancial
     {
-        public IGCash GCash { get; }
+        public IGCash GCash { get; set; }
         public bool IsIncluded { get; set; }
     }
 }

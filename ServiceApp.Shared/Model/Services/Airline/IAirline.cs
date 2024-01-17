@@ -9,8 +9,8 @@ namespace ServiceApp.Shared.Model.Services.Airline
 {
     public interface IAirline
     {
-        public IDomestic Domestic { get; }
-        public IInternational International { get; }
+        public IDomestic Domestic { get; set; }
+        public IInternational International { get; set; }
         public bool IsIncluded { get; set; }
     }
 }

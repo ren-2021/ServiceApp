@@ -9,8 +9,8 @@ namespace ServiceApp.Shared.Model.Services.DFA
 {
     public interface IDFA
     {
-        public IPassportAssistance PassportAssistance { get; }
-        public ILossPassport LossPassport { get; }
+        public IPassportAssistance PassportAssistance { get;  set; }
+        public ILossPassport LossPassport { get;  set; }
         public bool IsIncluded { get; set; }
     }
 }

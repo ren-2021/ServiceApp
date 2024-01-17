@@ -14,10 +14,10 @@ namespace ServiceApp.Shared.Model.Services.PSA
         private readonly IBirthCertificate birthCertificate;
         private readonly IMarriageCertificate marriageCertificate;
         private readonly IDeathCertificate deathCertificate;
-        public ICenomar Cenomar => cenomar;
-        public IBirthCertificate BirthCertificate => birthCertificate;
-        public IMarriageCertificate MarriageCertificate => marriageCertificate;     
-        public IDeathCertificate DeathCertificate => deathCertificate;
+        public ICenomar Cenomar { get => cenomar; set { } }
+        public IBirthCertificate BirthCertificate { get => birthCertificate; set { } }
+        public IMarriageCertificate MarriageCertificate { get => marriageCertificate; set { } }
+        public IDeathCertificate DeathCertificate { get => deathCertificate; set { } }
         public bool IsIncluded { get; set; }
 
         public PSA(ICenomar cenomar, IBirthCertificate birthCertificate, IMarriageCertificate marriageCertificate, IDeathCertificate deathCertificate)

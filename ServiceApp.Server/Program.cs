@@ -7,12 +7,11 @@ using ServiceApp.Server.Model;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
-    builder.WithOrigins("https://localhost:44338")
+    builder.WithOrigins("https://localhost:7058")
            .AllowAnyMethod()
            .AllowAnyHeader());
 });
@@ -20,7 +19,6 @@ builder.Services.AddCors(options =>
 var connectionString = builder.Configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
 builder.Services.AddDbContext<UserIdentityDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<UserIdentityDbContext>();
-
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
@@ -52,6 +50,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.UseWebAssemblyDebugging();
 }
+app.UseRouting();
 app.UseCors();
 app.UseHttpsRedirection();
 

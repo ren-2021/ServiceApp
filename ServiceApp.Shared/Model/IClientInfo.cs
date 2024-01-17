@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServiceApp.Shared.Model
 {
-    public class ClientInfo: IClientInfo
+    public interface IClientInfo
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

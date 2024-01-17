@@ -1,4 +1,5 @@
-﻿using ServiceApp.Shared.Model.Services.VISAProcessing.SubServices;
+﻿using ServiceApp.Shared.Model.Services.PSA.SubServices;
+using ServiceApp.Shared.Model.Services.VISAProcessing.SubServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,15 @@ namespace ServiceApp.Shared.Model.Services.VISAProcessing
         public readonly IAustralia australia;   
         public readonly IEuropeanCountries europeanCountries;   
         public readonly ISouthKorea southKorea;
-        public IUSA USA => usa;
-        public ICanadaETA CanadaETA => canadaETA;
-        public ICanadaRegular CanadaRegular => canadaRegular;
-        public INewZealand NewZealand => newZealand;
-        public IChina China => china;
-        public IJapan Japan => japan;
-        public IAustralia Australia => australia;
-        public IEuropeanCountries EuropeanCountries => europeanCountries;
-        public ISouthKorea SouthKorea => southKorea;
+        public IUSA USA { get => usa; set { } }
+        public ICanadaETA CanadaETA { get => canadaETA; set { } }
+        public ICanadaRegular CanadaRegular { get => canadaRegular; set { } }
+        public INewZealand NewZealand { get => newZealand; set { } }
+        public IChina China { get => china; set { } }
+        public IJapan Japan { get => japan; set { } }
+        public IAustralia Australia { get => australia; set { } }
+        public IEuropeanCountries EuropeanCountries { get => europeanCountries; set { } }
+        public ISouthKorea SouthKorea { get => southKorea; set { } }
         public bool IsIncluded { get; set; }
 
         public VISAProcessing(IUSA usa, ICanadaETA canadaETA, ICanadaRegular canadaRegular, INewZealand newZealand, IChina china, IJapan japan, IAustralia australia, IEuropeanCountries europeanCountries, ISouthKorea southKorea)

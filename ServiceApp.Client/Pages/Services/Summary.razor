@@ -2,11 +2,28 @@
 @using ServiceApp.Client.Enum.StaticClass
 @using ServiceApp.Shared.Enum
 @using ServiceApp.Shared.Model
+@using ServiceApp.Shared.Model.Services.ATMPortable
 @using ServiceApp.Shared.Model.Services.Accounting
+@using ServiceApp.Shared.Model.Services.Airline
+@using ServiceApp.Shared.Model.Services.DFA
+@using ServiceApp.Shared.Model.Services.Financial
+@using ServiceApp.Shared.Model.Services.LTO
+@using ServiceApp.Shared.Model.Services.Notary
 @using ServiceApp.Shared.Model.Services.OtherServices
-@inject ClientInfo ClientInfo
+@using ServiceApp.Shared.Model.Services.PSA
+@using ServiceApp.Shared.Model.Services.VISAProcessing
+@inject ITransactionService TransactionService
+@inject IClientInfo ClientInfo
 @inject IAccounting Accounting
 @inject IOtherServices OtherServices
+@inject IPSA PSAAssistance
+@inject IDFA DFAServices
+@inject INotary Notary
+@inject ILTO LTOServices
+@inject IAirline AirlineServices
+@inject IVISAProcessing VISAProcessing
+@inject IFinancial FinancialServices
+@inject IATMPortable ATMPortable
 
 <style>
     .pa-10 {
@@ -268,8 +285,304 @@
                         </tbody>
                     </table>
                 }
+                @if (PSAAssistance.IsIncluded)
+                {
+                    <br>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">PSA Assistance Services</th>
+                                <th scope="col">Sole Proprietorship</th>
+                                <th scope="col">Corporate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (PSAAssistance.Cenomar.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.Cenomar</td>
+                                    <td>@PSAAssistance.Cenomar.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                            @if (PSAAssistance.BirthCertificate.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.BirthCertificate</td>
+                                    <td>@PSAAssistance.BirthCertificate.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                            @if (PSAAssistance.MarriageCertificate.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.MarriageCertificate</td>
+                                    <td>@PSAAssistance.MarriageCertificate.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                            @if (PSAAssistance.DeathCertificate.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.DeathCertificate</td>
+                                    <td>@PSAAssistance.DeathCertificate.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                @if (DFAServices.IsIncluded)
+                {
+                    <br>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">DFA Assistance</th>
+                                <th scope="col">Sole Proprietorship</th>
+                                <th scope="col">Corporate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (DFAServices.PassportAssistance.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.PassportAssistance</td>
+                                    <td>
+                                    @if (DFAServices.PassportAssistance.ProcessType == ProcessType.Regular)
+                                    {
+                                        <span>Regular: </span> @DFAServices.PassportAssistance.Fee
+                                    }
+                                    else
+                                    {
+                                        <span>Rush: </span> @DFAServices.PassportAssistance.Fee;
+                                    }
+                                </td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                            @if (DFAServices.LossPassport.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.LostPassport</td>
+                                    <td>@DFAServices.LossPassport.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                @if (Notary.IsIncluded)
+                {
+                    <br>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Notary</th>
+                                <th scope="col">Sole Proprietorship</th>
+                                <th scope="col">Corporate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <tr>
+                                    <td>@MainServices.NOTARY</td>
+                                    <td>@Notary.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                }
+                @if (LTOServices.IsIncluded)
+                {
+                    <br>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">LTO Assistance</th>
+                                <th scope="col">Sole Proprietorship</th>
+                                <th scope="col">Corporate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@SubServices.VehicleRegistration</td>
+                                <td>@LTOServices.Registration.Fee</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+                @if (AirlineServices.IsIncluded)
+                {
+                    <br>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Airline Services</th>
+                                <th scope="col">Sole Proprietorship</th>
+                                <th scope="col">Corporate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           @if (AirlineServices.Domestic.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.Domestic</td>
+                                    <td>@AirlineServices.Domestic.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                            @if (AirlineServices.International.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.International</td>
+                                    <td>@AirlineServices.International.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                @if (VISAProcessing.IsIncluded)
+                {
+                    <br>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">VISA Processing Services</th>
+                                <th scope="col">Sole Proprietorship</th>
+                                <th scope="col">Corporate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (VISAProcessing.USA.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.USA</td>
+                                    <td>@VISAProcessing.USA.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                            @if (VISAProcessing.CanadaETA.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.CanadaETA</td>
+                                    <td>@VISAProcessing.CanadaETA.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                            @if (VISAProcessing.CanadaRegular.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.CanadaRegualar</td>
+                                    <td>@VISAProcessing.CanadaRegular.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                            @if (VISAProcessing.NewZealand.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.NewZealand</td>
+                                    <td>@VISAProcessing.NewZealand.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                            @if (VISAProcessing.China.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.China</td>
+                                    <td>@VISAProcessing.China.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                            @if (VISAProcessing.Japan.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.Japan</td>
+                                    <td>@VISAProcessing.Japan.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                            @if (VISAProcessing.Australia.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.Australia</td>
+                                    <td>@VISAProcessing.Australia.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                            @if (VISAProcessing.EuropeanCountries.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.EuropeanCountries</td>
+                                    <td>@VISAProcessing.EuropeanCountries.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                            @if (VISAProcessing.SouthKorea.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.SouthKorea</td>
+                                    <td>@VISAProcessing.SouthKorea.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                @if (FinancialServices.IsIncluded)
+                {
+                    <br>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Financial Services</th>
+                                <th scope="col">Sole Proprietorship</th>
+                                <th scope="col">Corporate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@SubServices.GCASH</td>
+                                <td>@FinancialServices.GCash.Fee</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+                @if (ATMPortable.IsIncluded)
+                {
+                    <br>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">ATM Portable Services</th>
+                                <th scope="col">Sole Proprietorship</th>
+                                <th scope="col">Corporate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ATMPortable.BankBalanceInquiry.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.BankBalanceInquiry</td>
+                                    <td>@ATMPortable.BankBalanceInquiry.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                        @if (ATMPortable.Withdrawal.IsIncluded)
+                            {
+                                <tr>
+                                    <td>@SubServices.Withdrawal</td>
+                                    <td>@ATMPortable.Withdrawal.Fee</td>
+                                    <td>-</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
             <div class="container  mt-4 text-end">
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button type="button" @onclick="SubmitData" class="btn btn-primary">Submit</button>
             </div><br>
         </MudPaper>
     </MudItem>

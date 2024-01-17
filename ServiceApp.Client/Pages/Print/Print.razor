@@ -2,20 +2,5 @@
 @using ServiceApp.Shared.Model
 @inject NavigationManager NavigationManager
 
-<div class='row'>
-    <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-first-tab" data-toggle="tab" href="print" role="tab" aria-controls="nav-first" aria-selected="true">First</a>
-            <a class="nav-item nav-link" id="nav-second-tab" data-toggle="tab" href="print2" role="tab" aria-controls="nav-second" aria-selected="false">Second</a>
-        </div>
-    </nav>
-</div>
-<div class="container">
-    <div class="form-group">
-        <InputText Id="name" Placeholder="Name" Class="form-control" @bind-Value="ClientInfo.FirstName" />
-        <label for="name" class="pt-2">Name</label>
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary" @onclick="HandleValidSubmit">Submit</button>
-</div>
+
   

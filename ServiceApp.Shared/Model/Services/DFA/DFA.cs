@@ -1,4 +1,5 @@
-﻿using ServiceApp.Shared.Model.Services.DFA.SubServices;
+﻿using ServiceApp.Shared.Model.Services.ATMPortable.SubServices;
+using ServiceApp.Shared.Model.Services.DFA.SubServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace ServiceApp.Shared.Model.Services.DFA
     {
         private readonly IPassportAssistance passportAssistance;
         private readonly ILossPassport lossPassport;
-        public IPassportAssistance PassportAssistance => passportAssistance;
-        public ILossPassport LossPassport => lossPassport;
+        public IPassportAssistance PassportAssistance { get => passportAssistance; set { } }
+        public ILossPassport LossPassport { get => lossPassport; set { } }
         public bool IsIncluded { get; set; }
         public DFA(IPassportAssistance passportAssistance, ILossPassport lossPassport)
         {
