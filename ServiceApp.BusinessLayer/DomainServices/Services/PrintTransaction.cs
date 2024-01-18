@@ -48,7 +48,7 @@ namespace ServiceApp.BusinessLayer.DomainServices.Services
             try
             {
                 string pdfTemplate = "";
-                pdfTemplate = this.Template;
+                pdfTemplate = this.SourceFolder + "Sample.pdf";
                 string filename = "SampleFile_" + Guid.NewGuid().ToString() + ".pdf";
                 string strFolderName = "";
                 string newFile = strFolderName + filename;

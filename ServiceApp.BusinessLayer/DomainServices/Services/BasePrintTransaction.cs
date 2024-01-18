@@ -11,16 +11,16 @@ namespace ServiceApp.BusinessLayer.DomainServices.Services
 {
     public class BasePrintTransaction : BaseDataAccess
     {
-        private string template;
+        private string sourceFolder;
         public IConfiguration Configuration = new ConfigurationBuilder()
                                             .SetBasePath(Directory.GetCurrentDirectory())
                                             .AddJsonFile("appsettings.json").Build();
-        public string Template{ get{ return template; } }
+        public string SourceFolder { get{ return sourceFolder; } }
         public IDLPrint DLPrint { get { return this.dlBaseService.DLPrint; } }
 
         public BasePrintTransaction(List<IDataAccess> pDataAccess) : base(pDataAccess)
         {
-            template = Configuration["Priting:Template"].ToString();
+            sourceFolder = Configuration["Priting:SourceFolder"].ToString();
         }
         public BasePrintTransaction()
         {
