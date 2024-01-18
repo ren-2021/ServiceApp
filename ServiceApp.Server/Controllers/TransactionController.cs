@@ -26,7 +26,7 @@ namespace ServiceApp.Server.Controllers
         public ActionResult<bool> Process([FromBody] JsonRequest _jsonRequest)
         {
             MainRequest mainRequest = new MainRequest();
-            mainRequest = JsonConvert.DeserializeObject<MainRequest>(_jsonRequest.JsonString);
+            //mainRequest = JsonConvert.DeserializeObject<MainRequest>(_jsonRequest.JsonString);
             return this.transactionService.AddTransaction(_jsonRequest.JsonString);
         }
     }

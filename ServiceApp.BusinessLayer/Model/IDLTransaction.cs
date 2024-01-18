@@ -8,6 +8,6 @@ namespace ServiceApp.DataAccessLayer.Services
 {
     public interface IDLTransaction
     {
-        bool AddTrasaction(string sample);
+        bool AddTrasaction(string jsonString);
     }
 }

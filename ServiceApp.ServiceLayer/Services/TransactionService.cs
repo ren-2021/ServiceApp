@@ -16,9 +16,9 @@ namespace ServiceApp.ServiceApp.ServiceLayer.Services
             this.addTransaction = new AddTransaction(this.dataAcesses);
         }
 
-        public bool AddTransaction(string sample)
+        public bool AddTransaction(string jsonString)
         {
-            return this.addTransaction.Add(sample);
+            return this.addTransaction.Add(jsonString);
         }
     }
 }

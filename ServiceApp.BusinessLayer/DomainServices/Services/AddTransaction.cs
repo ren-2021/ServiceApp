@@ -13,11 +13,11 @@ namespace ServiceApp.BusinessLayer.DomainServices.Services
         {
 
         }
-        public bool Add(string sample)
+        public bool Add(string jsonString)
         {
             this.Initialize();
             this.Validation();
-            return this.DLTransaction.AddTrasaction(sample);
+            return this.DLTransaction.AddTrasaction(jsonString);
         }
 
         private void Initialize()

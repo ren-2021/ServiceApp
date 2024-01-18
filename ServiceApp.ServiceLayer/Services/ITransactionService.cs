@@ -9,6 +9,6 @@ namespace ServiceApp.ServiceApp.ServiceLayer.Services
 {
     public interface ITransactionService
     {
-        bool AddTransaction(string sample);
+        bool AddTransaction(string jsonString);
     }
 }

@@ -8,6 +8,6 @@ namespace ServiceApp.BusinessLayer.DomainServices.Services
 {
     public interface IAddTransaction
     {
-        bool Add(string sample);
+        bool Add(string jsonString);
     }
 }
