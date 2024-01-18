@@ -20,13 +20,13 @@ namespace ServiceApp.Shared.Model.ModelRequest
     {
         public Accounting? Accounting { get; set; }
         public Airline? Airline { get; set; }
-        public ATMPortable ATMPortable { get; set; }
-        public DFA DFA { get; set; }
-        public Financial Financial { get; set; }
-        public LTO LTO { get; set; }
-        public Notary Notary { get; set; }
-        public OtherServices OtherServices { get; set; }
-        public PSA PSA { get; set; }
-        public VISAProcessing VISAProcessing { get; set; }
+        public ATMPortable? ATMPortable { get; set; }
+        public DFA? DFA { get; set; }
+        public Financial? Financial { get; set; }
+        public LTO? LTO { get; set; }
+        public Notary? Notary { get; set; }
+        public OtherServices? OtherServices { get; set; }
+        public PSA? PSA { get; set; }
+        public VISAProcessing? VISAProcessing { get; set; }
     }
 }

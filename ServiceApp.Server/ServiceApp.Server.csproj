@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ServiceApp.Client\ServiceApp.Client.csproj" />
+    <ProjectReference Include="..\ServiceApp.ServiceLayer\ServiceApp.ServiceLayer.csproj" />
     <ProjectReference Include="..\ServiceApp.Shared\ServiceApp.Shared.csproj" />
   </ItemGroup>
 

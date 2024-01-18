@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using Newtonsoft.Json;
+using ServiceApp.ServiceApp.ServiceLayer.Services;
 using ServiceApp.Shared.Model;
 using ServiceApp.Shared.Model.ModelRequest;
 using ServiceApp.Shared.Model.Services.Accounting;
@@ -12,14 +13,18 @@ namespace ServiceApp.Server.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        public TransactionController()
+        private ITransactionService transactionService;
+
+        public TransactionController(ITransactionService _transactionService)
         {
+
+            this.transactionService = _transactionService;
         }
 
         [HttpPost("Process")]
         public ActionResult<bool> Process([FromBody] JsonRequest _jsonRequest)
         {
-            return true;
+            return this.transactionService.AddTransaction(_jsonRequest.JsonString);
         }
 
     }
