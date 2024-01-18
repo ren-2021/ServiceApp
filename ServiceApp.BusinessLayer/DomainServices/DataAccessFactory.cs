@@ -11,8 +11,6 @@ namespace ServiceApp.BusinessLayer.DomainServices
     {
 
         public List<IDataAccess> DataAccess { get; set; }
-
-
         public DataAccessFactory(List<IDataAccess> pDataAccess)
         {
             DataAccess = pDataAccess;
