@@ -9,8 +9,8 @@ namespace ServiceApp.Shared.Model.Services.ATMPortable
 {
     public interface IATMPortable
     {
-        public IBankBalanceInquiry BankBalanceInquiry { get; set; }
-        public IWithdrawal Withdrawal { get; set; }
+        public BankBalanceInquiry BankBalanceInquiry { get; set; }
+        public Withdrawal Withdrawal { get; set; }
         public bool IsIncluded { get; set; }
     }
 }

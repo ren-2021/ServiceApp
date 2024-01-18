@@ -9,15 +9,15 @@ namespace ServiceApp.Shared.Model.Services.VISAProcessing
 {
     public interface IVISAProcessing
     {
-        public IUSA USA { get; set; }
-        public ICanadaETA CanadaETA { get; set; }
-        public ICanadaRegular CanadaRegular { get; set; }
-        public INewZealand NewZealand { get; set; }
-        public IChina China { get; set; }
-        public IJapan Japan { get; set; }
-        public IAustralia Australia { get; set; }
-        public IEuropeanCountries EuropeanCountries { get; set; }
-        public ISouthKorea SouthKorea { get; set; }
+        public USA USA { get; set; }
+        public CanadaETA CanadaETA { get; set; }
+        public CanadaRegular CanadaRegular { get; set; }
+        public NewZealand NewZealand { get; set; }
+        public China China { get; set; }
+        public Japan Japan { get; set; }
+        public Australia Australia { get; set; }
+        public EuropeanCountries EuropeanCountries { get; set; }
+        public SouthKorea SouthKorea { get; set; }
         public bool IsIncluded { get; set; }
     }
 }

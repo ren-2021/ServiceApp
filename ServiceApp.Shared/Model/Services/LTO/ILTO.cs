@@ -9,7 +9,7 @@ namespace ServiceApp.Shared.Model.Services.LTO
 {
     public interface ILTO
     {
-        public IRegistration Registration { get; set; }
+        public Registration Registration { get; set; }
         public bool IsIncluded { get; set; }
     }
 }

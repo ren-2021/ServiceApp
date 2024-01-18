@@ -10,10 +10,10 @@ namespace ServiceApp.Shared.Model.Services.Financial
 {
     public class Financial : IFinancial
     {
-        private IGCash gcash;
-        public IGCash GCash { get => gcash; set { } }
+        private GCash gcash;
+        public GCash GCash { get => gcash; set { } }
         public bool IsIncluded { get; set; }
-        public Financial(IGCash gcash)
+        public Financial(GCash gcash)
         {
             this.gcash = gcash;
         }

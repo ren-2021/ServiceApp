@@ -10,27 +10,27 @@ namespace ServiceApp.Shared.Model.Services.VISAProcessing
 {
     public class VISAProcessing : IVISAProcessing
     {
-        public readonly IUSA usa;   
-        public readonly ICanadaETA canadaETA;    
-        public readonly ICanadaRegular canadaRegular;
-        public readonly INewZealand newZealand;     
-        public readonly IChina china;     
-        public readonly IJapan japan;      
-        public readonly IAustralia australia;   
-        public readonly IEuropeanCountries europeanCountries;   
-        public readonly ISouthKorea southKorea;
-        public IUSA USA { get => usa; set { } }
-        public ICanadaETA CanadaETA { get => canadaETA; set { } }
-        public ICanadaRegular CanadaRegular { get => canadaRegular; set { } }
-        public INewZealand NewZealand { get => newZealand; set { } }
-        public IChina China { get => china; set { } }
-        public IJapan Japan { get => japan; set { } }
-        public IAustralia Australia { get => australia; set { } }
-        public IEuropeanCountries EuropeanCountries { get => europeanCountries; set { } }
-        public ISouthKorea SouthKorea { get => southKorea; set { } }
+        public readonly USA usa;   
+        public readonly CanadaETA canadaETA;    
+        public readonly CanadaRegular canadaRegular;
+        public readonly NewZealand newZealand;     
+        public readonly China china;     
+        public readonly Japan japan;      
+        public readonly Australia australia;   
+        public readonly EuropeanCountries europeanCountries;   
+        public readonly SouthKorea southKorea;
+        public USA USA { get => usa; set { } }
+        public CanadaETA CanadaETA { get => canadaETA; set { } }
+        public CanadaRegular CanadaRegular { get => canadaRegular; set { } }
+        public NewZealand NewZealand { get => newZealand; set { } }
+        public China China { get => china; set { } }
+        public Japan Japan { get => japan; set { } }
+        public Australia Australia { get => australia; set { } }
+        public EuropeanCountries EuropeanCountries { get => europeanCountries; set { } }
+        public SouthKorea SouthKorea { get => southKorea; set { } }
         public bool IsIncluded { get; set; }
 
-        public VISAProcessing(IUSA usa, ICanadaETA canadaETA, ICanadaRegular canadaRegular, INewZealand newZealand, IChina china, IJapan japan, IAustralia australia, IEuropeanCountries europeanCountries, ISouthKorea southKorea)
+        public VISAProcessing(USA usa, CanadaETA canadaETA, CanadaRegular canadaRegular, NewZealand newZealand, China china, Japan japan, Australia australia, EuropeanCountries europeanCountries, SouthKorea southKorea)
         {
             this.usa = usa;
             this.canadaETA = canadaETA;

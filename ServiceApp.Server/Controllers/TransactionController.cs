@@ -6,6 +6,7 @@ using ServiceApp.ServiceApp.ServiceLayer.Services;
 using ServiceApp.Shared.Model;
 using ServiceApp.Shared.Model.ModelRequest;
 using ServiceApp.Shared.Model.Services.Accounting;
+using Unity;
 
 namespace ServiceApp.Server.Controllers
 {
@@ -24,8 +25,9 @@ namespace ServiceApp.Server.Controllers
         [HttpPost("Process")]
         public ActionResult<bool> Process([FromBody] JsonRequest _jsonRequest)
         {
+            MainRequest mainRequest = new MainRequest();
+            mainRequest = JsonConvert.DeserializeObject<MainRequest>(_jsonRequest.JsonString);
             return this.transactionService.AddTransaction(_jsonRequest.JsonString);
         }
-
     }
 }

@@ -8,8 +8,8 @@ namespace ServiceApp.Shared.Model.ModelRequest
 {
     public class MainRequest
     {
-        public ClientInfo? ClientInfo { get; set; }
+        public ClientInfo ClientInfo { get; set; }
 
-        public MainServices? MainServices { get; set; }
+        public MainServices MainServices { get; set; }
     }
 }

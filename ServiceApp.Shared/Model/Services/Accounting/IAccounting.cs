@@ -9,16 +9,16 @@ namespace ServiceApp.Shared.Model.Services.Accounting
 {
     public interface IAccounting
     {
-        public IFilingOfTaxes FilingOfTaxes { get; set; }
-        public IBIRRegistration BIRRegistration { get; set; }
-        public IITRPreparation ITRPreparation { get; set; }
-        public IDTIRegistration DTIRegistration { get; set; }
-        public ISECRegistration SECRegistration { get; set; }
-        public IBusinessPermit BusinessPermit { get; set; }
-        public IPagIbigRegistration PagIbigRegistration { get; set; }
-        public ISSSRegistration SSSRegistration { get; set; }
-        public IPhilhealthRegistration PhilhealthRegistration { get; set; }
-        public IBookkeeping Bookkeeping { get; set; }
+        public FilingOfTaxes FilingOfTaxes { get; set; }
+        public BIRRegistration BIRRegistration { get; set; }
+        public ITRPreparation ITRPreparation { get; set; }
+        public DTIRegistration DTIRegistration { get; set; }
+        public SECRegistration SECRegistration { get; set; }
+        public BusinessPermit BusinessPermit { get; set; }
+        public PagIbigRegistration PagIbigRegistration { get; set; }
+        public SSSRegistration SSSRegistration { get; set; }
+        public PhilhealthRegistration PhilhealthRegistration { get; set; }
+        public Bookkeeping Bookkeeping { get; set; }
         public bool IsIncluded { get; set;}
     }
 }

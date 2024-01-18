@@ -9,10 +9,10 @@ namespace ServiceApp.Shared.Model.Services.OtherServices
 {
     public interface IOtherServices
     {
-        public ITransferofTitle TransferofTitle { get; set; }
-        public IPCABAssistance PCABAssistance { get; set; }
-        public INBIAssistance NBIAssistance { get; set; }
-        public IWeddingManagement WeddingManagement { get; set; }
+        public TransferofTitle TransferofTitle { get; set; }
+        public PCABAssistance PCABAssistance { get; set; }
+        public NBIAssistance NBIAssistance { get; set; }
+        public WeddingManagement WeddingManagement { get; set; }
         public bool IsIncluded { get; set; }
     }
 }

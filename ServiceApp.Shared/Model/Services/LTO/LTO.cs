@@ -10,11 +10,11 @@ namespace ServiceApp.Shared.Model.Services.LTO
 {
     public class LTO : ILTO
     {
-        private readonly IRegistration registration;
+        private readonly Registration registration;
         public bool IsIncluded { get; set; }
-        IRegistration ILTO.Registration { get => registration; set { } }
+        public Registration Registration { get => registration; set { } }
 
-        public LTO(IRegistration registration)
+        public LTO(Registration registration)
         {
             this.registration = registration;
         }

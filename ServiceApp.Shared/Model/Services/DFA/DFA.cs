@@ -10,12 +10,12 @@ namespace ServiceApp.Shared.Model.Services.DFA
 {
     public class DFA : IDFA
     {
-        private readonly IPassportAssistance passportAssistance;
-        private readonly ILossPassport lossPassport;
-        public IPassportAssistance PassportAssistance { get => passportAssistance; set { } }
-        public ILossPassport LossPassport { get => lossPassport; set { } }
+        private readonly PassportAssistance passportAssistance;
+        private readonly LossPassport lossPassport;
+        public PassportAssistance PassportAssistance { get => passportAssistance; set { } }
+        public LossPassport LossPassport { get => lossPassport; set { } }
         public bool IsIncluded { get; set; }
-        public DFA(IPassportAssistance passportAssistance, ILossPassport lossPassport)
+        public DFA(PassportAssistance passportAssistance, LossPassport lossPassport)
         {
             this.passportAssistance = passportAssistance;
             this.lossPassport = lossPassport;

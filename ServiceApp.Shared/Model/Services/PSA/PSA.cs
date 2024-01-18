@@ -10,17 +10,17 @@ namespace ServiceApp.Shared.Model.Services.PSA
 {
     public class PSA: IPSA
     {
-        private readonly ICenomar cenomar;
-        private readonly IBirthCertificate birthCertificate;
-        private readonly IMarriageCertificate marriageCertificate;
-        private readonly IDeathCertificate deathCertificate;
-        public ICenomar Cenomar { get => cenomar; set { } }
-        public IBirthCertificate BirthCertificate { get => birthCertificate; set { } }
-        public IMarriageCertificate MarriageCertificate { get => marriageCertificate; set { } }
-        public IDeathCertificate DeathCertificate { get => deathCertificate; set { } }
+        private readonly Cenomar cenomar;
+        private readonly BirthCertificate birthCertificate;
+        private readonly MarriageCertificate marriageCertificate;
+        private readonly DeathCertificate deathCertificate;
+        public Cenomar Cenomar { get => cenomar; set { } }
+        public BirthCertificate BirthCertificate { get => birthCertificate; set { } }
+        public MarriageCertificate MarriageCertificate { get => marriageCertificate; set { } }
+        public DeathCertificate DeathCertificate { get => deathCertificate; set { } }
         public bool IsIncluded { get; set; }
 
-        public PSA(ICenomar cenomar, IBirthCertificate birthCertificate, IMarriageCertificate marriageCertificate, IDeathCertificate deathCertificate)
+        public PSA(Cenomar cenomar, BirthCertificate birthCertificate, MarriageCertificate marriageCertificate, DeathCertificate deathCertificate)
         {
             this.cenomar = cenomar;
             this.birthCertificate = birthCertificate;

@@ -10,12 +10,12 @@ namespace ServiceApp.Shared.Model.Services.ATMPortable
 {
     public class ATMPortable : IATMPortable
     {
-        private readonly IBankBalanceInquiry bankBalanceInquiry;
-        private readonly IWithdrawal withdrawal;
-        public IBankBalanceInquiry BankBalanceInquiry { get => bankBalanceInquiry; set { } }
-        public IWithdrawal Withdrawal { get => withdrawal; set { } }
+        private readonly BankBalanceInquiry bankBalanceInquiry;
+        private readonly Withdrawal withdrawal;
+        public BankBalanceInquiry BankBalanceInquiry { get => bankBalanceInquiry; set { } }
+        public Withdrawal Withdrawal { get => withdrawal; set { } }
         public bool IsIncluded { get; set; }
-        public ATMPortable(IBankBalanceInquiry bankBalanceInquiry, IWithdrawal withdrawal)
+        public ATMPortable(BankBalanceInquiry bankBalanceInquiry, Withdrawal withdrawal)
         {
             this.bankBalanceInquiry = bankBalanceInquiry;
             this.withdrawal = withdrawal;
