@@ -3,6 +3,17 @@
 <MudThemeProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
+<MudLayout>
+    <AuthorizeView>
+        <NavMenu></NavMenu>
+        <MudMainContent>
+            <article class="content px-4">
+                @Body
+            </article>
+        </MudMainContent>
+    </AuthorizeView>
+</MudLayout>
+@* 
 <div class="page">
     <AuthorizeView>
     <div class="sidebar">
@@ -10,13 +21,13 @@
     </div>
     </AuthorizeView>
     <main>
-        <div class="top-row px-4">
+    @*     <div class="top-row px-4">
             <LoginDisplay />
             <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+        </div> 
 
         <article class="content px-4">
             @Body
         </article>
     </main>
-</div>
+</div> *@

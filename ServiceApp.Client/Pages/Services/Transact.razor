@@ -35,6 +35,11 @@
     .mud-button-label{
         justify-content: start;
     }
+
+    .mud-btn-color-black {
+        background-color: #252830 !important;
+        color: #f3f3f3;
+    }
 </style>
 
 
@@ -47,25 +52,25 @@
             </div>
             <MudDivider DividerType="DividerType.Middle" Class="my-6" Style="height: 2px" />
             <div class="container  mt-4">
-                <MudButton @onclick="OpenDialog" Variant="Variant.Filled" Color="Color.Primary">Choose existing client</MudButton>
+                <MudButton @onclick="OpenDialog" Variant="Variant.Filled" Class="mud-btn-color-black">Choose existing client</MudButton>
             </div><br>
             <form>
                 <div class="container">
                     <div class="row mb-4">
                         <div class="col">
                             <div data-mdb-input-init class="form-outline">
-                                <MudTextField @bind-Value="ClientInfo.FirstName" Label="First Name" Variant="Variant.Text"></MudTextField><br>
+                                <MudTextField @bind-Value="ClientInfo.FirstName" Label="First Name" Variant="Variant.Outlined"></MudTextField><br>
                             </div>
                             <div data-mdb-input-init class="form-outline">
-                                <MudTextField @bind-Value="ClientInfo.LastName" Label="Last Name" Variant="Variant.Text"></MudTextField><br>
+                                <MudTextField @bind-Value="ClientInfo.LastName" Label="Last Name" Variant="Variant.Outlined"></MudTextField><br>
                             </div>
                             <div data-mdb-input-init class="form-outline mb-4">
-                                <MudTextField @bind-Value="ClientInfo.TinNo" Label="Tin Number" Variant="Variant.Text"></MudTextField><br>
+                                <MudTextField @bind-Value="ClientInfo.TinNo" Label="Tin Number" Variant="Variant.Outlined"></MudTextField><br>
                             </div>
                         </div>
                         <div class="col">
                             <div data-mdb-input-init class="form-outline mb-4">
-                                <MudTextField @bind-Value="ClientInfo.Address" Label="Address" Variant="Variant.Text"></MudTextField><br>
+                                <MudTextField @bind-Value="ClientInfo.Address" Label="Address" Variant="Variant.Outlined"></MudTextField><br>
                             </div>
                             <div data-mdb-input-init class="form-outline mb-4">
                                 <MudTextField @ref="multilineReference" T="string" Label="Additional Information" Lines="3" TextChanged="OnValueChangeHandler" Variant="Variant.Outlined" Text="" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Api" OnAdornmentClick="@(() => multilineReference.SelectAsync())" />

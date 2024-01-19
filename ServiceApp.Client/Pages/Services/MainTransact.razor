@@ -27,6 +27,17 @@
 @inject Financial Financial
 @inject ATMPortable ATMPortable
 
+<style>
+    .mud-tabs-toolbar-primary {
+        background-color: #252830 !important;
+        color: #f3f3f3;
+    }
+
+    .mud-tabs-toolbar-primary .mud-tab.mud-tab-active:hover {
+        background-color: #252830;
+    }
+</style>
+
 
 <MudTabs Elevation="4" Rounded="true" Centered="false" Color="@Color.Primary" Class="container sm-10" @bind-ActivePanelIndex="@ActivePanel">
     <MudTabPanel Text="Services">
@@ -34,7 +45,7 @@
         {
             <Transact/>
             <div class="container  mt-4 text-end">
-                <MudButton OnClick="@(()=>GoToTab(1))" Variant="Variant.Filled" Color="Color.Primary">Proceed</MudButton>
+                <MudButton OnClick="@(()=>GoToTab(1))" Variant="Variant.Filled" Class="mud-btn-color-black">Proceed</MudButton>
             </div>
             <br>
         }

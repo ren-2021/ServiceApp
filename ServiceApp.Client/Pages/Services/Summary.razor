@@ -29,6 +29,11 @@
     .pa-10 {
         padding: 20px !important;
     }
+
+    .mud-btn-color-black {
+        background-color: #252830 !important;
+        color: #f3f3f3;
+    }
 </style>
  <MudGrid Class="d-flex justify-center">
     <MudItem xs="12">
@@ -582,7 +587,7 @@
                     </table>
                 }
             <div class="container  mt-4 text-end">
-                <button type="button" @onclick="SubmitData" class="btn btn-primary">Submit</button>
+                <MudButton OnClick="@(()=>SubmitData())" Variant="Variant.Filled" Class="mud-btn-color-black">Proceed</MudButton>
             </div><br>
         </MudPaper>
     </MudItem>
