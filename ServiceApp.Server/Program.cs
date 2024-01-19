@@ -27,6 +27,7 @@ using ServiceApp.Shared.Model.Services.VISAProcessing;
 using ServiceApp.Shared.Model;
 using System.Text;
 using ServiceApp.Shared.Model.ModelRequest;
+using ServiceApp.ServiceLayer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -56,6 +57,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 builder.Services.AddTransient<ITransactionService, TransactionService>();
+builder.Services.AddTransient<IPrintService, PrintService>();
 
 builder.Services.AddSignalR();
 builder.Services.AddControllers();

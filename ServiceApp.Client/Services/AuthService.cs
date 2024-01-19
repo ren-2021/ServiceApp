@@ -28,9 +28,10 @@ namespace ServiceApp.Client.Services
         public async Task<RegisterResult> Register(RegisterModel registerModel)
         {
             var result = await _httpClient.PostAsJsonAsync("api/Users", registerModel);
-            if (!result.IsSuccessStatusCode)
+            var response = await result.Content.ReadFromJsonAsync<RegisterResult>();
+            if (response.Successful)
                 return new RegisterResult { Successful = true, Errors = null };
-            return new RegisterResult { Successful = false, Errors = new List<string> { "Error occured" } };
+            return new RegisterResult { Successful = false, Errors = response.Errors };
         }
 
         public async Task<LoginResult> Login(LoginModel loginModel)

@@ -8,17 +8,6 @@
         background-color: #ffffff !important;
     }
 </style>
-
-@if (ShowErrors)
-{
-    <div class="alert alert-danger" role="alert">
-        @foreach (var error in Errors!)
-        {
-            <p>@error</p>
-        }
-    </div>
-}
-
 <section class="h-100 gradient-form">
     <div class="container py-5 h-100 .px-01">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -36,7 +25,6 @@
                                 <h5>Please enter your details</h5><br>
                                 <EditForm Model="RegisterModel" OnValidSubmit="HandleRegistration">
                                     <DataAnnotationsValidator />
-                                    <ValidationSummary />
 
                                     <div class="form-group">
                                         <InputText Id="email" class="form-control" placeholder="Email address" @bind-Value="RegisterModel.Email" />
@@ -49,10 +37,19 @@
                                         <label class="pt-2" for="password">Password</label>
                                     </div><br>
                                     <div class="form-group">
-                                        <InputText Id="password" type="password" placeholder="Confirm Password" class="form-control" @bind-Value="RegisterModel.ConfirmPassword" />
+                                        <InputText Id="confirmPassword" type="password" placeholder="Confirm Password" class="form-control" @bind-Value="RegisterModel.ConfirmPassword" />
                                         <ValidationMessage For="@(() => RegisterModel.ConfirmPassword)" />
                                         <label class="pt-2" for="password">Confirm Password</label>
                                     </div><br>
+                                    @if (ShowErrors)
+                                    {
+                                        <div class="alert alert-danger" role="alert">
+                                            @foreach (var error in Errors!)
+                                            {
+                                                <p>@error</p>
+                                            }
+                                        </div>
+                                    }
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </EditForm>
                                 <br>
