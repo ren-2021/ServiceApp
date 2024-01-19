@@ -1,0 +1,49 @@
+﻿@page "/maintransact"
+@using ServiceApp.Client.Enum.StaticClass
+@using ServiceApp.Shared.Enum
+@using ServiceApp.Shared.Model
+@using ServiceApp.Shared.Model.Services.ATMPortable
+@using ServiceApp.Shared.Model.Services.Accounting
+@using ServiceApp.Shared.Model.Services.Accounting.SubServices
+@using ServiceApp.Shared.Model.Services.Airline
+@using ServiceApp.Shared.Model.Services.DFA
+@using ServiceApp.Shared.Model.Services.Financial
+@using ServiceApp.Shared.Model.Services.LTO
+@using ServiceApp.Shared.Model.Services.Notary
+@using ServiceApp.Shared.Model.Services.OtherServices
+@using ServiceApp.Shared.Model.Services.PSA
+@using ServiceApp.Shared.Model.Services.VISAProcessing
+@inject IDialogService DialogService
+@inject NavigationManager NavigationManager
+@inject ClientInfo ClientInfo
+@inject Accounting Accounting
+@inject OtherServices OtherServices
+@inject PSA PSA
+@inject DFA DFA
+@inject Notary Notary
+@inject LTO LTO
+@inject Airline Airline
+@inject VISAProcessing VISA
+@inject Financial Financial
+@inject ATMPortable ATMPortable
+
+
+<MudTabs Elevation="4" Rounded="true" Centered="false" Color="@Color.Primary" Class="container sm-10" @bind-ActivePanelIndex="@ActivePanel">
+    <MudTabPanel Text="Services">
+        @if (this.ActivePanel == 0)
+        {
+            <Transact/>
+            <div class="container  mt-4 text-end">
+                <MudButton OnClick="@(()=>GoToTab(1))" Variant="Variant.Filled" Color="Color.Primary">Proceed</MudButton>
+            </div>
+            <br>
+        }
+    </MudTabPanel>
+    <MudTabPanel Text="Summary">
+        @if (this.ActivePanel == 1)
+        {
+            <Summary/>
+        }
+    </MudTabPanel>
+</MudTabs>
+

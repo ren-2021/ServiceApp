@@ -17,7 +17,6 @@ namespace ServiceApp.Client.Pages.Services
         public string? LastName { get; set; }
         public string? TinNumber { get; set; }
         public string? Address { get; set; }
-        public int ActivePanel { get; set; }
         public decimal Amount { get; set; }
         private MudTextField<string> multilineReference;
         private HashSet<ServiceItemData> TreeItems { get; set; } = new HashSet<ServiceItemData>();
@@ -57,8 +56,6 @@ namespace ServiceApp.Client.Pages.Services
             var options = new DialogOptions { CloseOnEscapeKey = true };
             DialogService.Show<ClientDialog>("Clients", options);
         }
-
-        protected void GoToTab(int _tabIndex) => this.ActivePanel = _tabIndex;
 
         protected void OnValueChangeHandler() => ClientInfo.AdditionalInfo = this.multilineReference.Text;
 
