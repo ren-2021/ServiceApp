@@ -70,8 +70,13 @@
         border-width: 2px;
     }
 
-    hr {
+    .hr-custom {
         opacity: 90 !important;
+    }
+
+    .mud-divider-fullwidth-custom {
+        flex-grow: 1;
+        width: 15%;
     }
 </style>
 
@@ -89,7 +94,7 @@
             <div class="nav-item">
                 <p style="color: #b2b2b2;font-size:11px">DASHBOARD</p>
             </div>
-            <MudDivider Class="divider-class mud-divider-custom hr-custom" />
+            <MudDivider Class="divider-class mud-divider-custom hr-custom mud-divider-fullwidth-custom" />
         </nav>
     </MudDrawerHeader>
     <MudNavMenu>
@@ -127,7 +132,7 @@
                 <p style="color: #b2b2b2;font-size:11px">ACCOUNT</p>
             </div>
             <div class="nav-item">
-            <MudDivider Class="divider-class mud-divider-custom hr-custom" />
+                <MudDivider Class="divider-class mud-divider-custom hr-custom mud-divider-fullwidth-custom" />
             </div>
         </nav>
         <nav class="flex-column">
