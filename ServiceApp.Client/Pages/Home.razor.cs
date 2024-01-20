@@ -41,4 +41,23 @@ namespace ServiceApp.Client.Pages
             }
         }
     }
+
+    public class Pizza
+    {
+        public Pizza(string name)
+        {
+            Name = name;
+        }
+
+        public readonly string Name;
+
+        public override bool Equals(object o)
+        {
+            var other = o as Pizza;
+            return other?.Name == Name;
+        }
+
+        public override int GetHashCode() => Name?.GetHashCode() ?? 0;
+        public override string ToString() => Name;
+    }
 }

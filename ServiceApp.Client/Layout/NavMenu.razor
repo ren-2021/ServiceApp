@@ -80,10 +80,9 @@
     }
 </style>
 
-<MudAppBar Elevation="0" Class="navbar-mudappbar">
+<MudAppBar Elevation="0" Class="navbar-mudappbar" Style="background-color: #f9f9f9;">
     <MudIconButton Icon="@Icons.Material.Filled.ClearAll" Size="Size.Large" Class="MenuIcon" Edge="Edge.Start" OnClick="@ToggleDrawer" />
     <MudSpacer />
-    <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/MudBlazor/MudBlazor" Target="_blank" />
 </MudAppBar>
 <MudDrawer @bind-Open="@open" Elevation="1" Class="sidebar">
     <MudDrawerHeader>

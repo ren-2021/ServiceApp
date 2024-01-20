@@ -1,9 +1,43 @@
 ﻿@page "/"
 
+<style>
+    .input-custom{
+        padding-top:10px !important;
+        padding-bottom:2px !important;
+    }
+
+</style>
+
 <AuthorizeView>
     <Authorized>
         <MudGrid Class="d-flex justify-center">
-        <MudItem xs="12" sm="10">
+            <MudItem xs="12" sm="10">
+                <div class="container">
+                    <div class="row mb-4">
+                        <div class="col-9">
+                            <div class="row">
+                                <div>
+                                    <p>STATISTICS</p>
+                                </div>
+                                <div>
+                                    <p>Tue, 19 Dec 2023 - Fri, 19 Jan 2023</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-3">
+                            <div>
+                                <MudSelect T="Pizza" Value="@(new Pizza("Month"))" Margin="Margin.Dense" Class="input-custom" Variant="Variant.Outlined" AnchorOrigin="Origin.BottomCenter">
+                                    <MudSelectItem Value="@(new Pizza("Month"))" />
+                                    <MudSelectItem Value="@(new Pizza("Quarterly"))" />
+                                    <MudSelectItem Value="@(new Pizza("Annually"))" />
+                                </MudSelect>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </MudItem>
+            <MudItem xs="12" sm="10">
               <div class="container">
                     <div class="row mb-4">
                         <div class="col">
