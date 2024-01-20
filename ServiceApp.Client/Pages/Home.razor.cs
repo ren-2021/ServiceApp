@@ -42,9 +42,9 @@ namespace ServiceApp.Client.Pages
         }
     }
 
-    public class Pizza
+    public class Chart
     {
-        public Pizza(string name)
+        public Chart(string name)
         {
             Name = name;
         }
@@ -53,7 +53,7 @@ namespace ServiceApp.Client.Pages
 
         public override bool Equals(object o)
         {
-            var other = o as Pizza;
+            var other = o as Chart;
             return other?.Name == Name;
         }
 
