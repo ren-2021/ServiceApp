@@ -2,8 +2,10 @@
 @using System.Net.Http.Json
 @using static MudBlazor.CategoryTypes
 @inject HttpClient httpClient
+@inject NavigationManager NavigationManager
 
-<MudTable Items="@Elements" Dense="false" Hover="true" Bordered="false" Striped="true" Class="container sm-10" Filter="new Func<Element,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1">
+<AuthorizeView>
+    <MudTable Items="@Elements" Dense="false" Hover="true" Bordered="false" Striped="true" Class="container sm-10" Filter="new Func<Element,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1">
     <ToolBarContent>
         <MudText Typo="Typo.h6">Periodic Elements</MudText>
         <MudSpacer />
@@ -16,17 +18,19 @@
         <MudTh>Position</MudTh>
         <MudTh>Molar mass</MudTh>
     </HeaderContent>
-    <RowTemplate>
+  @*   <RowTemplate>
         <MudTd DataLabel="Nr">@context.Nr</MudTd>
             <MudTd DataLabel="Sign">@context.Sign</MudTd>
             <MudTd DataLabel="Name">@context.Name</MudTd>
             <MudTd DataLabel="Position">@context.Position</MudTd>
             <MudTd DataLabel="Molar mass">@context.MolarMass</MudTd>
-        </RowTemplate>
+      </RowTemplate> *@
         <PagerContent>
             <MudTablePager />
         </PagerContent>
     </MudTable>
+</AuthorizeView>
+
  
      
 

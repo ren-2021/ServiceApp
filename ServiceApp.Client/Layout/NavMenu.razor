@@ -13,9 +13,14 @@
         background-color: #ffffff;
     }
 
+    .custom-mud-text{
+        color: #ffffff;
+    }
+
     .MenuIcon{
         color: #252830;
     }
+  
 </style>
 
 <MudAppBar Elevation="0" Class="navbar-mudappbar">
@@ -25,7 +30,7 @@
 </MudAppBar>
 <MudDrawer @bind-Open="@open" Elevation="1" Class="sidebar">
     <MudDrawerHeader>
-        <MudText Typo="Typo.h6">My App</MudText>
+        <MudText Typo="Typo.h5" Class="custom-mud-text">Dashboard</MudText>
     </MudDrawerHeader>
     <MudNavMenu>
         <nav class="flex-column">
@@ -52,6 +57,11 @@
                 <NavLink class="nav-link" href="print">
                     <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Print
                 </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="LogOut">
+                    <span class="bi bi-door-open-nav-menu" aria-hidden="true"></span> Log out
+                </NavLink> 
             </div>
         </nav>
     </MudNavMenu>

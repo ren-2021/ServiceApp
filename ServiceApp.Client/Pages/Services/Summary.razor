@@ -35,33 +35,34 @@
         color: #f3f3f3;
     }
 </style>
- <MudGrid Class="d-flex justify-center">
-    <MudItem xs="12">
-        <MudPaper Class="pa-10">
-            <MudGrid>
-                <MudItem xs="12" sm="6" md="4">
-                    <MudField Label="First Name" Variant="Variant.Filled">@ClientInfo.FirstName</MudField>
-                </MudItem>
-                <MudItem xs="12" sm="6" md="4">
-                        <MudField Label="Last Name" Variant="Variant.Filled">@ClientInfo.LastName</MudField>
-                </MudItem>
-                <MudItem xs="12" sm="6" md="4">
-                        <MudField Label="Tin Number" Variant="Variant.Filled">@ClientInfo.TinNo</MudField>
-                </MudItem>
-            </MudGrid>
-            <MudGrid>
-                <MudItem xs="12" sm="6" md="4">
-                        <MudField Label="Address" Variant="Variant.Filled">@ClientInfo.Address</MudField>
-                </MudItem>
-                    <MudTextField Disabled T="string" Label="Additional Information" Lines="3" Variant="Variant.Filled" Text="@ClientInfo.AdditionalInfo" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Api"></MudTextField>
-            </MudGrid>
-            <br>
-             <div class="container  mt-4">
-                 <MudText Typo="Typo.h5">Services</MudText>
+<AuthorizeView>
+    <MudGrid Class="d-flex justify-center">
+        <MudItem xs="12">
+            <MudPaper Class="pa-10">
+                <MudGrid>
+                    <MudItem xs="12" sm="6" md="4">
+                        <MudField Label="First Name" Variant="Variant.Filled">@ClientInfo.FirstName</MudField>
+                        </MudItem>
+                        <MudItem xs="12" sm="6" md="4">
+                            <MudField Label="Last Name" Variant="Variant.Filled">@ClientInfo.LastName</MudField>
+                        </MudItem>
+                        <MudItem xs="12" sm="6" md="4">
+                            <MudField Label="Tin Number" Variant="Variant.Filled">@ClientInfo.TinNo</MudField>
+                        </MudItem>
+                    </MudGrid>
+                    <MudGrid>
+                        <MudItem xs="12" sm="6" md="4">
+                            <MudField Label="Address" Variant="Variant.Filled">@ClientInfo.Address</MudField>
+                        </MudItem>
+                        <MudTextField Disabled T="string" Label="Additional Information" Lines="3" Variant="Variant.Filled" Text="@ClientInfo.AdditionalInfo" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Api"></MudTextField>
+                 </MudGrid>
                  <br>
-             </div>
-             <br>
-                @if (Accounting.IsIncluded)
+                 <div class="container  mt-4">
+                     <MudText Typo="Typo.h5">Services</MudText>
+                     <br>
+                 </div>
+                 <br>
+                 @if (Accounting.IsIncluded)
                 {
                     <table class="table table-striped">
                         <thead>
@@ -91,7 +92,7 @@
                             @if (Accounting.BIRRegistration.IsIncluded)
                             {
                                 <tr>
-                                <td>@SubServices.BIRRegistration</td>
+                                    <td>@SubServices.BIRRegistration</td>
                                     @if (Accounting.BIRRegistration.OwnerType == OwnerType.SoleProprietorship)
                                     {
                                         <td>@Accounting.BIRRegistration.Fee</td>
@@ -107,7 +108,7 @@
                             @if (Accounting.ITRPreparation.IsIncluded)
                             {
                                 <tr>
-                                <td>@SubServices.ITRPreparation</td>
+                                    <td>@SubServices.ITRPreparation</td>
                                     @if (Accounting.ITRPreparation.OwnerType == OwnerType.SoleProprietorship)
                                     {
                                         <td>@Accounting.ITRPreparation.Fee</td>
@@ -123,16 +124,16 @@
                             @if (Accounting.DTIRegistration.IsIncluded)
                             {
                                 <tr>
-                                <td>@SubServices.DTIRegistration</td>
-                                @if (Accounting.DTIRegistration.OwnerType == OwnerType.SoleProprietorship)
+                                    <td>@SubServices.DTIRegistration</td>
+                                    @if (Accounting.DTIRegistration.OwnerType == OwnerType.SoleProprietorship)
                                     {
-                                    <td>@Accounting.DTIRegistration.Fee</td>
+                                        <td>@Accounting.DTIRegistration.Fee</td>
                                         <td>-</td>
                                     }
                                     else
                                     {
                                         <td>-</td>
-                                    <td>@Accounting.DTIRegistration.Fee</td>
+                                        <td>@Accounting.DTIRegistration.Fee</td>
                                     }
                                 </tr>
                             }
@@ -140,15 +141,15 @@
                             {
                                 <tr>
                                     <td>@SubServices.SECRegistration</td>
-                                @if (Accounting.SECRegistration.OwnerType == OwnerType.SoleProprietorship)
+                                    @if (Accounting.SECRegistration.OwnerType == OwnerType.SoleProprietorship)
                                     {
-                                    <td>@Accounting.SECRegistration.Fee</td>
+                                        <td>@Accounting.SECRegistration.Fee</td>
                                         <td>-</td>
                                     }
                                     else
                                     {
                                         <td>-</td>
-                                    <td>@Accounting.SECRegistration.Fee</td>
+                                        <td>@Accounting.SECRegistration.Fee</td>
                                     }
                                 </tr>
                             }
@@ -156,63 +157,63 @@
                             {
                                 <tr>
                                     <td>@SubServices.BusinessPermit</td>
-                                @if (Accounting.BusinessPermit.OwnerType == OwnerType.SoleProprietorship)
+                                    @if (Accounting.BusinessPermit.OwnerType == OwnerType.SoleProprietorship)
                                     {
-                                    <td>@Accounting.BusinessPermit.Fee</td>
+                                        <td>@Accounting.BusinessPermit.Fee</td>
                                         <td>-</td>
                                     }
                                     else
                                     {
                                         <td>-</td>
-                                    <td>@Accounting.BusinessPermit.Fee</td>
+                                        <td>@Accounting.BusinessPermit.Fee</td>
                                     }
                                 </tr>
                             }
                             @if (Accounting.PagIbigRegistration.IsIncluded)
                             {
                                 <tr>
-                                <td>@SubServices.PagIbigRegistration</td>
-                                @if (Accounting.PagIbigRegistration.OwnerType == OwnerType.SoleProprietorship)
+                                    <td>@SubServices.PagIbigRegistration</td>
+                                    @if (Accounting.PagIbigRegistration.OwnerType == OwnerType.SoleProprietorship)
                                     {
-                                    <td>@Accounting.PagIbigRegistration.Fee</td>
+                                        <td>@Accounting.PagIbigRegistration.Fee</td>
                                         <td>-</td>
                                     }
                                     else
                                     {
                                         <td>-</td>
-                                    <td>@Accounting.PagIbigRegistration.Fee</td>
+                                        <td>@Accounting.PagIbigRegistration.Fee</td>
                                     }
                                 </tr>
                             }
                             @if (Accounting.SSSRegistration.IsIncluded)
                             {
                                 <tr>
-                                <td>@SubServices.SSSRegistration</td>
-                                @if (Accounting.SSSRegistration.OwnerType == OwnerType.SoleProprietorship)
+                                    <td>@SubServices.SSSRegistration</td>
+                                    @if (Accounting.SSSRegistration.OwnerType == OwnerType.SoleProprietorship)
                                     {
-                                    <td>@Accounting.SSSRegistration.Fee</td>
+                                        <td>@Accounting.SSSRegistration.Fee</td>
                                         <td>-</td>
                                     }
                                     else
                                     {
                                         <td>-</td>
-                                    <td>@Accounting.SSSRegistration.Fee</td>
+                                        <td>@Accounting.SSSRegistration.Fee</td>
                                     }
                                 </tr>
                             }
                             @if (Accounting.PhilhealthRegistration.IsIncluded)
                             {
                                 <tr>
-                                <td>@SubServices.PhilhealthRegistration</td>
-                                @if (Accounting.PhilhealthRegistration.OwnerType == OwnerType.SoleProprietorship)
+                                    <td>@SubServices.PhilhealthRegistration</td>
+                                    @if (Accounting.PhilhealthRegistration.OwnerType == OwnerType.SoleProprietorship)
                                     {
-                                    <td>@Accounting.PhilhealthRegistration.Fee</td>
+                                        <td>@Accounting.PhilhealthRegistration.Fee</td>
                                         <td>-</td>
                                     }
                                     else
                                     {
                                         <td>-</td>
-                                    <td>@Accounting.PhilhealthRegistration.Fee</td>
+                                        <td>@Accounting.PhilhealthRegistration.Fee</td>
                                     }
                                 </tr>
                             }
@@ -222,13 +223,13 @@
                                     <td>@SubServices.BookKeeping</td>
                                     @if (Accounting.Bookkeeping.OwnerType == OwnerType.SoleProprietorship)
                                     {
-                                    <td>@Accounting.Bookkeeping.Fee</td>
+                                        <td>@Accounting.Bookkeeping.Fee</td>
                                         <td>-</td>
                                     }
                                     else
                                     {
                                         <td>-</td>
-                                    <td>@Accounting.Bookkeeping.Fee</td>
+                                        <td>@Accounting.Bookkeeping.Fee</td>
                                     }
                                 </tr>
                             }
@@ -252,7 +253,7 @@
                                 <tr>
                                     <td>@SubServices.TransferofTitle</td>
                                     <td>@OtherServices.TransferofTitle.Fee</td>
-                                        <td>-</td>
+                                    <td>-</td>
                                 </tr>
                             }
                             @if (OtherServices.PCABAssistance.IsIncluded)
@@ -354,15 +355,16 @@
                                 <tr>
                                     <td>@SubServices.PassportAssistance</td>
                                     <td>
-                                    @if (DFAServices.PassportAssistance.ProcessType == ProcessType.Regular)
-                                    {
-                                        <span>Regular: </span> @DFAServices.PassportAssistance.Fee
-                                    }
-                                    else
-                                    {
-                                        <span>Rush: </span> @DFAServices.PassportAssistance.Fee;
-                                    }
-                                </td>
+                                        @if (DFAServices.PassportAssistance.ProcessType == ProcessType.Regular)
+                                        {
+                                            <span>Regular: </span> @DFAServices.PassportAssistance.Fee
+                                        }
+                                        else
+                                        {
+                                            <span>Rush: </span> @DFAServices.PassportAssistance.Fee
+                                            ;
+                                        }
+                                    </td>
                                     <td>-</td>
                                 </tr>
                             }
@@ -389,11 +391,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                                <tr>
-                                    <td>@MainServices.NOTARY</td>
-                                    <td>@Notary.Fee</td>
-                                    <td>-</td>
-                                </tr>
+                            <tr>
+                                <td>@MainServices.NOTARY</td>
+                                <td>@Notary.Fee</td>
+                                <td>-</td>
+                            </tr>
                         </tbody>
                     </table>
                 }
@@ -429,7 +431,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                           @if (AirlineServices.Domestic.IsIncluded)
+                            @if (AirlineServices.Domestic.IsIncluded)
                             {
                                 <tr>
                                     <td>@SubServices.Domestic</td>
@@ -575,7 +577,7 @@
                                     <td>-</td>
                                 </tr>
                             }
-                        @if (ATMPortable.Withdrawal.IsIncluded)
+                            @if (ATMPortable.Withdrawal.IsIncluded)
                             {
                                 <tr>
                                     <td>@SubServices.Withdrawal</td>
@@ -586,11 +588,13 @@
                         </tbody>
                     </table>
                 }
-            <div class="container  mt-4 text-end">
-                <MudButton OnClick="@(()=>SubmitData())" Variant="Variant.Filled" Class="mud-btn-color-black">Proceed</MudButton>
-            </div><br>
-        </MudPaper>
-    </MudItem>
- </MudGrid>
+                <div class="container  mt-4 text-end">
+                    <MudButton OnClick="@(()=>SubmitData())" Variant="Variant.Filled" Class="mud-btn-color-black">Proceed</MudButton>
+                </div><br>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</AuthorizeView>
+ 
  
 

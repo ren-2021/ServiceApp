@@ -38,23 +38,25 @@
     }
 </style>
 
+<AuthorizeView>
+    <MudTabs Elevation="4" Rounded="true" Centered="false" Color="@Color.Primary" Class="container sm-10" @bind-ActivePanelIndex="@ActivePanel">
+        <MudTabPanel Text="Services">
+            @if (this.ActivePanel == 0)
+            {
+                <Transact />
+                <div class="container  mt-4 text-end">
+                    <MudButton OnClick="@(()=>GoToTab(1))" Variant="Variant.Filled" Class="mud-btn-color-black">Proceed</MudButton>
+                </div>
+                <br>
+            }
+        </MudTabPanel>
+        <MudTabPanel Text="Summary">
+            @if (this.ActivePanel == 1)
+            {
+                <Summary />
+            }
+        </MudTabPanel>
+    </MudTabs>
+</AuthorizeView>
 
-<MudTabs Elevation="4" Rounded="true" Centered="false" Color="@Color.Primary" Class="container sm-10" @bind-ActivePanelIndex="@ActivePanel">
-    <MudTabPanel Text="Services">
-        @if (this.ActivePanel == 0)
-        {
-            <Transact/>
-            <div class="container  mt-4 text-end">
-                <MudButton OnClick="@(()=>GoToTab(1))" Variant="Variant.Filled" Class="mud-btn-color-black">Proceed</MudButton>
-            </div>
-            <br>
-        }
-    </MudTabPanel>
-    <MudTabPanel Text="Summary">
-        @if (this.ActivePanel == 1)
-        {
-            <Summary/>
-        }
-    </MudTabPanel>
-</MudTabs>
 

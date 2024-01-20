@@ -42,52 +42,52 @@
     }
 </style>
 
-
-<MudGrid Class="d-flex justify-center">
-    <MudItem xs="12">
-        <MudPaper Class="pa-10">
-            <div class="container  mt-4">
-                <MudText Typo="Typo.h5">Client Info</MudText>
-                <MudText Typo="Typo.body2" Class="mud-text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus mauris id lorem finibus, non condimentum risus ultricies.</MudText>
-            </div>
-            <MudDivider DividerType="DividerType.Middle" Class="my-6" Style="height: 2px" />
-            <div class="container  mt-4">
-                <MudButton @onclick="OpenDialog" Variant="Variant.Filled" Class="mud-btn-color-black">Choose existing client</MudButton>
-            </div><br>
-            <form>
-                <div class="container">
-                    <div class="row mb-4">
-                        <div class="col">
-                            <div data-mdb-input-init class="form-outline">
-                                <MudTextField @bind-Value="ClientInfo.FirstName" Label="First Name" Variant="Variant.Outlined"></MudTextField><br>
+<AuthorizeView>
+    <MudGrid Class="d-flex justify-center">
+        <MudItem xs="12">
+            <MudPaper Class="pa-10">
+                <div class="container  mt-4">
+                    <MudText Typo="Typo.h5">Client Info</MudText>
+                    <MudText Typo="Typo.body2" Class="mud-text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus mauris id lorem finibus, non condimentum risus ultricies.</MudText>
+                </div>
+                <MudDivider DividerType="DividerType.Middle" Class="my-6" Style="height: 2px" />
+                <div class="container  mt-4">
+                    <MudButton @onclick="OpenDialog" Variant="Variant.Filled" Class="mud-btn-color-black">Choose existing client</MudButton>
+                </div><br>
+                <form>
+                    <div class="container">
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div data-mdb-input-init class="form-outline">
+                                    <MudTextField @bind-Value="ClientInfo.FirstName" Label="First Name" Variant="Variant.Outlined"></MudTextField><br>
+                                </div>
+                                <div data-mdb-input-init class="form-outline">
+                                    <MudTextField @bind-Value="ClientInfo.LastName" Label="Last Name" Variant="Variant.Outlined"></MudTextField><br>
+                                </div>
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <MudTextField @bind-Value="ClientInfo.TinNo" Label="Tin Number" Variant="Variant.Outlined"></MudTextField><br>
+                                </div>
                             </div>
-                            <div data-mdb-input-init class="form-outline">
-                                <MudTextField @bind-Value="ClientInfo.LastName" Label="Last Name" Variant="Variant.Outlined"></MudTextField><br>
-                            </div>
-                            <div data-mdb-input-init class="form-outline mb-4">
-                                <MudTextField @bind-Value="ClientInfo.TinNo" Label="Tin Number" Variant="Variant.Outlined"></MudTextField><br>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div data-mdb-input-init class="form-outline mb-4">
-                                <MudTextField @bind-Value="ClientInfo.Address" Label="Address" Variant="Variant.Outlined"></MudTextField><br>
-                            </div>
-                            <div data-mdb-input-init class="form-outline mb-4">
-                                <MudTextField @ref="multilineReference" T="string" Label="Additional Information" Lines="3" TextChanged="OnValueChangeHandler" Variant="Variant.Outlined" Text="" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Api" OnAdornmentClick="@(() => multilineReference.SelectAsync())" />
+                            <div class="col">
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <MudTextField @bind-Value="ClientInfo.Address" Label="Address" Variant="Variant.Outlined"></MudTextField><br>
+                                </div>
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <MudTextField @ref="multilineReference" T="string" Label="Additional Information" Lines="3" TextChanged="OnValueChangeHandler" Variant="Variant.Outlined" Text="" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Api" OnAdornmentClick="@(() => multilineReference.SelectAsync())" />
+                                </div>
                             </div>
                         </div>
                     </div>
+                </form>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12">
+            <MudPaper Class="pa-10">
+                <div class="container  mt-4">
+                    <MudText Typo="Typo.h5">Services</MudText>
+                    <MudText Typo="Typo.body2" Class="mud-text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus mauris id lorem finibus, non condimentum risus ultricies.</MudText>
                 </div>
-            </form>
-        </MudPaper>
-    </MudItem>
-    <MudItem xs="12">
-        <MudPaper Class="pa-10">
-            <div class="container  mt-4">
-                <MudText Typo="Typo.h5">Services</MudText>
-                <MudText Typo="Typo.body2" Class="mud-text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus mauris id lorem finibus, non condimentum risus ultricies.</MudText>
-            </div>
-            <MudDivider DividerType="DividerType.Middle" Class="my-6" Style="height: 2px" /><br>
+                <MudDivider DividerType="DividerType.Middle" Class="my-6" Style="height: 2px" /><br>
                 @foreach (string service in this.Services)
                 {
                     bool expanded = expandedStates.ContainsKey(service) ? expandedStates[service] : false;
@@ -95,7 +95,8 @@
                         <MudStack Spacing="2">
                             <MudButton OnClick="() => OnExpandCollapseClick(service)">@(expanded ? $"Available services for {service}" : service)</MudButton>
                             <MudDivider />
-                            @if(expanded){
+                            @if (expanded)
+                            {
                                 <MudCollapse Expanded="expanded">
                                     @if (service == MainServices.Accounting)
                                     {
@@ -110,8 +111,8 @@
                                                             <MudRadio Value="@(OwnerType.Corporate.ToString())">@OwnerType.Corporate</MudRadio>
                                                         </MudRadioGroup>
                                                         <MudStack Row>
-                                                        <MudText Class="align-self-center">Service Fee:</MudText>
-                                                        @if (subservice == SubServices.Filingoftaxes)
+                                                     <MudText Class="align-self-center">Service Fee:</MudText>
+                                                     @if (subservice == SubServices.Filingoftaxes)
                                                         {
                                                             <MudTextField @bind-Value="@Accounting.FilingOfTaxes.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
                                                         }
@@ -173,8 +174,8 @@
                                                             </MudRadioGroup>
                                                     }
                                                     <MudStack Row>
-                                                        <MudText Class="align-self-center">Service Fee:</MudText>
-                                                        @if (subservice == SubServices.TransferofTitle)
+                                                     <MudText Class="align-self-center">Service Fee:</MudText>
+                                                     @if (subservice == SubServices.TransferofTitle)
                                                         {
                                                             <MudTextField @bind-Value="@OtherServices.TransferofTitle.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
                                                         }
@@ -204,8 +205,8 @@
                                                 <MudCheckBox T="bool" ValueChanged="(isCheck) => HandleCheck(isCheck, subservice, MainServices.PSA)">@subservice</MudCheckBox>
                                                     <MudForm Style="margin-left:35px;">
                                                         <MudStack Row>
-                                                        <MudText Class="align-self-center">Service Fee:</MudText>
-                                                        @if (subservice == SubServices.Cenomar)
+                                                     <MudText Class="align-self-center">Service Fee:</MudText>
+                                                     @if (subservice == SubServices.Cenomar)
                                                         {
                                                             <MudTextField @bind-Value="@PSA.Cenomar.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
                                                         }
@@ -245,7 +246,7 @@
                                                         <MudTextField @bind-Value="@DFA.PassportAssistance.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
                                                     }
                                                     <MudStack Row>
-                                                        @if (subservice == SubServices.LostPassport)
+                                                     @if (subservice == SubServices.LostPassport)
                                                         {
                                                             <MudText Class="align-self-center">Service Fee:</MudText>
                                                             <MudTextField @bind-Value="@DFA.LossPassport.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
@@ -262,12 +263,12 @@
                                             <MudCheckBox T="bool" ValueChanged="(isCheck) => HandleCheck(isCheck)">@MainServices.NOTARY</MudCheckBox>
                                                 <MudForm Style="margin-left:35px;">
                                                     <MudStack Row>
-                                                    <MudText Class="align-self-center">Service Fee:</MudText>
-                                                    <MudTextField @bind-Value="@Notary.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                                                </MudStack>
-                                            </MudForm>
-                                            <br>
-                                        </MudForm>
+                                                 <MudText Class="align-self-center">Service Fee:</MudText>
+                                                 <MudTextField @bind-Value="@Notary.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                                             </MudStack>
+                                         </MudForm>
+                                         <br>
+                                     </MudForm>
                                     }
                                     else if (service == MainServices.LTO)
                                     {
@@ -277,12 +278,12 @@
                                                 <MudCheckBox T="bool" ValueChanged="(isCheck) => HandleCheck(isCheck, subservice, MainServices.LTO)">@subservice</MudCheckBox>
                                                     <MudForm Style="margin-left:35px;">
                                                         <MudStack Row>
-                                                        <MudText Class="align-self-center">Service Fee:</MudText>
-                                                        <MudTextField @bind-Value="@LTO.Registration.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                                                    </MudStack>
-                                                </MudForm>
-                                                <br>
-                                            </MudForm>
+                                                     <MudText Class="align-self-center">Service Fee:</MudText>
+                                                     <MudTextField @bind-Value="@LTO.Registration.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                                                 </MudStack>
+                                             </MudForm>
+                                             <br>
+                                         </MudForm>
                                         }
                                     }
                                     else if (service == MainServices.Airline)
@@ -293,8 +294,8 @@
                                                 <MudCheckBox T="bool" ValueChanged="(isCheck) => HandleCheck(isCheck, subservice, MainServices.Airline)">@subservice</MudCheckBox>
                                                     <MudForm Style="margin-left:35px;">
                                                         <MudStack Row>
-                                                        <MudText Class="align-self-center">Service Fee:</MudText>
-                                                        @if (subservice == SubServices.Domestic)
+                                                     <MudText Class="align-self-center">Service Fee:</MudText>
+                                                     @if (subservice == SubServices.Domestic)
                                                         {
                                                             <MudTextField @bind-Value="@Airline.Domestic.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
                                                         }
@@ -316,8 +317,8 @@
                                                 <MudCheckBox T="bool" ValueChanged="(isCheck) => HandleCheck(isCheck, subservice, MainServices.VISA)">@subservice</MudCheckBox>
                                                     <MudForm Style="margin-left:35px;">
                                                         <MudStack Row>
-                                                        <MudText Class="align-self-center">Service Fee:</MudText>
-                                                        @if (subservice == SubServices.USA)
+                                                     <MudText Class="align-self-center">Service Fee:</MudText>
+                                                     @if (subservice == SubServices.USA)
                                                         {
                                                             <MudTextField @bind-Value="@VISA.USA.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
                                                         }
@@ -367,12 +368,12 @@
                                                 <MudCheckBox T="bool" ValueChanged="(isCheck) => HandleCheck(isCheck, subservice, MainServices.Financial)">@subservice</MudCheckBox>
                                                     <MudForm Style="margin-left:35px;">
                                                         <MudStack Row>
-                                                        <MudText Class="align-self-center">Service Fee:</MudText>
-                                                        <MudTextField @bind-Value="@Financial.GCash.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                                                    </MudStack>
-                                                </MudForm>
-                                                <br>
-                                            </MudForm>
+                                                     <MudText Class="align-self-center">Service Fee:</MudText>
+                                                     <MudTextField @bind-Value="@Financial.GCash.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                                                 </MudStack>
+                                             </MudForm>
+                                             <br>
+                                         </MudForm>
                                         }
                                     }
                                     else
@@ -383,8 +384,8 @@
                                                 <MudCheckBox T="bool" ValueChanged="(isCheck) => HandleCheck(isCheck, subservice, MainServices.ATMPortable)">@subservice</MudCheckBox>
                                                     <MudForm Style="margin-left:35px;">
                                                         <MudStack Row>
-                                                        <MudText Class="align-self-center">Service Fee:</MudText>
-                                                        @if (subservice == SubServices.BankBalanceInquiry)
+                                                     <MudText Class="align-self-center">Service Fee:</MudText>
+                                                     @if (subservice == SubServices.BankBalanceInquiry)
                                                         {
                                                             <MudTextField @bind-Value="@ATMPortable.BankBalanceInquiry.Fee" Label="Fee" Variant="Variant.Outlined" Margin="Margin.Dense" />
                                                         }
@@ -401,12 +402,14 @@
                                 </MudCollapse>
                             }
                         </MudStack>
-                        </div>
+                    </div>
                     <br>
                 }
             </MudPaper>
         </MudItem>
     </MudGrid>
+</AuthorizeView>
+
     
 
 
