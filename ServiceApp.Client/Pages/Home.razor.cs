@@ -6,7 +6,9 @@ namespace ServiceApp.Client.Pages
 {
     public partial class Home
     {
-        private int Index = -1; //default value cannot be 0 -> first selectedindex is 0.
+        private int Index = -1;
+        private Chart chartValue;
+        private string ChartDate;
         int dataSize = 4;
         double[] data = { 77, 25, 20, 5 };
         string[] labels = { "Uranium", "Plutonium", "Thorium", "Caesium", "Technetium", "Promethium",
@@ -15,6 +17,10 @@ namespace ServiceApp.Client.Pages
 
         Random random = new Random();
 
+        public Home() {
+            chartValue = new Chart("Month");
+            InitializeDate();
+        }
         void RandomizeData()
         {
             var new_data = new double[dataSize];
@@ -40,6 +46,24 @@ namespace ServiceApp.Client.Pages
                 RandomizeData();
             }
         }
+
+        void InitializeDate()
+        {
+            switch (chartValue.Name)
+            {
+                case "Month":
+                    ChartDate = DateTime.Now.ToString("dddd, dd MMMM yyyy") + " - " + DateTime.Now.AddMonths(1).ToString("dddd, dd MMMM yyyy");
+                    break;
+                case "Quarterly":
+                    ChartDate = DateTime.Now.ToString("dddd, dd MMMM yyyy") + " - " + DateTime.Now.AddMonths(4).ToString("dddd, dd MMMM yyyy");
+                    break;
+                case "Annually":
+                    ChartDate = DateTime.Now.ToString("dddd, dd MMMM yyyy") + " - " + DateTime.Now.AddMonths(12).ToString("dddd, dd MMMM yyyy");
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public class Chart
@@ -49,7 +73,7 @@ namespace ServiceApp.Client.Pages
             Name = name;
         }
 
-        public readonly string Name;
+        public string Name { get; set; }
 
         public override bool Equals(object o)
         {

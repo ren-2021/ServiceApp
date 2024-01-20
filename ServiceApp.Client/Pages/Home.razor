@@ -19,14 +19,14 @@
                                     <p class="p-custom" style="color:#7f7f7f">STATISTICS</p>
                                 </div>
                                 <div>
-                                    <p class="p-custom" style="font-weight:bold;color:#0195b9">Tue, 19 Dec 2023 - Fri, 19 Jan 2023</p>
+                                    <p class="p-custom" style="font-weight:bold;color:#0195b9">@ChartDate</p>
                                 </div>
                             </div>
-                            
+                            @* Tue, 19 Dec 2023 - Fri, 19 Jan 2023 *@
                         </div>
                         <div class="col-3">
                             <div>
-                                <MudSelect T="Chart" Value="@(new Chart("Month"))" Margin="Margin.Dense" Class="input-custom" Variant="Variant.Outlined" AnchorOrigin="Origin.BottomCenter">
+                                <MudSelect T="Chart" @bind-Value="chartValue" SelectedValuesChanged="InitializeDate" Margin="Margin.Dense" Class="input-custom" Variant="Variant.Outlined" AnchorOrigin="Origin.BottomCenter">
                                     <MudSelectItem Value="@(new Chart("Month"))" />
                                     <MudSelectItem Value="@(new Chart("Quarterly"))" />
                                     <MudSelectItem Value="@(new Chart("Annually"))" />
