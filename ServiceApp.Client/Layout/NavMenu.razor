@@ -20,7 +20,59 @@
     .MenuIcon{
         color: #252830;
     }
+
+    .nav-item{
+        border: none !important;
+    }
+
+    .nav-item[b-zqcdjlo7ge] a.active {
+        background-color: #0195b9;
+        color: #f3f3f3;
+    }
+
+    .nav-item[b-zqcdjlo7ge] a {
+        border-radius: 0px !important;
+    }
+
+    .mud-drawer-header {
+        display: flex;
+        min-height: var(--mud-appbar-height);
+        padding: 24px 24px 12px 24px !important;
+    }
+
+    .mud-drawer-header-2 {
+        display: flex;
+        min-height: var(--mud-appbar-height);
+        padding: 24px 24px 0px 24px !important;
+    }
+
+    .nav-item[b-zqcdjlo7ge] {
+        font-size: 0.9rem;
+        padding-bottom: 0px !important;
+    }
+
+    .nav-item:last-of-type[b-zqcdjlo7ge] {
+        padding-bottom: 0px !important;
+    }
   
+    p {
+        margin-top: 0;
+        margin-bottom: 0.5rem !important;
+    }
+
+    divider-class{
+        color: #0195b9;
+        background-color: #0195b9;  
+    }
+
+    .mud-divider-custom {
+        border-color: #0195b9 !important;
+        border-width: 2px;
+    }
+
+    hr {
+        opacity: 90 !important;
+    }
 </style>
 
 <MudAppBar Elevation="0" Class="navbar-mudappbar">
@@ -30,16 +82,24 @@
 </MudAppBar>
 <MudDrawer @bind-Open="@open" Elevation="1" Class="sidebar">
     <MudDrawerHeader>
-        <MudText Typo="Typo.h5" Class="custom-mud-text">Dashboard</MudText>
+        <nav class="flex-column">
+            <div class="nav-item">
+                <MudText Typo="Typo.h6" Class="custom-mud-text">SHEPHERDSHELTER</MudText>
+            </div>
+            <div class="nav-item">
+                <p style="color: #b2b2b2;font-size:11px">DASHBOARD</p>
+            </div>
+            <MudDivider Class="divider-class mud-divider-custom hr-custom" />
+        </nav>
     </MudDrawerHeader>
     <MudNavMenu>
         <nav class="flex-column">
-            <div class="nav-item px-3">
+            <div class="nav-item">
                 <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                     <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
                 </NavLink>
             </div>
-            <div class="nav-item px-3">
+            <div class="nav-item">
                 <NavLink class="nav-link" @onclick="()=>expandSubNav = !expandSubNav">
                     <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Services
                 </NavLink>
@@ -53,15 +113,33 @@
                     </NavLink>
                 }
             </div>
-            <div class="nav-item px-3">
+            <div class="nav-item">
                 <NavLink class="nav-link" href="print">
                     <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Print
                 </NavLink>
             </div>
-            <div class="nav-item px-3">
+        </nav>
+    </MudNavMenu>
+    <br />
+    <MudNavMenu>
+        <nav class="flex-column mud-drawer-header-2">
+            <div class="nav-item">
+                <p style="color: #b2b2b2;font-size:11px">ACCOUNT</p>
+            </div>
+            <div class="nav-item">
+            <MudDivider Class="divider-class mud-divider-custom hr-custom" />
+            </div>
+        </nav>
+        <nav class="flex-column">
+            <div class="nav-item">
+                <NavLink class="nav-link" href="Account">
+                    <span class="bi bi-door-open-nav-menu" aria-hidden="true"></span> My Profile
+                </NavLink>
+            </div>
+            <div class="nav-item">
                 <NavLink class="nav-link" href="LogOut">
                     <span class="bi bi-door-open-nav-menu" aria-hidden="true"></span> Log out
-                </NavLink> 
+                </NavLink>
             </div>
         </nav>
     </MudNavMenu>
