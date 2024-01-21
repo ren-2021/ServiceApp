@@ -40,21 +40,34 @@
         <MudItem xs="12">
             <MudPaper Class="pa-10">
                 <MudGrid>
-                    <MudItem xs="12" sm="6" md="4">
+                    <MudItem xs="12" md="4">
                         <MudField Label="First Name" Variant="Variant.Filled">@ClientInfo.FirstName</MudField>
                         </MudItem>
-                        <MudItem xs="12" sm="6" md="4">
-                            <MudField Label="Last Name" Variant="Variant.Filled">@ClientInfo.LastName</MudField>
+                        <MudItem xs="12" md="4">
+                            <MudField Label="Middle Name" Variant="Variant.Filled">@ClientInfo.MiddleName</MudField>
                         </MudItem>
-                        <MudItem xs="12" sm="6" md="4">
-                            <MudField Label="Tin Number" Variant="Variant.Filled">@ClientInfo.TinNo</MudField>
+                        <MudItem xs="12" md="4">
+                            <MudField Label="Last Number" Variant="Variant.Filled">@ClientInfo.LastName</MudField>
                         </MudItem>
-                    </MudGrid>
-                    <MudGrid>
-                        <MudItem xs="12" sm="6" md="4">
-                            <MudField Label="Address" Variant="Variant.Filled">@ClientInfo.Address</MudField>
-                        </MudItem>
-                        <MudTextField Disabled T="string" Label="Additional Information" Lines="3" Variant="Variant.Filled" Text="@ClientInfo.AdditionalInfo" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Api"></MudTextField>
+                </MudGrid>
+                <MudGrid>
+                    <MudItem xs="12" md="4">
+                        <MudField Label="Tin No." Variant="Variant.Filled">@ClientInfo.TinNo</MudField>
+                    </MudItem>
+                    <MudItem xs="12" md="4">
+                        <MudField Label="Contact No." Variant="Variant.Filled">@ClientInfo.ContactNo</MudField>
+                    </MudItem>
+                    <MudItem xs="12" md="4">
+                        <MudField Label="Tel No." Variant="Variant.Filled">@ClientInfo.TelNo</MudField>
+                    </MudItem>
+                </MudGrid>
+                <MudGrid>
+                    <MudItem xs="12" sm="6" md="8">
+                            <MudTextField Disabled T="string" Label="Address" Lines="3" Variant="Variant.Filled" Style="color: #252830" Text="@ClientInfo.Address" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Api"></MudTextField>
+                    </MudItem>
+                    <MudItem xs="12" sm="6" md="4">
+                            <MudField Label="Email Address" Variant="Variant.Filled">@ClientInfo.EmailAddress</MudField>
+                    </MudItem>
                  </MudGrid>
                  <br>
                  <div class="container  mt-4">

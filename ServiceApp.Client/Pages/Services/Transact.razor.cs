@@ -12,6 +12,10 @@ namespace ServiceApp.Client.Pages.Services
 {
     public partial class Transact
     {
+
+        [Parameter]
+        public string? ErrorMessage { get; set; } = "";
+
         private bool expanded = true;
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
@@ -35,6 +39,8 @@ namespace ServiceApp.Client.Pages.Services
 
         private Dictionary<string, bool> expandedStates = new Dictionary<string, bool>();
 
+        private bool isAnySelectionMade = false;
+
         protected override void OnInitialized()
         {
             this.Services = new List<string>() { MainServices.Accounting, MainServices.OtherServices, MainServices.PSA, MainServices.DFA, MainServices.NOTARY, MainServices.LTO, MainServices.Airline, MainServices.VISA, MainServices.Financial, MainServices.ATMPortable };
@@ -57,7 +63,7 @@ namespace ServiceApp.Client.Pages.Services
             DialogService.Show<ClientDialog>("Clients", options);
         }
 
-        protected void OnValueChangeHandler() => ClientInfo.AdditionalInfo = this.multilineReference.Text;
+        protected void OnValueChangeHandler() => ClientInfo.Address = this.multilineReference.Text;
 
         protected void OnSelectedOptionChanged(string _selectedOption, string _subServices)
         {
@@ -87,12 +93,12 @@ namespace ServiceApp.Client.Pages.Services
 
         protected void HandleCheck(bool _isCheck)
         {
-            Notary.IsIncluded = _isCheck; 
+            Notary.IsIncluded = _isCheck;
         }
 
         protected void HandleCheck(bool _isCheck, string _subServices, string _mainService)
         {
-            if(_mainService == MainServices.Accounting)
+            if (_mainService == MainServices.Accounting)
             {
                 if (_subServices == SubServices.Filingoftaxes) { Accounting.FilingOfTaxes.IsIncluded = _isCheck; }
                 if (_subServices == SubServices.BIRRegistration) { Accounting.BIRRegistration.IsIncluded = _isCheck; }
@@ -110,30 +116,30 @@ namespace ServiceApp.Client.Pages.Services
                 }
                 else { Accounting.IsIncluded = false; }
             }
-           if (_mainService == MainServices.OtherServices) 
-           {
+            if (_mainService == MainServices.OtherServices)
+            {
                 if (_subServices == SubServices.TransferofTitle) { OtherServices.TransferofTitle.IsIncluded = _isCheck; }
                 if (_subServices == SubServices.PCABAssistance) { OtherServices.PCABAssistance.IsIncluded = _isCheck; }
                 if (_subServices == SubServices.NBIAssistance) { OtherServices.NBIAssistance.IsIncluded = _isCheck; }
                 if (_subServices == SubServices.Weddingmanagement) { OtherServices.WeddingManagement.IsIncluded = _isCheck; }
-                if (OtherServices.TransferofTitle.IsIncluded || OtherServices.PCABAssistance.IsIncluded || OtherServices.NBIAssistance.IsIncluded || OtherServices.WeddingManagement.IsIncluded )
+                if (OtherServices.TransferofTitle.IsIncluded || OtherServices.PCABAssistance.IsIncluded || OtherServices.NBIAssistance.IsIncluded || OtherServices.WeddingManagement.IsIncluded)
                 {
                     OtherServices.IsIncluded = true;
                 }
                 else { OtherServices.IsIncluded = false; }
-           }
-           if (_mainService == MainServices.PSA)
-           {
-               if (_subServices == SubServices.Cenomar) { PSA.Cenomar.IsIncluded = _isCheck; }
-               if (_subServices == SubServices.BirthCertificate) { PSA.BirthCertificate.IsIncluded = _isCheck; }
-               if (_subServices == SubServices.MarriageCertificate) { PSA.MarriageCertificate.IsIncluded = _isCheck; }
-               if (_subServices == SubServices.DeathCertificate) { PSA.DeathCertificate.IsIncluded = _isCheck; }
-               if (PSA.Cenomar.IsIncluded || PSA.BirthCertificate.IsIncluded || PSA.MarriageCertificate.IsIncluded || PSA.DeathCertificate.IsIncluded)
-               {
+            }
+            if (_mainService == MainServices.PSA)
+            {
+                if (_subServices == SubServices.Cenomar) { PSA.Cenomar.IsIncluded = _isCheck; }
+                if (_subServices == SubServices.BirthCertificate) { PSA.BirthCertificate.IsIncluded = _isCheck; }
+                if (_subServices == SubServices.MarriageCertificate) { PSA.MarriageCertificate.IsIncluded = _isCheck; }
+                if (_subServices == SubServices.DeathCertificate) { PSA.DeathCertificate.IsIncluded = _isCheck; }
+                if (PSA.Cenomar.IsIncluded || PSA.BirthCertificate.IsIncluded || PSA.MarriageCertificate.IsIncluded || PSA.DeathCertificate.IsIncluded)
+                {
                     PSA.IsIncluded = true;
-               }
-               else { PSA.IsIncluded = false; }
-           }
+                }
+                else { PSA.IsIncluded = false; }
+            }
             if (_mainService == MainServices.DFA)
             {
                 if (_subServices == SubServices.PassportAssistance) { DFA.PassportAssistance.IsIncluded = _isCheck; }
@@ -148,7 +154,7 @@ namespace ServiceApp.Client.Pages.Services
             {
                 if (_subServices == SubServices.VehicleRegistration) { LTO.Registration.IsIncluded = _isCheck; }
 
-                if (LTO.Registration.IsIncluded){LTO.IsIncluded = true;} else { LTO.IsIncluded = false; }
+                if (LTO.Registration.IsIncluded) { LTO.IsIncluded = true; } else { LTO.IsIncluded = false; }
             }
             if (_mainService == MainServices.Airline)
             {

@@ -36,6 +36,12 @@
     .mud-tabs-toolbar-primary .mud-tab.mud-tab-active:hover {
         background-color: #252830;
     }
+
+    .mud-tab.mud-disabled {
+        cursor: default;
+        pointer-events: none;
+        color: darkgrey;
+    }
 </style>
 
 <AuthorizeView>
@@ -43,14 +49,16 @@
         <MudTabPanel Text="Services">
             @if (this.ActivePanel == 0)
             {
-                <Transact />
-                <div class="container  mt-4 text-end">
-                    <MudButton OnClick="@(()=>GoToTab(1))" Variant="Variant.Filled" Class="mud-btn-color-black">Proceed</MudButton>
-                </div>
+                <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+                    <Transact ErrorMessage="@ErrorMessage" />
+                    <div class="container  mt-4 text-end">
+                        <MudButton DisableElevation="true" OnClick="@(()=>Submit())" Variant="Variant.Filled" Class="mud-btn-color-black">Proceed</MudButton>
+                    </div>
+                </MudForm>
                 <br>
             }
         </MudTabPanel>
-        <MudTabPanel Text="Summary">
+        <MudTabPanel Text="Summary" Disabled>
             @if (this.ActivePanel == 1)
             {
                 <Summary />
