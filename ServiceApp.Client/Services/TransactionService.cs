@@ -55,5 +55,19 @@ namespace ServiceApp.Client.Services
             JsonRequest jsonRequest = new JsonRequest() { JsonString = JsonConvert.SerializeObject(request) };
             var response = await _httpClient.PostAsJsonAsync($"api/Transaction/Process", jsonRequest);
         }
+
+        public async Task<IEnumerable<TransactionInfo>> GetTransactions()
+        {
+            try
+            {
+                var result = await _httpClient.GetFromJsonAsync<IEnumerable<TransactionInfo>>($"api/Transaction");
+                return result ?? Enumerable.Empty<TransactionInfo>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching transactions: {ex.Message}");
+                return Enumerable.Empty<TransactionInfo>();
+            }
+        }
     }
 }

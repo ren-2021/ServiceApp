@@ -1,38 +1,44 @@
 ﻿@page "/browse"
 @using System.Net.Http.Json
+@using ServiceApp.Shared.Model
 @using static MudBlazor.CategoryTypes
+@inject ITransactionService TransactionService
 @inject HttpClient httpClient
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
-<AuthorizeView>
-    <MudTable Items="@Elements" Dense="false" Hover="true" Bordered="false" Striped="true" Class="container sm-10" Filter="new Func<Element,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1">
-    <ToolBarContent>
-        <MudText Typo="Typo.h6">Periodic Elements</MudText>
-        <MudSpacer />
-        <MudTextField @bind-Value="searchString1" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
-    </ToolBarContent>
-    <HeaderContent>
-        <MudTh>Nr</MudTh>
-        <MudTh>Sign</MudTh>
-        <MudTh>Name</MudTh>
-        <MudTh>Position</MudTh>
-        <MudTh>Molar mass</MudTh>
-    </HeaderContent>
-  @*   <RowTemplate>
-        <MudTd DataLabel="Nr">@context.Nr</MudTd>
-            <MudTd DataLabel="Sign">@context.Sign</MudTd>
-            <MudTd DataLabel="Name">@context.Name</MudTd>
-            <MudTd DataLabel="Position">@context.Position</MudTd>
-            <MudTd DataLabel="Molar mass">@context.MolarMass</MudTd>
-      </RowTemplate> *@
-        <PagerContent>
-            <MudTablePager />
+<AuthorizeView Context="categoryCommandContext">
+        <MudTable Items="@Transitions" Hover="true" SortLabel="Sort By">
+        <HeaderContent>
+            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.TransactionID)">Transaction ID</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.FirstName)">First Name</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<TransactionInfo, object>(x=>x.LastName)">Last Name</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.TinNo)">Tin No</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.EmailAddress)">Email Address</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.Address)">Address</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.TotalFee)">Total Fee</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.TransactionDate)">Transaction Date</MudTableSortLabel></MudTh>
+        </HeaderContent>
+        <RowTemplate >
+            <MudTd DataLabel="Nr">@context.TransactionID</MudTd>
+            <MudTd DataLabel="Sign">@context.FirstName</MudTd>
+            <MudTd DataLabel="Name">@context.LastName</MudTd>
+            <MudTd DataLabel="Position">@context.TinNo</MudTd>
+            <MudTd DataLabel="Molar mass">@context.EmailAddress</MudTd>
+            <MudTd DataLabel="Molar mass">@context.Address</MudTd>
+            <MudTd DataLabel="Molar mass">@string.Format("{0:C2}", context.TotalFee)</MudTd>
+            <MudTd DataLabel="Molar mass">@context.TransactionDate</MudTd>
+        </RowTemplate>
+            <PagerContent>
+            <MudTablePager PageSizeOptions="new int[] { 10, 25, 50, 100 }" />
         </PagerContent>
     </MudTable>
 </AuthorizeView>
 
- 
-     
 
 
-    
+
+
+
+
+

@@ -15,5 +15,7 @@ namespace ServiceApp.Client.Services
     public interface ITransactionService
     {
         Task Process(IClientInfo clientInfo, IAccounting Accounting, IOtherServices OtherServices, IPSA PSAAssistance, IDFA DFAServices, INotary Notary, ILTO LTOServices, IAirline AirlineServices, IVISAProcessing VISAProcessing, IFinancial FinancialServices, IATMPortable ATMPortable);
+
+        Task<IEnumerable<TransactionInfo>> GetTransactions();
     }
 }

@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceApp.Shared.Model;
 
 namespace ServiceApp.DataAccessLayer.Services
 {
@@ -19,7 +20,7 @@ namespace ServiceApp.DataAccessLayer.Services
                 using (var connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
-                    connection.Execute("pr_ProcessData",
+                    connection.Execute("pr_ProcessTransaction",
                     new{ JsonString = jsonString },
                     commandType: CommandType.StoredProcedure);
                 }
@@ -30,6 +31,25 @@ namespace ServiceApp.DataAccessLayer.Services
             }
 
             return true;
+        }
+
+        public List<TransactionInfo> GetTrasactions()
+        {
+            List<TransactionInfo> result = new List<TransactionInfo>();
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+                    result = connection.Query<TransactionInfo>("pr_GetTransactions", commandType: CommandType.StoredProcedure).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
         }
     }
 }

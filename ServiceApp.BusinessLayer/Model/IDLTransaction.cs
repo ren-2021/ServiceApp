@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceApp.Shared.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,7 @@ namespace ServiceApp.DataAccessLayer.Services
     public interface IDLTransaction
     {
         bool AddTrasaction(string jsonString);
+
+        List<TransactionInfo> GetTrasactions();
     }
 }

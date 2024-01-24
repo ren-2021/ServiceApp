@@ -25,9 +25,19 @@ namespace ServiceApp.Server.Controllers
         [HttpPost("Process")]
         public ActionResult<bool> Process([FromBody] JsonRequest _jsonRequest)
         {
-            MainRequest mainRequest = new MainRequest();
-            //mainRequest = JsonConvert.DeserializeObject<MainRequest>(_jsonRequest.JsonString);
             return this.transactionService.AddTransaction(_jsonRequest.JsonString);
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<TransactionInfo>> Get()
+        {
+            var transactions = this.transactionService.GetTransactions();
+            if (transactions == null)
+            {
+                return NotFound(); // Or handle accordingly
+            }
+
+            return Ok(transactions);
         }
     }
 }
