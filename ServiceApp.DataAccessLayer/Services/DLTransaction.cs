@@ -15,22 +15,27 @@ namespace ServiceApp.DataAccessLayer.Services
     {
         public bool AddTrasaction(string jsonString)
         {
+            bool IsSuccess = false;
             try
             {
                 using (var connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
-                    connection.Execute("pr_ProcessTransaction",
-                    new{ JsonString = jsonString },
-                    commandType: CommandType.StoredProcedure);
+
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@JsonString", jsonString);
+                    parameters.Add("@IsSuccess", dbType: DbType.Boolean, direction: ParameterDirection.Output);
+                    connection.Execute("pr_ProcessTransaction", parameters, commandType: CommandType.StoredProcedure);
+
+                    IsSuccess = parameters.Get<bool>("@IsSuccess");
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                return false;
             }
 
-            return true;
+            return IsSuccess;
         }
 
         public List<TransactionInfo> GetTrasactions()

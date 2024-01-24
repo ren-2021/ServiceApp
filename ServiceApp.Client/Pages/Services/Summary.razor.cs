@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using MudBlazor;
 using ServiceApp.Client.Services;
 using ServiceApp.Shared.Model.Services.Accounting;
 using ServiceApp.Shared.Model.Services.Airline;
@@ -15,15 +16,66 @@ namespace ServiceApp.Client.Pages.Services
 {
     public partial class Summary
     {
-        public bool IsSuccess {  get; set; } 
+        private bool isVisible;
+        [Inject] private IDialogService DialogService { get; set; }
+        private bool isProcessing = false;
+
         protected override void OnInitialized()
         {
-  
+            
         }
 
         private async Task SubmitData()
         {
-            await this.TransactionService.Process(ClientInfo, Accounting, OtherServices, PSAAssistance, DFAServices, Notary, LTOServices, AirlineServices, VISAProcessing, FinancialServices, ATMPortable);
+            bool isSuccess;
+            if (isProcessing)
+            {
+                return;
+            }
+            try
+            {
+                OpenOverlay();
+                isSuccess = await this.TransactionService.Process(ClientInfo, Accounting, OtherServices, PSAAssistance, DFAServices, Notary, LTOServices, AirlineServices, VISAProcessing, FinancialServices, ATMPortable);
+                CloseOverlay();
+                OpenSuccessDialog(isSuccess);
+            }
+            finally
+            {
+                isProcessing = false;
+                CloseOverlay();
+            }
+        }
+
+        public void OpenOverlay()
+        {
+            isVisible = true;
+            StateHasChanged();
+        }
+        public void CloseOverlay()
+        {
+            isVisible = false;
+            StateHasChanged();
+        }
+
+        private async void OpenSuccessDialog(bool isSuccess)
+        {
+            if (isSuccess)
+            {
+                await DialogService.ShowMessageBox(
+                  "Success",
+                  "Transaction Info has been process.",
+                  yesText: "Okay!", cancelText: "Cancel");
+            }
+            else
+            {
+                await DialogService.ShowMessageBox(
+                  "Error",
+                  "Transaction cannot process right now.",
+                  yesText: "Okay!", cancelText: "Cancel");
+            }
+          
+            StateHasChanged();
         }
     }
+
 }

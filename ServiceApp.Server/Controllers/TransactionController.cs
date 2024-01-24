@@ -23,9 +23,9 @@ namespace ServiceApp.Server.Controllers
         }
 
         [HttpPost("Process")]
-        public ActionResult<bool> Process([FromBody] JsonRequest _jsonRequest)
+        public ActionResult<JsonRequest> Process([FromBody] JsonRequest _jsonRequest)
         {
-            return this.transactionService.AddTransaction(_jsonRequest.JsonString);
+            return new JsonRequest { IsSuccess = this.transactionService.AddTransaction(_jsonRequest.JsonString) };
         }
 
         [HttpGet]

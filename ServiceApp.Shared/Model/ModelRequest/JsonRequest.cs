@@ -9,5 +9,6 @@ namespace ServiceApp.Shared.Model.ModelRequest
     public class JsonRequest
     {
         public string JsonString {  get; set; }
+        public bool IsSuccess { get; set;}
     }
 }

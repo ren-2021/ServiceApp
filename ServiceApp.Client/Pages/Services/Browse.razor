@@ -10,14 +10,14 @@
 <AuthorizeView Context="categoryCommandContext">
         <MudTable Items="@Transitions" Hover="true" SortLabel="Sort By">
         <HeaderContent>
-            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.TransactionID)">Transaction ID</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.FirstName)">First Name</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<TransactionInfo, object>(x=>x.LastName)">Last Name</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.TinNo)">Tin No</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.EmailAddress)">Email Address</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.Address)">Address</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.TotalFee)">Total Fee</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<TransactionInfo, object>(x=>x.TransactionDate)">Transaction Date</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel style="font-weight: 700;" SortBy="new Func<TransactionInfo, object>(x=>x.TransactionID)">Transaction ID</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel style="font-weight: 700;" SortBy="new Func<TransactionInfo, object>(x=>x.FirstName)">First Name</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel style="font-weight: 700;" InitialDirection="SortDirection.Ascending" SortBy="new Func<TransactionInfo, object>(x=>x.LastName)">Last Name</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel style="font-weight: 700;" SortBy="new Func<TransactionInfo, object>(x=>x.TinNo)">Tin No</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel style="font-weight: 700;" SortBy="new Func<TransactionInfo, object>(x=>x.EmailAddress)">Email Address</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel style="font-weight: 700;" SortBy="new Func<TransactionInfo, object>(x=>x.Address)">Address</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel style="font-weight: 700;" SortBy="new Func<TransactionInfo, object>(x=>x.TotalFee)">Total Fee</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel style="font-weight: 700;" SortBy="new Func<TransactionInfo, object>(x=>x.TransactionDate)">Transaction Date</MudTableSortLabel></MudTh>
         </HeaderContent>
         <RowTemplate >
             <MudTd DataLabel="Nr">@context.TransactionID</MudTd>

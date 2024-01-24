@@ -602,11 +602,21 @@
                     </table>
                 }
                 <div class="container  mt-4 text-end">
-                    <MudButton OnClick="@(()=>SubmitData())" Variant="Variant.Filled" Class="mud-btn-color-black">Proceed</MudButton>
+                        <MudButton OnClick="@(()=>SubmitData())" Variant="Variant.Filled" Class="mud-btn-color-black">
+                        @if (isVisible)
+                        {
+                            <MudProgressCircular Class="px-9" Color="Color.Info" Size="Size.Small" Indeterminate="true" />
+                        }
+                        else
+                        {
+                            <span>Proceed</span>
+                        }
+                         </MudButton>
                 </div><br>
             </MudPaper>
         </MudItem>
     </MudGrid>
+    <MudOverlay @bind-Visible="isVisible" DarkBackground="true" ZIndex="9999" AutoClose="true" />
 </AuthorizeView>
  
  

@@ -33,7 +33,7 @@ namespace ServiceApp.Client.Services
             _httpClient = httpClient;
         }
 
-        public async Task Process(IClientInfo _clientInfo, IAccounting _accounting,IOtherServices _otherServices,IPSA _psaAssistance,IDFA _dfaServices,INotary _notary,ILTO _ltoServices,IAirline _airlineServices,IVISAProcessing _visaProcessing, IFinancial _financialServices,IATMPortable _atmPortable)
+        public async Task<bool> Process(IClientInfo _clientInfo, IAccounting _accounting,IOtherServices _otherServices,IPSA _psaAssistance,IDFA _dfaServices,INotary _notary,ILTO _ltoServices,IAirline _airlineServices,IVISAProcessing _visaProcessing, IFinancial _financialServices,IATMPortable _atmPortable)
         {
             MainRequest request = new MainRequest()
             {
@@ -53,7 +53,9 @@ namespace ServiceApp.Client.Services
                 }
             };
             JsonRequest jsonRequest = new JsonRequest() { JsonString = JsonConvert.SerializeObject(request) };
-            var response = await _httpClient.PostAsJsonAsync($"api/Transaction/Process", jsonRequest);
+            var result = await _httpClient.PostAsJsonAsync<JsonRequest>($"api/Transaction/Process", jsonRequest);
+            var response = await result.Content.ReadFromJsonAsync<JsonRequest>();
+            return response.IsSuccess;
         }
 
         public async Task<IEnumerable<TransactionInfo>> GetTransactions()
