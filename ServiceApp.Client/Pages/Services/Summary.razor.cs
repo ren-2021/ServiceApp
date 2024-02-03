@@ -49,12 +49,10 @@ namespace ServiceApp.Client.Pages.Services
         public void OpenOverlay()
         {
             isVisible = true;
-            StateHasChanged();
         }
         public void CloseOverlay()
         {
             isVisible = false;
-            StateHasChanged();
         }
 
         private async void OpenSuccessDialog(bool isSuccess)
