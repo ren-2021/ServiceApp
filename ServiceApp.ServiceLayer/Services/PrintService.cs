@@ -1,5 +1,6 @@
 ﻿using ServiceApp.BusinessLayer.DomainServices.Services;
 using ServiceApp.Shared.Model;
+using ServiceApp.Shared.Model.ModelRequest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,14 @@ namespace ServiceApp.ServiceLayer.Services
             this.printTransaction = new PrintTransaction(this.dataAcesses);
         }
 
-        public PrintingInfo Print()
+        public PrintingInfo Print(int _transactionID)
         {
-            return this.printTransaction.Print();
+            return this.printTransaction.Print(_transactionID);
+        }
+
+        public IEnumerable<PrintModel> GetServicesInfo(int _transactionID)
+        {
+            return this.printTransaction.GetServicesInfo(_transactionID);
         }
     }
 }

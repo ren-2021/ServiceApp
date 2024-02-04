@@ -59,13 +59,13 @@ namespace ServiceApp.BusinessLayer.DomainServices.Print
                 row.RelativeItem().Column(column =>
                 {
                     column
-                        .Item().Text($"Transaction # 1")
+                        .Item().Text($"Transaction # {TransactionInfo.TransactionID}")
                         .FontSize(20).SemiBold().FontColor(Colors.Blue.Medium);
 
                     column.Item().Text(text =>
                     {
                         text.Span("Issue date: ").SemiBold();
-                        text.Span($"09-09-2023");
+                        text.Span($"{TransactionInfo.TransactionDate.Date}");
                     });
 
                 });
@@ -85,6 +85,11 @@ namespace ServiceApp.BusinessLayer.DomainServices.Print
             container.PaddingVertical(40).Column(column =>
             {
                 column.Spacing(20);
+
+                column.Item().Row(row =>
+                {
+                    row.RelativeItem().Component(new TransactionComponent("Client", this.TransactionInfo));
+                });
                 column.Item().Element((container) => AccountingTable(container, "Accounting"));
                 column.Item().Element((container) => AccountingTable(container, "OtherServices"));
                 column.Item().Element((container) => AccountingTable(container, "PSA"));
@@ -129,35 +134,6 @@ namespace ServiceApp.BusinessLayer.DomainServices.Print
 
                     static IContainer CellStyle(IContainer container) => container.BorderBottom(1).BorderColor(Colors.Grey.Lighten2).PaddingVertical(5);
                 }
-            });
-        }
-    }
-
-    public class AddressComponent : IComponent
-    {
-        private string Title { get; }
-        private Address Address { get; }
-
-        public AddressComponent(string title, Address address)
-        {
-            Title = title;
-            Address = address;
-        }
-
-        public void Compose(IContainer container)
-        {
-            container.ShowEntire().Column(column =>
-            {
-                column.Spacing(2);
-
-                column.Item().Text(Title).SemiBold();
-                column.Item().PaddingBottom(5).LineHorizontal(1);
-
-                column.Item().Text(Address.CompanyName);
-                column.Item().Text(Address.Street);
-                column.Item().Text($"{Address.City}, {Address.State}");
-                column.Item().Text(Address.Email);
-                column.Item().Text(Address.Phone);
             });
         }
     }

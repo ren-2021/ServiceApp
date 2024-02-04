@@ -9,6 +9,9 @@ namespace ServiceApp.Client.Pages.Services
     public partial class Browse
     {
         private IEnumerable<TransactionInfo> Transitions = new List<TransactionInfo>();
+        private int selectedRowNumber = -1;
+        private MudTable<TransactionInfo> mudTable;
+        private List<string> clickedEvents = new();
         private bool IsUserAuthorized { get; set; }
         protected override async Task OnInitializedAsync()
         {
@@ -18,6 +21,12 @@ namespace ServiceApp.Client.Pages.Services
             {
                 Transitions = await this.TransactionService.GetTransactions();
             }
+        }
+
+        private void RowClickEvent(TableRowClickEventArgs<TransactionInfo> tableRowClickEventArgs)
+        {
+            this.TransactionInfo = tableRowClickEventArgs.Item;
+            NavigationManager.NavigateTo("/print");
         }
     }
 }

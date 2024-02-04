@@ -10,7 +10,7 @@ namespace ServiceApp.BusinessLayer.Model
 {
     public interface IDLPrint
     {
-        public TransactionInfo GetTransactionInfo();
+        public TransactionInfo GetTransactionInfoByID(int _transactionID);
         public IEnumerable<PrintModel> GetTransactionServicesInfo(int _transactionID);
     }
 }

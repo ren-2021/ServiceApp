@@ -1,4 +1,5 @@
 ﻿using ServiceApp.Shared.Model;
+using ServiceApp.Shared.Model.ModelRequest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace ServiceApp.ServiceLayer.Services
 {
     public interface IPrintService
     {
-        PrintingInfo Print();
+        PrintingInfo Print(int _transactionID);
+
+        IEnumerable<PrintModel> GetServicesInfo(int _transactionID);
     }
 }

@@ -1,6 +1,66 @@
 ﻿@page "/print"
+@using System.Net.Http.Json
 @using ServiceApp.Shared.Model
+@using static MudBlazor.CategoryTypes
+@inject ITransactionService TransactionService
+@inject IPrintService PrintService
+@inject HttpClient httpClient
 @inject NavigationManager NavigationManager
+@inject TransactionInfo TransactionInfo
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
+<AuthorizeView Context="categoryCommandContext">
 
-  
+    <div>
+        <h3>Client</h3>
+        <h5>@TransactionInfo.FirstName</h5>
+        <h5>@TransactionInfo.TinNo</h5>
+        <h5>@TransactionInfo.EmailAddress</h5>
+        <h5>@TransactionInfo.Address</h5>
+    </div>
+    <br>
+    <div>
+        <h3>Services</h3>
+        @foreach (var item in ServicesInfo.Select(service => service.ServiceType).Distinct())
+        {
+        <table class="table">
+            <thead>
+                <tr>
+                   <th>@item</th>
+                   <th>Sole Proprietorship</th>
+                   <th>Corporate</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var propValue in ServicesInfo.Where(x => x.ServiceType == item).ToList())
+                {
+                <tr>
+                    <td>@propValue.Description</td>
+                        <td>
+                            @if(propValue.OwnershipType == 1)
+                            {
+                                <span>@propValue.Fee</span>
+                            }
+                            else
+                            {
+                                <span></span>
+                            }
+                        </td>
+                        <td>
+                            @if (propValue.OwnershipType == 2)
+                            {
+                                <span></span>
+                            }
+                            else
+                            {
+                                <span>@propValue.Fee</span>
+                            }
+                        </td>
+                        <br>
+                </tr>
+                    }
+            </tbody>
+        </table>
+        }
+    </div>
+</AuthorizeView>

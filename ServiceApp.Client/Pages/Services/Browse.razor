@@ -5,10 +5,11 @@
 @inject ITransactionService TransactionService
 @inject HttpClient httpClient
 @inject NavigationManager NavigationManager
+@inject TransactionInfo TransactionInfo
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 <AuthorizeView Context="categoryCommandContext">
-        <MudTable Items="@Transitions" Hover="true" SortLabel="Sort By">
+    <MudTable T="TransactionInfo" Items="@Transitions" Hover="true" SortLabel="Sort By" @ref="mudTable" RowClass="cursor-pointer" OnRowClick="RowClickEvent">
         <HeaderContent>
             <MudTh><MudTableSortLabel style="font-weight: 700;" SortBy="new Func<TransactionInfo, object>(x=>x.TransactionID)">Transaction ID</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel style="font-weight: 700;" SortBy="new Func<TransactionInfo, object>(x=>x.FirstName)">First Name</MudTableSortLabel></MudTh>
@@ -33,9 +34,22 @@
             <MudTablePager PageSizeOptions="new int[] { 10, 25, 50, 100 }" />
         </PagerContent>
     </MudTable>
+    @*     <MudExpansionPanels Style="flex: 1;">
+            <MudExpansionPanel Text="Show inline-clicked event log">
+                @foreach (var message in clickedEvents)
+            {
+                <MudText>@message</MudText>
+            }
+            @if (clickedEvents.Count > 0)
+            {
+                <div class="d-flex">
+                    <MudSpacer />
+                    <MudButton Class="mt-3" ButtonType="ButtonType.Button" Variant="Variant.Filled" OnClick="@(() => clickedEvents.Clear())">Clear events</MudButton>
+                </div>
+            }
+        </MudExpansionPanel>
+    </MudExpansionPanels> *@
 </AuthorizeView>
-
-
 
 
 

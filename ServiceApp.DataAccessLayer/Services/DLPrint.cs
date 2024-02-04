@@ -17,9 +17,24 @@ namespace ServiceApp.DataAccessLayer.Services
 {
     public class DLPrint : DLBaseDataAccess, IDLPrint
     {
-        public TransactionInfo GetTransactionInfo()
+        public TransactionInfo GetTransactionInfoByID(int _transactionID)
         {
-            return new TransactionInfo();
+            TransactionInfo result = new TransactionInfo();
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+                    result = connection.QueryFirst<TransactionInfo>("pr_GetTransactionByID",
+                         param: new { transactionID = _transactionID }, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
         }
 
         public IEnumerable<PrintModel> GetTransactionServicesInfo(int _transactionID)

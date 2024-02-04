@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServiceApp.ServiceLayer.Services;
 using ServiceApp.Shared.Model;
+using ServiceApp.Shared.Model.ModelRequest;
 
 namespace ServiceApp.Server.Controllers
 {
@@ -16,10 +17,16 @@ namespace ServiceApp.Server.Controllers
             this.printService = _printService;
         }
 
-        [HttpPost("Generate")]
-        public ActionResult<PrintingInfo> Generate()
+        [HttpPost("Generate/{_transactionID}")]
+        public ActionResult<PrintingInfo> Generate(int _transactionID)
         {
-            return this.printService.Print();
+            return this.printService.Print(_transactionID);
+        }
+
+        [HttpGet("GetServiceInfo/{_transactionID}")]
+        public IEnumerable<PrintModel> GetServiceInfo(int _transactionID)
+        {
+            return this.printService.GetServicesInfo(_transactionID);
         }
     }
 }

@@ -36,6 +36,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, UserAuthenticationStatep
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
+builder.Services.AddScoped<IPrintService, PrintService>();
 builder.Services.AddSingleton<ClientInfo>();
 builder.Services.AddSingleton<Accounting>();
 builder.Services.AddSingleton<FilingOfTaxes>();
@@ -82,6 +83,7 @@ builder.Services.AddSingleton<GCash>();
 builder.Services.AddSingleton<ATMPortable>();
 builder.Services.AddSingleton<BankBalanceInquiry>();
 builder.Services.AddSingleton<Withdrawal>();
+builder.Services.AddSingleton<TransactionInfo>();
 
 builder.Services.AddMudServices();
 await builder.Build().RunAsync();

@@ -26,25 +26,37 @@ namespace ServiceApp.BusinessLayer.DomainServices.Services
         private PrintingInfo printingInfo;
         private TransactionInfo transactionInfo;
         private IEnumerable<PrintModel> mainServices;
-        private bool isValid;
+        private int TransactionID { get; set; }
         public PrintTransaction(List<IDataAccess> pDataAccess) : base(pDataAccess)
         {
 
         }
-        public PrintingInfo Print()
+        public PrintingInfo Print(int _transactionID)
         {
-            this.Initialize();
+            this.TransactionID = _transactionID;
+            this.InitializeTransaction();
+            this.InitializeServices();
             this.Validation();
             this.Generate();
             return this.printingInfo;
         }
 
-        private void Initialize()
+        public IEnumerable<PrintModel> GetServicesInfo(int _transactionID) 
         {
-            this.transactionInfo = this.DLPrint.GetTransactionInfo();
-            this.mainServices = this.DLPrint.GetTransactionServicesInfo(3);
+            this.TransactionID = _transactionID;
+            this.InitializeServices();
+            return this.mainServices;
         }
 
+        private void InitializeTransaction()
+        {
+            this.transactionInfo = this.DLPrint.GetTransactionInfoByID(this.TransactionID);
+        }
+
+        private void InitializeServices()
+        {
+            this.mainServices = this.DLPrint.GetTransactionServicesInfo(this.TransactionID);
+        }
 
         private void Validation()
         {
