@@ -42,13 +42,38 @@
     position: absolute;
 }
 
-
-
 /* Tablet */
-@media only screen and (max-width: 1023px) {
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .logo {
+        height: 4rem;
+        width: auto;
+        display: block;
+        margin: 0 auto 20px auto;
+    }
 }
 
 /* Mobile Phone */
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 480px) {
+    .container {
 
+    }
+
+    .loginForm {
+        /*border-radius: 10px 10px 0 0;*/
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .gradient-custom-6 {
+        /*border-radius: 0 0 10px 10px;*/
+        border-radius: 0;
+        height: 100vh;
+    }
+
+    .logo {
+        height: 3rem;
+        width: auto;
+        display: block;
+        margin: 0 auto 20px auto;
+    }
 }
