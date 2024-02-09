@@ -21,4 +21,9 @@
     <ProjectReference Include="..\ServiceApp.Shared\ServiceApp.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
+    <Folder Include="wwwroot\font\" />
+  </ItemGroup>
+
 </Project>

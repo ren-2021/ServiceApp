@@ -3,16 +3,7 @@
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
 
-<style>
-    .gradient-custom-6{
-        background: rgb(34,193,195);
-        background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,81,253,1) 100%);
-    }
-
-    main {
-        background-color: #ffffff !important;
-    }
-</style>
+<link rel="stylesheet" href="css/app.css" />
 
 @if (ShowErrors)
 {
@@ -21,60 +12,58 @@
     </div>
 }
 
-<section class="h-100 gradient-form">
-  <div class="container py-5 h-100 .px-01">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-xl-10">
-        <div class="card rounded-3 text-black">
-          <div class="row g-0">
-            <div class="col-lg-6">
-              <div class="card-body p-md-5 mx-md-4">
-
-                <div class="text-center">
-                  <img src="logo-Shepherd.png"
-                    style="width: 350px;" alt="logo">
+<section class="container d-flex justify-content-center align-items-center">
+    <div class="bg"></div>
+    <div class="row px-5">
+        <div class="col-sm-12 col-md-6 col-lg-6 p-5 order-sm-2 order-lg-2 gradient-custom-6">
+            <div class="text-white d-flex justify-content-center align-items-center">
+                <div>
+                    <h5 class="mb-4">
+                        Where ministry meets compassion, <br />
+                        Where support finds a home.
+                    </h5>
+                    <p class="small mb-1">
+                        The Shepherd’s Shelter Organization Inc. is a registered non-stock, non-profit organization, founded by Bro. Froilan Dalapo.
+                    </p>
+                    <p class="small mb-1">
+                        God founded in him an extraordinary vision to establish a foundation that will act as a 3rd-party institution that provides for what ordinary workers in the working sectors normally receive as benefits (e.g., SSS, Philhealth, Pag-IBIG) to Pastors in the Philippines who work only under God’s providence.
+                    </p>
+                    <p class="small mb-1">
+                        Bro. Froilan Dalapo is supported in prayer and practice by a Board of Directors who are also Shepherds of their flocks.
+                    </p>
+                    <p class="small mb-1">
+                        In retrospect, the Shepherd’s Shelter Organization Inc is all about achieving the FINANCIAL WELL-BEING of Pastors in the Philippines. Moreover, the heart of the ministry is to provide a sense of stability and a bedrock of support for Pastors in times of emergencies.
+                    </p>
                 </div>
-                <br> 
-                  <h5>Please login to your account</h5>
-                    <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
-                        <DataAnnotationsValidator />
-                        <br>
-                        <div class="form-group">
-                            <InputText Id="email" Placeholder="Email Address" Class="form-control" @bind-Value="loginModel.Email" />
-                            <ValidationMessage For="@(() => loginModel.Email)" />
-                            <label for="email" class="pt-2">Email address</label>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <InputText Id="password" type="password" Placeholder="Password" Class="form-control" @bind-Value="loginModel.Password" />
-                            <ValidationMessage For="@(() => loginModel.Password)" />
-                            <label for="password" class="pt-2">Password</label>
-                        </div>
-                        <br>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </EditForm>
-                    <br>
-                  <div class="d-flex align-items-center justify-content-center pb-4">
-                    <p class="mb-0 me-2">Don't have an account?</p>
-                    <button type="button" class="btn btn-outline-danger" @onclick="ToRegister">Create new</button>
-                  </div>
-
-              </div>
             </div>
-            <div class="col-lg-6 d-flex align-items-center gradient-custom-6">
-              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                <h4 class="mb-4">We are more than just a service company</h4>
-                <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-              </div>
             </div>
-          </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 p-5 order-sm-1 order-lg-2 loginForm">
+            <img class="img-fluid logo" src="logo-Shepherd.png" alt="Shepherd's Logo">
+            <div class="px-4">
+                <h5 class="text-center mb-3">Please login to your account</h5>
+                <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+                    <DataAnnotationsValidator />
+                    <div class="form-group">
+                        <label for="email" class="mt-2">Email address</label>
+                        <InputText Id="email" Placeholder="Email Address" Class="form-control" @bind-Value="loginModel.Email" />
+                        <ValidationMessage For="@(() => loginModel.Email)" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="mt-2">Password</label>
+                        <InputText Id="password" type="password" Placeholder="Password" Class="form-control" @bind-Value="loginModel.Password" />
+                        <ValidationMessage For="@(() => loginModel.Password)" />
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3 w-100 submitBtn">Submit</button>
+                </EditForm>
+                <hr />
+                <div class="d-flex align-items-center justify-content-center mt-3">
+                    <button type="button" class="btn btn-success" @onclick="ToRegister">Create new account</button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
+
 @* 
 <div class="card">
     <div class="card-body">

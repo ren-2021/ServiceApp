@@ -1,7 +1,35 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #00599B;
+    --secondary-color-A: #F5F5F5;
+    --secondary-color-B: #7DA8C3;
+    --accent-color-A: #F0C705;
+    --accent-color-B: #008080;
+}
+
+@font-face {
+    font-family: 'MontserratBold';
+    src: url("/font/Montserrat-Bold.ttf");
+}
+
+@font-face {
+    font-family: "MontserratReg";
+    src: url("/font/Montserrat-Regular.ttf");
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: MontserratBold, Arial, Helvetica, sans-serif;
+}
+
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: MontserratReg, Helvetica, Arial, sans-serif;
 }
 
 h1:focus {
