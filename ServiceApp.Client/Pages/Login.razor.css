@@ -3,32 +3,8 @@
     /*outline: 1px dotted red;*/
 }
 
-.loginForm {
-    background-color: rgba(245, 245, 245, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 0 10px 10px 0;
-}
-
-.gradient-custom-6 {
-    background: rgb(34,193,195);
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,81,253,1) 100%);
-    border-radius: 10px 0 0 10px;
-}
-
-.gradient-form {
+.container-fluid, .container {
     height: 100vh;
-    width: 100%;
-}
-
-.container {
-    height: 100vh;
-}
-
-.logo {
-    height: 6rem;
-    width: auto;
-    display: block;
-    margin: 0 auto 20px auto;
 }
 
 .bg {
@@ -36,44 +12,60 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     z-index: -1;
     position: absolute;
 }
 
-/* Tablet */
-@media only screen and (min-width: 481px) and (max-width: 768px) {
-    .logo {
-        height: 4rem;
-        width: auto;
-        display: block;
-        margin: 0 auto 20px auto;
+.foreWordsContainer {
+    border-radius: 10px 0 0 10px;
+}
+
+.loginFormContainer {
+    background-color: rgba(245, 245, 245, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* Extra Small (ex) */
+@media (max-width: 575.98px) {
+    .loginFormContainer {
+        padding: 2rem;
     }
 }
 
-/* Mobile Phone */
-@media only screen and (max-width: 480px) {
+/* Small (sm) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+}
+
+/* Medium (md) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .loginFormContainer {
+        padding: 3rem;
+    }
+}
+
+/* Large (lg) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
     .container {
-
+        padding: 5rem;
+        align-items: center;
     }
-
-    .loginForm {
-        /*border-radius: 10px 10px 0 0;*/
-        height: 100vh;
-        border-radius: 0;
+    .row {
+        display: flex;
+        justify-content: center;
     }
+}
 
-    .gradient-custom-6 {
-        /*border-radius: 0 0 10px 10px;*/
-        border-radius: 0;
-        height: 100vh;
-    }
-
-    .logo {
-        height: 3rem;
-        width: auto;
-        display: block;
-        margin: 0 auto 20px auto;
-    }
+/* Extra Large (xl) */
+@media (min-width: 1200px) {
+ /*   .foreWordsContainer {
+        height: 35rem;
+        background: rgb(34,193,195);
+        background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,81,253,1) 100%);
+    }*/
+    
 }
