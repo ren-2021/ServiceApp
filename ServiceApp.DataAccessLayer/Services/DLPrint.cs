@@ -60,5 +60,24 @@ namespace ServiceApp.DataAccessLayer.Services
             }
             return services;
         }
+
+        public void SavePrintingInfo(int _transactionID, string _fileName, string _fullPath)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+                    connection.Execute("pr_SavePrintingInfo",
+                         param: new { TransactionID = _transactionID, FileName = _fileName, FullPath = _fullPath },
+                         commandType: CommandType.StoredProcedure
+                     );
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }

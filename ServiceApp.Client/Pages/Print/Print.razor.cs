@@ -28,7 +28,7 @@ namespace ServiceApp.Client.Pages.Print
 
         private async Task GeneratePDF()
         {
-            await this.PrintService.Generate(this.TransactionInfoContainer.Value.TransactionID);
+            await this.PrintService.Generate(this.TransactionInfoContainer.Value.TransactionID, JS);
         }
     }
 }

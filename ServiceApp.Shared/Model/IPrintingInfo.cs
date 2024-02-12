@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServiceApp.Shared.Model
 {
-    public class PrintingInfo: IPrintingInfo
+    public interface IPrintingInfo
     {
         public int Id { get; set; }
         public string? FileName { get; set; }

@@ -20,7 +20,7 @@ namespace ServiceApp.BusinessLayer.DomainServices.Services
 
         public BasePrintTransaction(List<IDataAccess> pDataAccess) : base(pDataAccess)
         {
-            sourceFolder = Configuration["Printing:SourceFolder"].ToString();
+            sourceFolder = Configuration["Printing:PDFFolder"].ToString();
         }
         public BasePrintTransaction()
         {

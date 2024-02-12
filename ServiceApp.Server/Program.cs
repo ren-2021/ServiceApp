@@ -58,6 +58,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 builder.Services.AddTransient<ITransactionService, TransactionService>();
 builder.Services.AddTransient<IPrintService, PrintService>();
+builder.Services.AddTransient<IPrintingInfo, PrintingInfo>();
 
 builder.Services.AddSignalR();
 builder.Services.AddControllers();

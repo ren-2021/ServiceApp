@@ -10,7 +10,7 @@ namespace ServiceApp.BusinessLayer.DomainServices.Services
 {
     public interface IPrintTransaction
     {
-        byte[] Print(int _transactionID);
+        PrintingInfo Print(int _transactionID);
         IEnumerable<PrintModel> GetServicesInfo(int _transactionID);
     }
 }

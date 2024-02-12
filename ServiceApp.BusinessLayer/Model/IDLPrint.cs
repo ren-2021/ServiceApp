@@ -12,5 +12,7 @@ namespace ServiceApp.BusinessLayer.Model
     {
         public TransactionInfo GetTransactionInfoByID(int _transactionID);
         public IEnumerable<PrintModel> GetTransactionServicesInfo(int _transactionID);
+
+        public void SavePrintingInfo(int _transactionID, string _fileName, string _fullPath);
     }
 }

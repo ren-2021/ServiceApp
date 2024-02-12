@@ -2,6 +2,7 @@
 using ServiceApp.ServiceLayer.Services;
 using ServiceApp.Shared.Model;
 using ServiceApp.Shared.Model.ModelRequest;
+using System;
 
 namespace ServiceApp.Server.Controllers
 {
@@ -18,10 +19,16 @@ namespace ServiceApp.Server.Controllers
         }
 
         [HttpGet("Generate/{_transactionID}")]
-        public IActionResult Generate(int _transactionID)
+        public async Task<IActionResult> Generate(int _transactionID)
         {
-            var fileByte = this.printService.Print(_transactionID);
-            return File(fileByte, "application/pdf", "sample1.pdf");
+            var memory = new MemoryStream();
+            var file = this.printService.Print(_transactionID);
+            using (var stream = new FileStream(file.FullPath, FileMode.Open))
+            {
+                await stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+            return File(memory,"application/pdf", Path.GetFileName(file.FullPath));
         }
 
         [HttpGet("GetServiceInfo/{_transactionID}")]

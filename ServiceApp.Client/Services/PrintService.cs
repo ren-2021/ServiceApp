@@ -1,4 +1,5 @@
-﻿using ServiceApp.Shared.Model;
+﻿using Microsoft.JSInterop;
+using ServiceApp.Shared.Model;
 using ServiceApp.Shared.Model.ModelRequest;
 using System.Net.Http.Json;
 using System.Text;
@@ -29,23 +30,25 @@ namespace ServiceApp.Client.Services
             }
         }
 
-        public async Task Generate(int _transactionID)
+        public async Task Generate(int _transactionID, IJSRuntime JS)
         {
             try
             {
                var response = await _httpClient.GetAsync($"api/Print/Generate/{_transactionID}");
-                if (response.IsSuccessStatusCode)
+                if (!response.IsSuccessStatusCode)
                 {
-                    var contentDisposition = response.Content.Headers.ContentDisposition;
-                    var fileName = contentDisposition?.FileName ?? "downloadedFile";
-                    var fileBytes = await response.Content.ReadAsByteArrayAsync();
-                    var filePath = $"D:\\EOI Projects\\ShepherdShelter\\ServiceApp\\ServiceApp.PDFTemplates\\" + fileName;
-                    await File.WriteAllBytesAsync(filePath, fileBytes);
+                    await JS.InvokeVoidAsync("alert", "File Not Found!");
+                }
+                else
+                {
+                    var fileStream = await response.Content.ReadAsStreamAsync();
+                    using var streamRef = new DotNetStreamReference(stream: fileStream);
+                    await JS.InvokeVoidAsync("downloadFileFromStream", response.Content.Headers.ContentDisposition.FileName, streamRef);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error fetching transactions: {ex.Message}");
+                Console.WriteLine($"Error on downloading: {ex.Message}");
             }
         }
     }

@@ -12,12 +12,13 @@ namespace ServiceApp.ServiceLayer.Services
     public class PrintService : BaseDataAccessFactory, IPrintService
     {
         private IPrintTransaction printTransaction;
+        private PrintingInfo printingInfo;
         public PrintService()
         {
             this.printTransaction = new PrintTransaction(this.dataAcesses);
         }
 
-        public byte[] Print(int _transactionID)
+        public PrintingInfo Print(int _transactionID)
         {
             return this.printTransaction.Print(_transactionID);
         }
