@@ -6,17 +6,17 @@
 @inject IPrintService PrintService
 @inject HttpClient httpClient
 @inject NavigationManager NavigationManager
-@inject TransactionInfo TransactionInfo
+@inject TransactionInfoContainer TransactionInfoContainer
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 <AuthorizeView Context="categoryCommandContext">
 
     <div>
         <h3>Client</h3>
-        <h5>@TransactionInfo.FirstName</h5>
-        <h5>@TransactionInfo.TinNo</h5>
-        <h5>@TransactionInfo.EmailAddress</h5>
-        <h5>@TransactionInfo.Address</h5>
+        <h5>@TransactionInfoContainer.Value.FirstName</h5>
+        <h5>@TransactionInfoContainer.Value.TinNo</h5>
+        <h5>@TransactionInfoContainer.Value.EmailAddress</h5>
+        <h5>@TransactionInfoContainer.Value.Address</h5>
     </div>
     <br>
     <div>
@@ -36,31 +36,34 @@
                 {
                 <tr>
                     <td>@propValue.Description</td>
-                        <td>
-                            @if(propValue.OwnershipType == 1)
-                            {
-                                <span>@propValue.Fee</span>
-                            }
-                            else
-                            {
-                                <span></span>
-                            }
-                        </td>
-                        <td>
-                            @if (propValue.OwnershipType == 2)
-                            {
-                                <span></span>
-                            }
-                            else
-                            {
-                                <span>@propValue.Fee</span>
-                            }
-                        </td>
-                        <br>
+                    <td>
+                        @if(propValue.OwnershipType == 1)
+                        {
+                            <span>@propValue.Fee</span>
+                        }
+                        else
+                        {
+                            
+                        }
+                    </td>
+                    <td>
+                        @if (propValue.OwnershipType == 2)
+                        {
+                           <span>@propValue.Fee</span>
+                        }
+                        else
+                        {
+                           <span></span>
+                        }
+                    </td>
+                     <br>
                 </tr>
                     }
             </tbody>
         </table>
         }
+    </div>
+    <div class="container  mt-4 text-end">
+        <MudButton DisableElevation="true" OnClick="@(()=>GeneratePDF())" Variant="Variant.Filled" Class="mud-btn-color-black">Generate PDF</MudButton>
     </div>
 </AuthorizeView>

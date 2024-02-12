@@ -83,7 +83,7 @@ builder.Services.AddSingleton<GCash>();
 builder.Services.AddSingleton<ATMPortable>();
 builder.Services.AddSingleton<BankBalanceInquiry>();
 builder.Services.AddSingleton<Withdrawal>();
-builder.Services.AddSingleton<TransactionInfo>();
+builder.Services.AddSingleton<TransactionInfoContainer>();
 
 builder.Services.AddMudServices();
 await builder.Build().RunAsync();

@@ -25,7 +25,7 @@ namespace ServiceApp.Client.Pages.Services
 
         private void RowClickEvent(TableRowClickEventArgs<TransactionInfo> tableRowClickEventArgs)
         {
-            this.TransactionInfo = tableRowClickEventArgs.Item;
+            this.TransactionInfoContainer.SetValue(tableRowClickEventArgs.Item);
             NavigationManager.NavigateTo("/print");
         }
     }

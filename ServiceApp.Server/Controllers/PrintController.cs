@@ -17,10 +17,11 @@ namespace ServiceApp.Server.Controllers
             this.printService = _printService;
         }
 
-        [HttpPost("Generate/{_transactionID}")]
-        public ActionResult<PrintingInfo> Generate(int _transactionID)
+        [HttpGet("Generate/{_transactionID}")]
+        public IActionResult Generate(int _transactionID)
         {
-            return this.printService.Print(_transactionID);
+            var fileByte = this.printService.Print(_transactionID);
+            return File(fileByte, "application/pdf", "sample1.pdf");
         }
 
         [HttpGet("GetServiceInfo/{_transactionID}")]

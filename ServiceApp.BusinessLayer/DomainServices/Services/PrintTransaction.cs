@@ -31,14 +31,14 @@ namespace ServiceApp.BusinessLayer.DomainServices.Services
         {
 
         }
-        public PrintingInfo Print(int _transactionID)
+        public byte[] Print(int _transactionID)
         {
             this.TransactionID = _transactionID;
             this.InitializeTransaction();
             this.InitializeServices();
             this.Validation();
-            this.Generate();
-            return this.printingInfo;
+            return this.Generate();
+            //return this.printingInfo;
         }
 
         public IEnumerable<PrintModel> GetServicesInfo(int _transactionID) 
@@ -67,20 +67,12 @@ namespace ServiceApp.BusinessLayer.DomainServices.Services
             }
         }
 
-        private string Generate()
+        private byte[] Generate()
         {
-
-            try
-            {
-                Settings.License = LicenseType.Community;
-                var document = new TransactionDocument(this.transactionInfo, this.mainServices);
-                document.GeneratePdfAndShow();
-                return "";
-            }
-            catch (Exception ex)
-            {
-                return "";
-            }
+            var filePath = $"D:\\EOI Projects\\ShepherdShelter\\ServiceApp\\ServiceApp.PDFTemplates\\Sample.pdf";
+            Settings.License = LicenseType.Community;
+            var document = new TransactionDocument(this.transactionInfo, this.mainServices);
+            return GenerateExtensions.GeneratePdf(document);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace ServiceApp.ServiceLayer.Services
             this.printTransaction = new PrintTransaction(this.dataAcesses);
         }
 
-        public PrintingInfo Print(int _transactionID)
+        public byte[] Print(int _transactionID)
         {
             return this.printTransaction.Print(_transactionID);
         }

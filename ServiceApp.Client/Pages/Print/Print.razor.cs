@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using ServiceApp.Shared.Model;
 using ServiceApp.Shared.Model.ModelRequest;
+using static MudBlazor.CategoryTypes;
 
 namespace ServiceApp.Client.Pages.Print
 {
@@ -19,10 +20,15 @@ namespace ServiceApp.Client.Pages.Print
 
         protected override async Task OnInitializedAsync()
         {
-            if(TransactionInfo != null)
+            if(this.TransactionInfoContainer.Value != null)
             {
-                ServicesInfo = await this.PrintService.GetServicesInfo(3);
+                ServicesInfo = await this.PrintService.GetServicesInfo(this.TransactionInfoContainer.Value.TransactionID);
             }
+        }
+
+        private async Task GeneratePDF()
+        {
+            await this.PrintService.Generate(this.TransactionInfoContainer.Value.TransactionID);
         }
     }
 }

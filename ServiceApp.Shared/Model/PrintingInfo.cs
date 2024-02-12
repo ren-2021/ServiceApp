@@ -8,5 +8,7 @@ namespace ServiceApp.Shared.Model
 {
     public class PrintingInfo
     {
+        public string FileName { get; set; }
+        public string FullPath { get; set; }
     }
 }
