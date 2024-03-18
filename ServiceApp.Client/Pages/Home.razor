@@ -13,7 +13,7 @@
             <MudItem xs="12" sm="10">
                 <div class="container">
                     <div class="row mb-4">
-                        <div class="col-9">
+                        <div class="col-sm-9">
                             <div class="row">
                                 <div>
                                     <p class="p-custom" style="color:#7f7f7f">STATISTICS</p>
@@ -24,7 +24,7 @@
                             </div>
                             @* Tue, 19 Dec 2023 - Fri, 19 Jan 2023 *@
                         </div>
-                        <div class="col-3">
+                        <div class="col-sm-3">
                             <div>
                                 <MudSelect T="Chart" @bind-Value="chartValue" SelectedValuesChanged="InitializeDate" Margin="Margin.Dense" Class="input-custom" Variant="Variant.Outlined" AnchorOrigin="Origin.BottomCenter">
                                     <MudSelectItem Value="@(new Chart("Month"))" />
@@ -39,12 +39,12 @@
             <MudItem xs="12" sm="10">
               <div class="container">
                     <div class="row mb-4">
-                        <div class="col">
+                        <div class="col-sm">
                             <MudPaper>
-                                <MudChart ChartType="ChartType.Pie" InputData="@data" @bind-SelectedIndex="Index" InputLabels="@labels" Width="550px" Height="550px" />
+                                <MudChart ChartType="ChartType.Pie" InputData="@data" @bind-SelectedIndex="Index" InputLabels="@labels"/>
                             </MudPaper>
                         </div>
-                        <div class="col">
+                        <div class="col-sm">
                             <MudPaper Class="d-flex align-center mud-width-full">
                                 <MudCardContent>
                                     <MudText>Summary</MudText>
