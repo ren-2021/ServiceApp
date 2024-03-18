@@ -18,5 +18,10 @@ namespace ServiceApp.BusinessLayer.DomainServices.Services
         {
             return this.DLTransaction.GetTrasactions();
         }
+
+        public List<TransactionInfo> GetTransactionDate(DateOnly Start, DateOnly End)
+        {
+            return this.DLTransaction.GetTransactionDate(Start, End);
+        }
     }
 }

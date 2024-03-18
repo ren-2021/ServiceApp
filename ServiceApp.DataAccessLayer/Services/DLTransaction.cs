@@ -56,5 +56,28 @@ namespace ServiceApp.DataAccessLayer.Services
 
             return result;
         }
+
+        public List<TransactionInfo> GetTransactionDate(DateOnly Start, DateOnly End)
+        {
+            List<TransactionInfo> result = new List<TransactionInfo>();
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@FromDate", Start);
+                    parameters.Add("@ToDate", End);
+                    result = connection.Query<TransactionInfo>("pr_GetTransactions", commandType: CommandType.StoredProcedure).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
+        }
     }
 }

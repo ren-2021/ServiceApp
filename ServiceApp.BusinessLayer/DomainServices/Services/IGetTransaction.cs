@@ -10,5 +10,6 @@ namespace ServiceApp.BusinessLayer.DomainServices.Services
     public interface IGetTransaction
     {
         List<TransactionInfo> Get();
+        List<TransactionInfo> GetTransactionDate(DateOnly Start, DateOnly End);
     }
 }

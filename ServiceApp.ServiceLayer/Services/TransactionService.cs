@@ -28,5 +28,10 @@ namespace ServiceApp.ServiceApp.ServiceLayer.Services
         {
             return this.getTransaction.Get();
         }
+
+        public IEnumerable<TransactionInfo> GetTransactionDate(DateOnly start, DateOnly end)
+        {
+            return this.getTransaction.GetTransactionDate(start, end);
+        }
     }
 }

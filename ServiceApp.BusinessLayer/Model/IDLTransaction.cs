@@ -12,5 +12,6 @@ namespace ServiceApp.DataAccessLayer.Services
         bool AddTrasaction(string jsonString);
 
         List<TransactionInfo> GetTrasactions();
+        List<TransactionInfo> GetTransactionDate(DateOnly start, DateOnly end);
     }
 }

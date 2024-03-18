@@ -6,6 +6,9 @@ namespace ServiceApp.Client.Pages
 {
     public partial class Home
     {
+        private MudDateRangePicker _picker;
+        private DateRange _dateRange = new DateRange(DateTime.Now.Date, DateTime.Now.AddDays(5).Date);
+        private bool _autoClose;
         private int Index = -1;
         private Chart chartValue;
         private string ChartDate;
@@ -16,40 +19,25 @@ namespace ServiceApp.Client.Pages
                         "Neptunium", "Americium", "Curium", "Berkelium", "Californium", "Einsteinium", "Mudblaznium" };
 
         Random random = new Random();
+        EventCallback<DateTime?> dateRangeCallBack;
 
         public Home() {
             chartValue = new Chart("Month");
             InitializeDate();
         }
-        void RandomizeData()
-        {
-            var new_data = new double[dataSize];
-            for (int i = 0; i < new_data.Length; i++)
-                new_data[i] = random.NextDouble() * 100;
-            data = new_data;
-            StateHasChanged();
-        }
 
-        void AddDataSize()
+        public void OndateDateRangeChanged(DateTime? dateRange1, DateTime dateRange2)
         {
-            if (dataSize < 20)
-            {
-                dataSize = dataSize + 1;
-                RandomizeData();
-            }
-        }
-        void RemoveDataSize()
-        {
-            if (dataSize > 0)
-            {
-                dataSize = dataSize - 1;
-                RandomizeData();
-            }
+            dateRange1 = _dateRange.Start.Value ;
+            dateRange2 = _dateRange.End.Value;
+
         }
 
         void InitializeDate()
         {
-            switch (chartValue.Name)
+
+
+			switch (chartValue.Name)
             {
                 case "Month":
                     ChartDate = DateTime.Now.ToString("dddd, dd MMMM yyyy") + " - " + DateTime.Now.AddMonths(1).ToString("dddd, dd MMMM yyyy");
@@ -59,6 +47,18 @@ namespace ServiceApp.Client.Pages
                     break;
                 case "Annually":
                     ChartDate = DateTime.Now.ToString("dddd, dd MMMM yyyy") + " - " + DateTime.Now.AddMonths(12).ToString("dddd, dd MMMM yyyy");
+                    break;
+                case "Custom":
+					DateTime dateRange1 = _dateRange.Start.Value;
+					DateTime dateRange2 = _dateRange.End.Value;
+
+					OndateDateRangeChanged(dateRange1, dateRange2);
+
+					if (dateRange1 != null && dateRange2 != null)
+                    {
+						ChartDate = dateRange1.ToString() + dateRange2.ToString();
+					}
+                    
                     break;
                 default:
                     break;
@@ -84,4 +84,8 @@ namespace ServiceApp.Client.Pages
         public override int GetHashCode() => Name?.GetHashCode() ?? 0;
         public override string ToString() => Name;
     }
+
+
+
+
 }
