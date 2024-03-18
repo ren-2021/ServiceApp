@@ -19,46 +19,48 @@ namespace ServiceApp.Client.Pages
                         "Neptunium", "Americium", "Curium", "Berkelium", "Californium", "Einsteinium", "Mudblaznium" };
 
         Random random = new Random();
-        EventCallback<DateTime?> dateRangeCallBack;
 
         public Home() {
             chartValue = new Chart("Month");
             InitializeDate();
         }
 
-        public void OndateDateRangeChanged(DateTime? dateRange1, DateTime dateRange2)
-        {
-            dateRange1 = _dateRange.Start.Value ;
-            dateRange2 = _dateRange.End.Value;
+        //public void OndateDateRangeChanged(DateTime? dateRange1, DateTime dateRange2)
+        //{
+        //    dateRange1 = _dateRange.Start.Value ;
+        //    dateRange2 = _dateRange.End.Value;
 
-        }
+        //}
 
         void InitializeDate()
         {
-
-
 			switch (chartValue.Name)
             {
                 case "Month":
-                    ChartDate = DateTime.Now.ToString("dddd, dd MMMM yyyy") + " - " + DateTime.Now.AddMonths(1).ToString("dddd, dd MMMM yyyy");
+                    ChartDate = DateTime.Now.ToString("MMMM dd, yyyy") + " - " + DateTime.Now.AddMonths(1).ToString("MMMM dd, yyyy");
                     break;
                 case "Quarterly":
-                    ChartDate = DateTime.Now.ToString("dddd, dd MMMM yyyy") + " - " + DateTime.Now.AddMonths(4).ToString("dddd, dd MMMM yyyy");
+                    ChartDate = DateTime.Now.ToString("MMMM dd, yyyy") + " - " + DateTime.Now.AddMonths(4).ToString("MMMM dd, yyyy");
                     break;
                 case "Annually":
-                    ChartDate = DateTime.Now.ToString("dddd, dd MMMM yyyy") + " - " + DateTime.Now.AddMonths(12).ToString("dddd, dd MMMM yyyy");
+                    ChartDate = DateTime.Now.ToString("MMMM dd, yyyy") + " - " + DateTime.Now.AddMonths(12).ToString("MMMM dd, yyyy");
                     break;
                 case "Custom":
-					DateTime dateRange1 = _dateRange.Start.Value;
-					DateTime dateRange2 = _dateRange.End.Value;
 
-					OndateDateRangeChanged(dateRange1, dateRange2);
+                    DateTime? dateRange1 = _dateRange.Start.Value.Date;
+                    DateTime? dateRange2 = _dateRange.End.Value.Date;
+
+                    string startDate = dateRange1.Value.Date.ToString("MMMM dd, yyyy");
+                    string endDate = dateRange2.Value.Date.ToString("MMMM dd, yyyy");
 
 					if (dateRange1 != null && dateRange2 != null)
                     {
-						ChartDate = dateRange1.ToString() + dateRange2.ToString();
-					}
-                    
+                        ChartDate = startDate + " to " +endDate;
+
+
+                    }
+                    //StateHasChanged();
+
                     break;
                 default:
                     break;
