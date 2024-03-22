@@ -1,13 +1,15 @@
-﻿namespace ServiceApp.Client.Utility
+﻿using ServiceApp.Client.Enum;
+
+namespace ServiceApp.Client.Utility
 {
      public class Chart
     {
+        public string Name { get; set; }
+        public Timeline Timeline { get; set; }
         public Chart(string name)
         {
             Name = name;
         }
-
-        public string Name { get; set; }
 
         public override bool Equals(object o)
         {
