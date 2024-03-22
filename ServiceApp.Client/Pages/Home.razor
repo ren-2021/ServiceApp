@@ -1,4 +1,7 @@
 ﻿@page "/"
+@using ServiceApp.Client.Utility
+@inject IChartService ChartService
+@inject HttpClient httpClient
 
 <style>
     .p-custom{
@@ -27,9 +30,9 @@
                         <div class="col-sm-3">
                             <div>
                                 <MudSelect T="Chart" @bind-Value="chartValue" SelectedValuesChanged="InitializeDate" Margin="Margin.Dense" Class="input-custom" Variant="Variant.Outlined" AnchorOrigin="Origin.BottomCenter">
-                                    <MudSelectItem Value="@(new Chart("Month"))" />
-                                    <MudSelectItem Value="@(new Chart("Quarterly"))" />
-                                    <MudSelectItem Value="@(new Chart("Annually"))" />
+                                    <MudSelectItem Value="@(new Chart(Client.Enum.Timeline.Month.ToString()))" />
+                                    <MudSelectItem Value="@(new Chart(Client.Enum.Timeline.Quarterly.ToString()))" />
+                                    <MudSelectItem Value="@(new Chart(Client.Enum.Timeline.Annually.ToString()))" />
                                 </MudSelect>
                             </div>
                         </div>

@@ -13,5 +13,6 @@ namespace ServiceApp.DataAccessLayer
     {
         IDLTransaction DLTransaction { get; }
         IDLPrint DLPrint { get; }
+        IDLDashboard DLDashboard { get; }
     }
 }

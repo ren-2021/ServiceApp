@@ -37,6 +37,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<IPrintService, PrintService>();
+builder.Services.AddScoped<IChartService, ChartService>();
 builder.Services.AddSingleton<ClientInfo>();
 builder.Services.AddSingleton<Accounting>();
 builder.Services.AddSingleton<FilingOfTaxes>();
