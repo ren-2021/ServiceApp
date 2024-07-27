@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ServiceApp.Client.Utility;
 using ServiceApp.ServiceLayer.Services;
 using ServiceApp.Shared.Model.Chart;
 using ServiceApp.Shared.Model.ModelRequest;
@@ -17,10 +18,10 @@ namespace ServiceApp.Server.Controllers
             this.dashboardService = _dashboardService;
         }
 
-        [HttpGet("GetChartPercentage/{_timeline}")]
-        public IEnumerable<ChartModel> GetChartPercentage(int _timeline)
+        [HttpGet("GetChartPercentage/{chart}")]
+        public IEnumerable<ChartModel> GetChartPercentage(Chart chart)
         {
-            return this.dashboardService.GetChartPercentage(_timeline);
+            return this.dashboardService.GetChartPercentage(chart);
         }
     }
 }

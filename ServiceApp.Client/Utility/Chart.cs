@@ -5,7 +5,8 @@ namespace ServiceApp.Client.Utility
      public class Chart
     {
         public string Name { get; set; }
-        public Timeline Timeline { get; set; }
+        public Timeline? Timeline { get; set; }
+        public DateTime? Date1 { get; set; }
         public Chart(string name)
         {
             Name = name;

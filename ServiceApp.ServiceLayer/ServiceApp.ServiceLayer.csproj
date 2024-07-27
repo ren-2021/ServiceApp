@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ServiceApp.BusinessLayer\ServiceApp.BusinessLayer.csproj" />
+    <ProjectReference Include="..\ServiceApp.Client\ServiceApp.Client.csproj" />
     <ProjectReference Include="..\ServiceApp.DataAccessLayer\ServiceApp.DataAccessLayer.csproj" />
   </ItemGroup>
 

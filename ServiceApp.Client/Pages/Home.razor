@@ -33,7 +33,12 @@
                                     <MudSelectItem Value="@(new Chart(Client.Enum.Timeline.Month.ToString()))" />
                                     <MudSelectItem Value="@(new Chart(Client.Enum.Timeline.Quarterly.ToString()))" />
                                     <MudSelectItem Value="@(new Chart(Client.Enum.Timeline.Annually.ToString()))" />
+                                    <MudSelectItem Value="@(new Chart(Client.Enum.Timeline.Daily.ToString()))" />
                                 </MudSelect>
+                            </div>
+                            <div>
+                                <MudDatePicker Label="Choose Date.." Date="@date1" DateChanged="OnDateChanged"/> 
+                                <p>Date Selected: @date1</p>
                             </div>
                         </div>
                     </div>

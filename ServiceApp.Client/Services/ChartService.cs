@@ -1,4 +1,5 @@
-﻿using ServiceApp.Shared.Model.Chart;
+﻿using ServiceApp.Client.Utility;
+using ServiceApp.Shared.Model.Chart;
 using ServiceApp.Shared.Model.ModelRequest;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -13,9 +14,9 @@ namespace ServiceApp.Client.Services
         {
             _httpClient = httpClient;
         }
-        public async Task<IEnumerable<ChartModel>> GetChartPercentage(int timeline)
+        public async Task<IEnumerable<Chart>> GetChartPercentage(Chart chart)
         {
-            var result = await _httpClient.GetFromJsonAsync<IEnumerable<ChartModel>>($"api/Dashboard/GetChartPercentage/{timeline}");
+            var result = await _httpClient.GetFromJsonAsync<IEnumerable<Chart>>($"api/Dashboard/GetChartPercentage/");
             return result;
         }
     }

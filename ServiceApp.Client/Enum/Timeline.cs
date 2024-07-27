@@ -4,6 +4,7 @@
     {
         Month = 1,
         Quarterly = 2,
-        Annually = 3
+        Annually = 3,
+        Daily = 4
     }
 }

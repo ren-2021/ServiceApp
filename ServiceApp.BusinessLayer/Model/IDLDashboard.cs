@@ -1,4 +1,5 @@
-﻿using ServiceApp.Shared.Model.Chart;
+﻿using ServiceApp.Client.Utility;
+using ServiceApp.Shared.Model.Chart;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace ServiceApp.BusinessLayer.Model
 {
     public interface IDLDashboard
     {
-        IEnumerable<ChartModel> GetChartPercentage(int _timeline);
+        IEnumerable<ChartModel> GetChartPercentage(Chart chart);
     }
 }

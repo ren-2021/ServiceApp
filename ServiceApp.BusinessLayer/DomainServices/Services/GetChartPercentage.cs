@@ -1,4 +1,5 @@
 ﻿using ServiceApp.BusinessLayer.Model;
+using ServiceApp.Client.Utility;
 using ServiceApp.Shared.Model.Chart;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ namespace ServiceApp.BusinessLayer.DomainServices.Services
         {
 
         }
-        public IEnumerable<ChartModel> Get(int _timeline)
+        public IEnumerable<ChartModel> Get(Chart chart)
         {
-            return this.DLDashboard.GetChartPercentage(_timeline);
+            return this.DLDashboard.GetChartPercentage(chart);
         }
     }
 }

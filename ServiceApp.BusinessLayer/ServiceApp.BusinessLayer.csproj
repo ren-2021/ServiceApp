@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ServiceApp.Client\ServiceApp.Client.csproj" />
     <ProjectReference Include="..\ServiceApp.Shared\ServiceApp.Shared.csproj" />
   </ItemGroup>
 
